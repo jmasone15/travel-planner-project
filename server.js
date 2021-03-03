@@ -15,11 +15,16 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define middleware here
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.json());
 
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
 app.use('/', routes);
+
 
 // Connect to the Mongo DB
 mongoose.connect(

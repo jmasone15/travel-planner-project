@@ -1,5 +1,9 @@
 import './App.css';
 import { React, useState } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SearchForm from "./components/SearchForm"
+import Recommend from "./pages/Recommend"
+import Calender from "./components/Calender"
 
 function App() {
 
@@ -38,28 +42,13 @@ function App() {
   }
 
   return (
+    <Router>
     <div className="App">
-      <h1>Travel Planner!</h1>
-      <br />
-      <h3>Enter your budget: </h3>
-      <input type="text" name="budget" value={budget} onChange={(e) => handleInput(e)} />
-      <br />
-      <h3>Enter your destination: </h3>
-      <input type="text" name="destination" value={destination} onChange={(e) => handleInput(e)} />
-      <br /><br />
-      <div>
-        <h3>{showData ? `Budget: ${budget}` : ""}</h3>
-        <h3>{showData ? `Destination: ${destination}` : ""}</h3>
-        <br />
-        {showData ? <button onClick={(e) => handleFormSubmit(e)}>Submit</button> : ""}
-      </div>
-      { showTrip ?
-        <div>
-          <h2>Your Trip:</h2>
-          <h4>Destination: {userData.destination}</h4>
-          <h4>Budget: {userData.budget}</h4>
-        </div> : ""}
+      <Route exact path="/" component={Calender} />
+      <Route exact path="/todo" component={Recommend} />
+
     </div>
+  </Router>
   );
 }
 
