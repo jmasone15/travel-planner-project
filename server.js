@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors')
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,6 +11,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define middleware here
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
