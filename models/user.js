@@ -1,49 +1,38 @@
-const mongoose = require('mongoose'),
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 const Schema = mongoose.Schema;
 
-const thirdPartyProviderSchema = new Schema({
-    provider_name: {
-        type: String,
-        default: null
-    },
-    provider_id: {
-        type: String,
-        default: null
-    },
-    provider_data: {
-        type: {},
-        default: null
-    }
-});
-
-const userSchema = new Schema({
-    username: {
-        type: String,
-        required: "Please enter a valid username.",
-        unique: true
-    },
+const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
         unique: true
     },
-    email_is_verified: {
-        type: Boolean,
-        default: false
-    },
     password: {
         type: String,
-        required: "Please enter a valid password."
-    },
-    third_party_auth: [thirdPartyProviderSchema],
-    date: {
-        type: Date,
-        default: Date.now
+        required: true
     }
 });
 
+UserSchema.pre(
+    'save',
+    async function (next) {
+        const user = this;
+        const hash = await bcrypt.hash(this.password, 10);
 
+        this.password = hash;
+        next();
+    }
+);
 
-const User = mongoose.model("users", userSchema);
+UserSchema.methods.isValidPassword = async function (password) {
+    const user = this;
+    const compare = await bcrypt.compare(password, user.password);
 
-module.exports = User;
+    return compare;
+}
+
+const UserModel = mongoose.model('user', UserSchema);
+
+module.exports = UserModel;
