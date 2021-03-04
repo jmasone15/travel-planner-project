@@ -1,57 +1,91 @@
 import './App.css';
-import { React, useState } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import SearchForm from "./components/SearchForm"
-import Recommend from "./pages/Recommend"
-import Calender from "./components/Calender"
-import Map from "./components/MapContainer"
+import React from 'react';
+import Signup from './pages/Signup';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import { Route } from 'react-router-dom';
+import axios from "axios";
+import Calendar from "./components/Calender";
+import Recommend from "./pages/Recommend";
 
-function App() {
-
-  const [budget, setBudget] = useState("");
-  const [destination, setDestination] = useState("");
-  const [showData, setShowData] = useState(false);
-  const [showTrip, setShowTrip] = useState(false);
-  const [userData, setUserData] = useState({
-    budget: "",
-    destination: ""
-  });
-
-  const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    if (name === "budget") {
-      setBudget(value);
-      setShowData(true);
-    } else {
-      setDestination(value);
-      setShowData(true);
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      username: null
     }
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
   }
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setUserData({
-      budget: budget,
-      destination: destination
-    });
-    setBudget("");
-    setDestination("");
-    setShowData(false);
-    setShowTrip(true);
+  componentDidMount() {
+    this.getUser()
   }
 
-  return (
-    <Router>
-    <div className="App">
-      <Route exact path="/" component={Calender} />
-      <Route exact path="/todo" component={Recommend} />
-      <Route exact path="/map" component={Map} />
+  updateUser(userObject) {
+    this.setState(userObject)
+  }
 
-    </div>
-  </Router>
-  );
+  getUser() {
+    axios.get('/user/').then(response => {
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('There is a user saved in the server session.')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Route
+          exact path="/"
+          render={() =>
+            <Home
+              updateUser={this.updateUser}
+              user={this.state}
+            />}
+        />
+        <Route
+          path="/login"
+          render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />}
+        />
+        <Route
+          path="/signup"
+          render={() =>
+            <Signup />}
+        />
+
+        <Route
+          path="/calendar"
+          component={Calendar}
+        />
+
+        <Route
+          path="/search"
+          component={Recommend}
+        />
+
+      </div>
+    );
+  }
 }
 
 export default App;
