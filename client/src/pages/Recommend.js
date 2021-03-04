@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import SearchForm from "../components/SearchForm";
 import Card from "../components/Card"
+import MapContainer from "../components/MapContainer"
 
 function Recommend() {
 
@@ -10,6 +11,7 @@ function Recommend() {
     return (
         <div>
             <SearchForm />
+            <MapContainer />
 
         </div>
     )
