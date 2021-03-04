@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import { attractions, hotels, shopping, restaurants } from "../routes/API"
 import Card from "./Card"
+import captureArray from './MapContainer';
+import MapContainer from "./MapContainer"
 
 
 function SearchForm() {
@@ -58,6 +60,7 @@ function SearchForm() {
         break;
       case "hotels":
         setType(hotelsArray);
+
         setShowResults(true);
         break;
       case "shopping":
@@ -85,6 +88,8 @@ function SearchForm() {
 
         </div>
       </form>
+
+      <MapContainer props={type} />
 
       {showResults ? <Card data={type} /> : null}
     </div>

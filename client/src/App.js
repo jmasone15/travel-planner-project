@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchForm from "./components/SearchForm"
 import Recommend from "./pages/Recommend"
 import Calender from "./components/Calender"
+import Map from "./components/MapContainer"
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Calender} />
       <Route exact path="/todo" component={Recommend} />
+      <Route exact path="/map" component={Map} />
 
     </div>
   </Router>
