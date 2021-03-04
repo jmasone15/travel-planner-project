@@ -2,40 +2,52 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const mongoose = require("mongoose");
-const passport = require('passport');
-const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
-const secureRoute = require('./routes/secure-routes');
-require("./middleware/auth/auth");
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const session = require('express-session')
+const dbConnection = require('./db')
+const passport = require('./auth');
+const MongoStore = require('connect-mongo')(session)
+
+// Route requires
+const user = require('./routes/userRoutes')
+
+// MIDDLEWARE
+app.use(morgan('dev'))
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+)
+app.use(bodyParser.json())
+
+// Sessions
+app.use(
+    session({
+        secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
+        store: new MongoStore({ mongooseConnection: dbConnection }),
+        resave: false, //required
+        saveUninitialized: false //required
+    })
+)
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/public"));
+    app.use(express.static("client/build"));
 }
 
-// Define middleware here
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(express.json());
-
-app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
-app.use('/', routes);
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls the deserializeUser
 
 
-// Connect to the Mongo DB
-mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/travelplanner",
-    { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
-);
+// Routes
+app.use('/user', user)
 
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/public/index.html"));
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, function () {

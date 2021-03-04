@@ -13,6 +13,7 @@
         "build": "cd client && npm run build",
         "heroku-postbuild": "npm run build"
     },
+    "proxy": "http://localhost:3001",
     "author": "",
     "license": "ISC",
     "devDependencies": {
@@ -21,19 +22,20 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
-        "bcrypt": "^4.0.1",
+        "bcryptjs": "^2.4.3",
         "body-parser": "^1.19.0",
         "bootstrap": "^4.6.0",
         "express": "^4.17.1",
         "google-maps-react": "^2.0.6",
-        "http-proxy-middleware": "^1.0.6",
         "if-env": "^1.0.4",
-        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.9.0",
         "mongoose": "^5.9.15",
         "passport": "^0.4.1",
-        "passport-jwt": "^4.0.0",
         "passport-local": "^1.0.0",
         "react-dates": "^21.8.0",
-        "react-router-dom": "^5.2.0"
+        "react-router-dom": "^5.2.0",
+        "connect-mongo": "^2.0.1",
+        "express-session": "^1.15.6",
+        "spectre.css": "^0.5.0"
     }
 }
