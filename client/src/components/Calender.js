@@ -3,56 +3,37 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
-import moment from 'moment';
+import Itinerary from "./Itinerary"
 
 
 class Calender extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            startDate: null,
-            endDate: null
-        }
-        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.state = {}
     }
 
-
-
-    handleBtnClick(e) {
-        e.preventDefault()
-
-
-        
-
-        if ((this.state.startDate !== null) && (this.state.endDate !== null)) {
-
-            var getDaysBetweenDates = () => {
-                var now = this.state.startDate.clone(), dates = [];
-
-                while (now.isSameOrBefore(this.state.endDate)) {
-                    dates.push(now.format('MM/DD/YYYY'));
-                    now.add(1, 'days');
-                }
-                console.log(dates);
-            };
-            getDaysBetweenDates()
-        }
-    }
+    
 
     render() {
         return (
             <div className="Calender">
                 <DateRangePicker
-                    startDate={this.state.startDate} 
+                    startDate={this.props.startDate} 
                     startDateId="your_unique_start_date_id"
-                    endDate={this.state.endDate} 
+                    endDate={this.props.endDate} 
                     endDateId="your_unique_end_date_id" 
-                    onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                    onDatesChange={({ startDate, endDate }) => {
+                        this.props.setStartDate(startDate)
+                        this.props.setEndDate(endDate)
+                    }
+                    
+                    }
                     focusedInput={this.state.focusedInput} 
                     onFocusChange={focusedInput => this.setState({ focusedInput })}
                     showClearDates={true}
                 />
-                <button type="button" onClick={this.handleBtnClick}>Submit</button>
+                
             </div>
         )
     }
