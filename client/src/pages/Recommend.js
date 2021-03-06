@@ -11,7 +11,6 @@ function Recommend() {
     return (
         <div>
             <SearchForm />
-            <MapContainer />
 
         </div>
     )
