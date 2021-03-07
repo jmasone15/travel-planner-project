@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../routes/API"
+import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
 import Card from "./Card"
 import Calender from './Calender';
 import MapContainer from "./MapContainer"
@@ -23,7 +23,7 @@ function SearchForm() {
   const [restaurantsArray, setRestaurantsArray] = useState([])
   const [editDate, setEditDate] = useState(0)
   const [askOnce, setAskOnce] = useState(false)
-  const [latLng, setLatLng] = useState({lat: 54.526, lng: 95.7129})
+  const [latLng, setLatLng] = useState({ lat: 54.526, lng: 95.7129 })
   const [formattedLocation, setFormattedLocation] = useState("")
   const [reset, setReset] = useState()
 
@@ -225,7 +225,7 @@ function SearchForm() {
 
       <MapContainer props={latLng} type={type} />
       <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />
-      
+
 
 
 

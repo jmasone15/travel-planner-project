@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
-import { randomColor } from "../../util/randomColorGen";
+import { randomColor } from "../../utils/randomColorGen";
 
 function BudgetGraph({ listOfTransactions }) {
   const [labels, setLabels] = useState([]);
