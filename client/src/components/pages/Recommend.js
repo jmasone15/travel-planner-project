@@ -1,11 +1,11 @@
 import { React, useState } from 'react';
-import SearchForm from "../components/SearchForm";
-import Card from "../components/Card"
-import MapContainer from "../components/MapContainer"
+import SearchForm from "../Calendar/SearchForm";
+import Card from "../Calendar/Card"
+import MapContainer from "../Calendar/MapContainer"
 
 function Recommend() {
 
-    
+
 
 
     return (
