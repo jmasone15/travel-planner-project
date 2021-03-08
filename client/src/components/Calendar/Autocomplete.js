@@ -1,8 +1,5 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-
-
-
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -10,30 +7,28 @@ export class SearchBar extends React.Component {
     this.autocomplete = null;
     this.handlePlaceChanged = this.handlePlaceChanged.bind(this);
   }
-  
-
   componentDidMount() {
     const google = window.google
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.current,
-        {"types": ["geocode"]});
-
+      { "types": ["geocode"] });
     this.autocomplete.addListener('place_changed', this.handlePlaceChanged);
   }
-
-  handlePlaceChanged(){
+  handlePlaceChanged() {
     const place = this.autocomplete.getPlace();
-    this.props.setCurrentTrip({...this.props.currentTrip, startLocation: place});
+    if (this.props.placeholder === "Start location") {
+      this.props.setCurrentTrip({ ...this.props.currentTrip, startLocation: place.formatted_address });
+    }
+    else {
+      this.props.setCurrentTrip({ ...this.props.currentTrip, destination: place.formatted_address });
+    }
   }
-
   render() {
-    
     return (
-        <input ref={this.autocompleteInput}  id="autocomplete" placeholder={this.props.placeholder}
-         type="text"></input>
+      <input ref={this.autocompleteInput} id="autocomplete" placeholder={this.props.placeholder}
+        type="text"></input>
     );
   }
 }
-
 export default GoogleApiWrapper({
   apiKey: "AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI"
 })(SearchBar)
