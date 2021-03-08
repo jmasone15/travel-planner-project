@@ -8,14 +8,18 @@ function TransactionList({ listOfTransactions, onDeleteClick }) {
 
   return (
     <>
-      {listOfTransactions.map((transaction) => (
-        <Transaction
-          key={transaction.id}
-          name={transaction.name}
-          amount={transaction.amount}
-          onDeleteClick={() => onDeleteClick(transaction)}
-        />
-      ))}
+      <div className="d-flex justify-content-center mt-4 shadow">
+        <div className="col-lg-8">
+          {listOfTransactions.map((transaction) => (
+            <Transaction
+              key={transaction.id}
+              name={transaction.name}
+              amount={transaction.amount}
+              onDeleteClick={() => onDeleteClick(transaction)}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
