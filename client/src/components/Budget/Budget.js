@@ -1,5 +1,5 @@
 import React from "react";
-import numeral from "numeral"
+import numeral from "numeral";
 
 // Displays Budget and Balance
 function Budget({ budget, balance }) {
