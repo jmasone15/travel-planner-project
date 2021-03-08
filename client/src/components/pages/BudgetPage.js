@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { AddTransaction, TransactionList } from "../Transaction";
-import { ModifyBudget, Budget, BudgetInput } from "../Budget";
+import { ModifyBudget, Budget, BudgetInput, BudgetGraph } from "../Budget";
 import {
   filterListService,
   addTransactionService,
   subtractFromBudgetService,
   addBackToBudgetService,
 } from "../../utils/budgetTransactions";
-import BudgetGraph from "../Budget/BudgetGraph";
+import "../../css/budget.css"
+
 
 function BudgetPage() {
   const [budget, setBudget] = useState(0);
@@ -47,13 +48,13 @@ function BudgetPage() {
   };
 
   return (
-    <div>
+    <div className="">
       {budget === 0 && transactions.length === 0 && (
-        <BudgetInput onChange={setBudget} putTotalBudget={setTotalBudget} />
+        <BudgetInput onChange={setBudget} putTotalBudget={setTotalBudget}/>
       )}
       {(budget !== 0 || transactions.length > 0) && (
         <>
-          <Budget budget={totalBudget} balance={budget} />
+          <Budget budget={totalBudget} balance={budget} /> 
           <AddTransaction addTransactionClick={addTransaction} />
         </>
       )}

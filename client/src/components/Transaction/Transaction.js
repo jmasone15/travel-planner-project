@@ -1,12 +1,13 @@
+import numeral from "numeral";
 import React from "react";
 
 function Transaction({ name, amount, onDeleteClick }) {
   return (
-    <div className="row d-flex justify-content-between border">
-      <div className="col-lg-3">{name}</div>
-      <div className="col-lg-3">${amount}</div>
-      <div className="col-lg-3">
-        <button type="button" onClick={onDeleteClick}>delete</button>
+    <div className="row d-flex justify-content-between border m-2">
+      <div className="col-lg-5 border center-text py-2">{name}</div>
+      <div className="col-lg-5 border center-text py-2">{numeral(amount).format("$0,0.00")}</div>
+      <div className="col-lg-2 border center-text d-flex justify-content-end bg-light">
+        <button className="btn btn-outline" type="button" onClick={onDeleteClick}><i class="far fa-trash-alt fa-lg"></i></button>
       </div>
     </div>
   );
