@@ -10,8 +10,8 @@ export default function Navbar() {
         <div>
             {loggedIn === false && (
                 <>
-                    <Link to="/">Sign Up</Link>
-                    <Link to="/login">Login</Link>
+                    <Link exact to="/">Login</Link>
+                    <Link to="/signup">Sign Up</Link>
                 </>
             )}
             {loggedIn === true && (

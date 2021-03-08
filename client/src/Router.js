@@ -25,9 +25,24 @@ export default function Router() {
                 {loggedIn === false && (
                     <>
                         <Route exact path="/">
+                            <Login />
+                        </Route>
+                        <Route path="/signup">
                             <Signup />
                         </Route>
-                        <Route path="/login">
+                        <Route path="/home">
+                            <Login />
+                        </Route>
+                        <Route path="/budget">
+                            <Login />
+                        </Route>
+                        <Route path="/recommend">
+                            <Login />
+                        </Route>
+                        <Route path="/review">
+                            <Login />
+                        </Route>
+                        <Route path="/profile">
                             <Login />
                         </Route>
                     </>
