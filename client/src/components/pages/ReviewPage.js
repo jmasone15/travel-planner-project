@@ -26,7 +26,7 @@ export default function ReviewPage(props) {
             props.setTripDestination("");
             props.setTripStartLocation("");
             props.setTripDates([]);
-            history.push("/home");
+            history.push("/profile");
 
         } catch (err) {
             console.error(err);

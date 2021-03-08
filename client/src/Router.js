@@ -8,6 +8,7 @@ import BudgetPage from "./components/pages/BudgetPage";
 import AuthContext from "./context/AuthContext";
 import Recommend from "./components/pages/Recommend";
 import ReviewPage from "./components/pages/ReviewPage";
+import ProfilePage from "./components/pages/ProfilePage";
 
 export default function Router() {
     const { loggedIn } = useContext(AuthContext);
@@ -70,6 +71,9 @@ export default function Router() {
                                 setTripDates={setTripDates}
                                 setTripBudget={setTripBudget}
                             />
+                        </Route>
+                        <Route path="/profile">
+                            <ProfilePage />
                         </Route>
                     </>
                 )}

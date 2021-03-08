@@ -11,7 +11,7 @@ export default function Home(props) {
     const [userEmail, setUserEmail] = useState("");
     const history = useHistory();
 
-    function handleBtn(e) {
+    function handleTripBtn(e) {
         e.preventDefault(e);
 
         props.setTripName("");
@@ -47,7 +47,7 @@ export default function Home(props) {
         <div>
             <h1>Travel Planner</h1>
             <p>Welcome: {userEmail}</p>
-            <button onClick={(e) => handleBtn(e)}>Build your Trip</button>
+            <button onClick={(e) => handleTripBtn(e)}>Build your Trip</button>
         </div>
     )
 }

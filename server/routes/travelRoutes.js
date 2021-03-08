@@ -33,4 +33,15 @@ router.get("/:id", auth, async (req, res) => {
     }
 });
 
+router.delete("/:id", auth, async (req, res) => {
+    try {
+        const deletedTravel = await Travel.deleteOne({ _id: req.params.id });
+        res.json(deletedTravel);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
+    }
+});
+
 module.exports = router;

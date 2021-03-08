@@ -19,6 +19,7 @@ export default function Navbar() {
                     <Link to="/home">Home</Link>
                     <Link to="/budget">Budget</Link>
                     <Link to="/recommend">Destination</Link>
+                    <Link to="/profile">Profile</Link>
                     <Logout />
                 </>
             )}
