@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { AddTransaction, TransactionList } from "../Transaction";
 import { useHistory } from "react-router-dom";
-import { ModifyBudget, Budget, BudgetInput, BudgetGraph } from "../Budget";
+import {
+  ModifyBudget,
+  Budget,
+  BudgetInput,
+  BudgetGraph,
+  BudgetOptions,
+} from "../Budget";
 import {
   filterListService,
   addTransactionService,
   subtractFromBudgetService,
   addBackToBudgetService,
 } from "../../utils/budgetTransactions";
-import "../../css/budget.css"
-
+import "../../css/budget.css";
 
 function BudgetPage(props) {
   const [budget, setBudget] = useState(0);
@@ -22,7 +27,7 @@ function BudgetPage(props) {
     props.setTripBudget(value);
     console.log(value);
     history.push("/recommend");
-  }
+  };
 
   const addTransaction = (transaction) => {
     const newTransactionList = addTransactionService(transactions, transaction);
@@ -56,6 +61,12 @@ function BudgetPage(props) {
     setTotalBudget(newTotalBudget);
   };
 
+  const resetBudget = () => {
+    setTotalBudget(0);
+    setBudget(0);
+    setTransactions([]);
+  };
+
   return (
     <div className="">
       {budget === 0 && transactions.length === 0 && (
@@ -64,6 +75,7 @@ function BudgetPage(props) {
       {(budget !== 0 || transactions.length > 0) && (
         <>
           <Budget budget={totalBudget} balance={budget} />
+          <BudgetOptions reset={resetBudget} />
           <AddTransaction addTransactionClick={addTransaction} />
         </>
       )}
@@ -80,7 +92,9 @@ function BudgetPage(props) {
         />
       )}
       <BudgetGraph listOfTransactions={transactions} />
-      <button onClick={(e) => handleSaveBtn(e, totalBudget)}>Save Budget to Trip</button>
+      <button onClick={(e) => handleSaveBtn(e, totalBudget)}>
+        Save Budget to Trip
+      </button>
     </div>
   );
 }

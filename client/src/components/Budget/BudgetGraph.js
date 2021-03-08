@@ -14,7 +14,7 @@ function BudgetGraph({ listOfTransactions }) {
   }, [transactionsLength]);
 
   const updateDataVariables = () => {
-    if (listOfTransactions.length > 0) {
+    if (transactionsLength > 0) {
       const l = listOfTransactions.map((t) => t.name);
       const amts = listOfTransactions.map((a) => a.amount);
       const itemColors = listOfTransactions.map((a) => a.color);
@@ -24,7 +24,7 @@ function BudgetGraph({ listOfTransactions }) {
     }
   };
 
-  if (listOfTransactions.length === 0) {
+  if (transactionsLength === 0) {
     return null;
   }
 
