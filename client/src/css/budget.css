@@ -4,6 +4,26 @@ input {
   padding: 0px;
 }
 
+.bgThis {
+  background-image: url("../images/bgBlue.png");
+  height: 100vh;
+  /* height: 100%; */
+  width: 100%;
+  position: relative;
+  /* background-repeat: no-repeat;  */
+  background-size: cover;
+}
+
+form {
+  background-color: #b1d1b4;
+  opacity: 90%;
+}
+
+.tList {
+  background-color: #b1d1b4;
+  opacity: 90%;
+}
+
 input[type="text"] {
   font-size: 25px;
 }
@@ -15,7 +35,7 @@ input::-webkit-input-placeholder {
 }
 
 .budgetInputPosition {
-  margin-top: 25%;
+  margin-top: 15%;
 }
 
 .graphStyle {
@@ -24,31 +44,31 @@ input::-webkit-input-placeholder {
   margin: 0 auto 15px auto;
   padding: 1%;
   /* border: 2px solid red; */
-  border-radius: 0 0 500px 500px; 
+  border-radius: 0 0 500px 500px;
 }
 
 .center-text {
   margin: auto;
 }
 
-.curvedInput{
+.curvedInput {
   border-radius: 150px;
 }
 
-.noCurveBtn{
+.noCurveBtn {
   border-radius: 0px;
 }
 
-.displayHidden{
+.displayHidden {
   display: none;
 }
 
-.labelText{
+.labelText {
   font-size: 21px;
 }
 
-.belowBudget{
- font-size: 50px;
+.belowBudget {
+  font-size: 50px;
 }
 
 .pulse {
@@ -56,7 +76,7 @@ input::-webkit-input-placeholder {
   position: relative;
 }
 .pulse:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
@@ -65,17 +85,17 @@ input::-webkit-input-placeholder {
   left: 0;
   background-color: inherit;
   border-radius: inherit;
-  transition: opacity .3s, transform .3s;
+  transition: opacity 0.3s, transform 0.3s;
   animation: pulse-animation 1.3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-	z-index: -1;
+  z-index: -1;
 }
 
-.centerX{
+.centerX {
   margin-left: auto;
   margin-right: auto;
 }
 
-.pulse:hover{
+.pulse:hover {
   animation-play-state: paused;
 }
 
