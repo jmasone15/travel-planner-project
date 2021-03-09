@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import { Link } from "react-router-dom";
-import { TimelineMax, Power1, CSSPlugin } from "gsap/all";
+import { gsap } from 'gsap'
+import { CSSPlugin } from 'gsap/CSSPlugin'
+import { TimelineMax, Power1 } from "gsap/all";
 // import donde from "../../images/dondeLogo.png";
 import Bgv from "../../components/Video/bgv.mp4";
 import "../Card/style.css";
@@ -49,7 +51,7 @@ class Login extends React.Component {
     };
 
     render() {
-        const plugins = [CSSPlugin];
+        gsap.registerPlugin(CSSPlugin)
         return (
             <div className="container h-100 mt-5">
                 <video
