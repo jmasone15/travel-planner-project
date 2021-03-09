@@ -22,13 +22,18 @@ export class SearchBar extends React.Component {
 
   handlePlaceChanged(){
     const place = this.autocomplete.getPlace();
-    this.props.setCurrentTrip({...this.props.currentTrip, startLocation: place});
+    if (this.props.placeholder === "Start location") {
+      this.props.setCurrentTrip({...this.props.currentTrip, startLocation: place.formatted_address});
+    }
+    else {
+      this.props.setCurrentTrip({...this.props.currentTrip, destination: place.formatted_address});
+    }
   }
 
   render() {
     
     return (
-        <input ref={this.autocompleteInput}  id="autocomplete" placeholder={this.props.placeholder}
+        <input ref={this.autocompleteInput} id="autocomplete" placeholder={this.props.placeholder}
          type="text"></input>
     );
   }

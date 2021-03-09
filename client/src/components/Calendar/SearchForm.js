@@ -57,7 +57,7 @@ function SearchForm() {
 
 
   useEffect(() => {
-
+    console.log(JSON.stringify(currentTrip.days));
 
   }, [currentTrip, editDate, latLng, formattedLocation, reset])
 
@@ -184,11 +184,11 @@ function SearchForm() {
 
 
       setCurrentTrip({ ...currentTrip, days: array })
-
+      
 
       setReset("")
       setFormattedLocation("")
-      console.log(currentTrip);
+      
 
 
 
