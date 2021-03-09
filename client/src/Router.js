@@ -13,6 +13,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import axios from "axios";
 import UpdatePage from "./components/pages/UpdatePage";
 import Wrapper from "./components/Wrapper";
+import Itinerary from "./components/Calendar/Itinerary";
 
 export default function Router() {
     const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -96,8 +97,6 @@ export default function Router() {
                             </Route>
                             <Route path="/profile">
                                 <ProfilePage
-                                    // profileEmail={profileEmail}
-                                    // setProfileEmail={setProfileEmail}
                                     updateId={updateId}
                                     setUpdateId={setUpdateId} />
                             </Route>
@@ -106,6 +105,9 @@ export default function Router() {
                                     updateId={updateId}
                                     setUpdateId={setUpdateId}
                                 />
+                            </Route>
+                            <Route path="/itinerary">
+                                <Itinerary />
                             </Route>
                         </>
                     )}

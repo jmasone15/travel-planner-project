@@ -38,6 +38,7 @@ class Login extends React.Component {
                 autoAlpha: 0,
                 delay: 1,
                 ease: Power1.easeIn,
+                paused: false,
             });
         this.timeline.play();
     }
