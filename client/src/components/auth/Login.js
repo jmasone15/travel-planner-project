@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import { Link } from "react-router-dom";
-import { TimelineMax, Power1, CSSPlugin, AttrPlugin } from "gsap/all";
+import gsap from "gsap";
+import { TimelineMax, Power1 } from "gsap/all";
 // import donde from "../../images/dondeLogo.png";
 import Bgv from "../../components/Video/bgv.mp4";
 import "../Card/style.css";
@@ -13,6 +14,7 @@ class Login extends React.Component {
         super(props);
         this.timeline = new TimelineMax({ paused: true });
         this.state = { email: "", password: "" }
+        this.Comments = gsap.timeline({ paused: true });
     }
 
     async handleFormSubmit(e, email, pass) {
@@ -49,8 +51,6 @@ class Login extends React.Component {
     };
 
     render() {
-        const plugins = [CSSPlugin];
-        console.log(plugins);
         return (
             <div className="container h-100 mt-5">
                 <video
