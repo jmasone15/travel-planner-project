@@ -59,7 +59,7 @@ function BudgetGraph({ listOfTransactions }) {
   };
 
   return (
-    <div className="shadow graphStyle">
+    <div className="shadow graphStyle mt-3">
       {/* <div className="" style={{ height: "400px", width: "400px" }}> */}
         <Pie options={tooltipOptions} data={data} height={20} width={20} />
       </div>

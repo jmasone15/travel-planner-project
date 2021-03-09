@@ -8,7 +8,7 @@ function TransactionList({ listOfTransactions, onDeleteClick, onDeleteAllClick }
 
   return (
     <>
-      <div className="d-flex justify-content-center col-lg-8 mt-4 shadow centerX">
+      <div className="col-lg-12 p-1 shadow centerX">
         <div className="col-lg-12">
           {listOfTransactions.map((transaction) => (
             <Transaction

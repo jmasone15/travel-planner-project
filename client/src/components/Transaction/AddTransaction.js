@@ -24,8 +24,8 @@ function AddTransaction({ addTransactionClick }) {
 
   return (
     <>
-      <div className="d-flex justify-content-center">
-        <form className="col-lg-8 shadow p-4 mt-1">
+      <div className="">
+        <form className="col-lg-12 shadow p-4">
           <div className="form-group">
             <label className="labelText" for="expenseName">
               What is the name of your expense?
