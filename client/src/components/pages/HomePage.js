@@ -73,7 +73,7 @@ class HomePage extends React.Component {
               <div
                 ref={(div) => (this.card = div)}
                 className="card shadow p-3 mb-5 bg-white rounded"
-                // style={{backgroundImage: `url(${bgTan})`}}
+              // style={{backgroundImage: `url(${bgTan})`}}
               >
                 <div className="card-body">
                   <h1 className="text-center font">¿dondé?</h1>
@@ -137,20 +137,21 @@ class HomePage extends React.Component {
 
               <div className="row mt-3">
                 <div ref={(card3) => (this.card3 = card3)} className="col mb-3">
-                <Card>
-                  <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
-                  <Link to="/packinglist">
-                    <button
-                      className="btn btn-warning mt-1"
-                      onClick={(e) => this.changePage(e, "/packinglist")}
-                    >
-                      <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
-                        {" "}
+                  <Card>
+                    <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
+                    <Link>
+                      <button
+                        className="btn btn-warning mt-1"
+                        href="../../images/packinglist.pdf"
+                        onClick={(e) => this.changePage(e, "/packinglist")}
+                      >
+                        <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
+                          {" "}
                         ¿packinglist?
                       </h3>
-                    </button>
-                  </Link>
-                </Card>
+                      </button>
+                    </Link>
+                  </Card>
                 </div>
                 <div ref={(card4) => (this.card4 = card4)} className="col mt-">
                   <Card>
