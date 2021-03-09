@@ -1,26 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from "axios";
 import UserContext from "../../context/UserContext";
-import AuthContext from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 
-export default function ProfilePage() {
+export default function ProfilePage(props) {
     const { userId } = useContext(UserContext);
-    const { loggedIn } = useContext(AuthContext);
-    const [profileEmail, setProfileEmail] = useState("");
     const [tripArray, setTripArray] = useState([]);
+    const [profileEmail, setProfileEmail] = useState("");
     const history = useHistory();
 
     async function getUserData() {
-        if (loggedIn === true) {
-            const userData = await axios.get(`user/profile/${userId}`);
-            setProfileEmail(userData.data.email)
-            const userTrips = await axios.get(`api/${userId}`)
-            setTripArray(userTrips.data);
-            console.log(userTrips.data)
-        } else {
-            setProfileEmail("No user logged in")
-        }
+        const userData = await axios.get(`user/profile/${userId}`);
+        setProfileEmail(userData.data.email)
+    }
+
+    async function getTripData() {
+        const userTrips = await axios.get(`api/${userId}`)
+        setTripArray(userTrips.data);
+        console.log(userTrips.data)
     }
 
     async function removeTrip(e, id) {
@@ -35,13 +32,20 @@ export default function ProfilePage() {
         }
     }
 
+    async function updateTrip(e, id) {
+        e.preventDefault();
+        props.setUpdateId(id);
+        history.push("/update");
+    }
+
     function btnClick(e) {
         e.preventDefault();
         history.push("/budget")
     }
 
     useEffect(() => {
-        getUserData()
+        getUserData();
+        getTripData();
     }, []);
 
     return (
@@ -73,6 +77,7 @@ export default function ProfilePage() {
                             ))}
                         </ul>
                         <button onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
+                        <button onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                     </div>
                 ))
             }
