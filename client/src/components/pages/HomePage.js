@@ -59,7 +59,7 @@ class HomePage extends React.Component {
         this.timeline.reverse();
         const timelineDuration = this.timeline.duration() * 1000;
         setTimeout(() => {
-            this.props.history.push(destination);
+            window.location = destination
         }, timelineDuration);
     };
 
