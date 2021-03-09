@@ -1,43 +1,151 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router';
-import AuthContext from '../../context/AuthContext';
+import React from 'react';
+import { Link } from "react-router-dom";
+import { TimelineMax, Power1 } from "gsap/all";
+// import donde from "../../images/dondeLogo.png";
+import Bgv from "../../components/Video/bgv.mp4";
+import "../Card/style.css";
 
-export default function Login() {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.timeline = new TimelineMax({ paused: true });
+        this.state = { email: "", password: "" }
+    }
 
-    const { getLoggedIn } = useContext(AuthContext);
-    const history = useHistory();
-
-    async function login(e) {
+    async handleFormSubmit(e, email, pass) {
         e.preventDefault();
 
-        try {
-            const loginData = {
-                email,
-                password,
-            };
 
-            await axios.post("/user/login", loginData);
-            await getLoggedIn();
-            history.push("/home");
+        try {
+            await axios.post("/user/login", { email: email, password: pass });
+            await this.props.getLoggedIn();
+            this.changePage(e, "/home")
         } catch (err) {
             console.error(err);
         }
     }
 
-    return (
-        <div>
-            <h1>Login to your account</h1>
-            <form onSubmit={(e) => login(e)}>
-                <input type="email" placeholder="Email" value={email}
-                    onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="Password" value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Login!</button>
-            </form>
-        </div>
-    )
+    componentDidMount() {
+        this.timeline
+            .from(this.login, 1, {
+                display: "none",
+                y: -100,
+                autoAlpha: 0,
+                delay: 1,
+                ease: Power1.easeIn,
+            });
+        this.timeline.play();
+    }
+    changePage = (e, destination) => {
+        e.preventDefault();
+        this.timeline.reverse();
+        const timelineDuration = this.timeline.duration() * 1000;
+        setTimeout(() => {
+            window.location = destination;
+        }, timelineDuration);
+    };
+
+    render() {
+        return (
+            <div className="container h-100 mt-5">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    style={{
+                        position: "absolute",
+                        width: "100%",
+                        left: "50%",
+                        top: "50%",
+                        height: "100%",
+                        objectFit: "cover",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: "-1",
+                    }}
+                >
+                    <source src={Bgv} type="video/mp4" />
+                </video>
+                <div className="d-flex justify-content-center h-100">
+                    <div className="user_card" ref={(login) => (this.login = login)}>
+                        <div className="d-flex justify-content-center">
+                            {/* <img className="brand_logo" src={donde} alt="Logo" /> */}
+                            <div className="brand_logo_container"></div>
+                        </div>
+                        <div className="d-flex justify-content-center form_container">
+                            <div>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">
+                                            <i className="fas fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => this.setState({ email: e.target.value })}
+                                        className="form-control input_user"
+                                        value={this.state.email}
+                                        placeholder="email"
+                                    />
+                                </div>
+                                <div className="input-group mb-2">
+                                    <div className="input-group-append">
+                                        <span className="input-group-text">
+                                            <i className="fas fa-key"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="password"
+                                        onChange={(e) => this.setState({ password: e.target.value })}
+                                        className="form-control input_pass"
+                                        value={this.state.password}
+                                        placeholder="password"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <div className="custom-control custom-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            className="custom-control-input"
+                                            id="customControlInline"
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            for="customControlInline"
+                                        >
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                                <Link to="/home">
+                                    <div className="d-flex justify-content-center mt-3 login_container">
+                                        <button
+                                            onClick={(e) => this.handleFormSubmit(e, this.state.email, this.state.password)}
+                                            type="button"
+                                            name="button"
+                                            className="btn login_btn"
+                                        >
+                                            ¿Login?
+                                        </button>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="mt-4">
+                            <div className="d-flex justify-content-center links">
+                                Don't have an account? <Link to="/signup"> ¿Sign Up?</Link>
+                            </div>
+                            <div className="d-flex justify-content-center links">
+                                <a href="#">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
+
+export default Login;

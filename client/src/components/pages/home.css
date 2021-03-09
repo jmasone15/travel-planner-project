@@ -1,0 +1,27 @@
+.font {
+  font-family: adobe-caslon-pro, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.p {
+    font-family: 'Fira Sans', sans-serif; 
+}
+
+.img {
+    src: url();
+}
+
+body, html {
+  height: 100%;
+  
+  }
+  .bg {
+  background-image: url("../../images/bgGreen.png");
+  height: 100vh;
+  /* height: 100%; */
+  width: 100%;
+  position: relative;
+  /* background-repeat: no-repeat;  */
+  background-size: cover;
+  }
