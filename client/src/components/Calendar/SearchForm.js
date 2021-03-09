@@ -59,7 +59,6 @@ function SearchForm(props) {
 
 
   useEffect(() => {
-    console.log(currentTrip)
 
   }, [currentTrip, editDate, latLng, formattedLocation, reset])
 
@@ -192,9 +191,10 @@ function SearchForm(props) {
       props.setTripDestination(currentTrip.destination);
       props.setTripDates(JSON.stringify(array));
 
+
       setReset("")
       setFormattedLocation("")
-      console.log(currentTrip);
+      
 
 
 
