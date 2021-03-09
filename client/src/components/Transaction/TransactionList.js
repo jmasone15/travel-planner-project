@@ -1,7 +1,7 @@
 import React from "react";
-import { Transaction } from ".";
+import { Transaction, ClearTransactions } from ".";
 
-function TransactionList({ listOfTransactions, onDeleteClick }) {
+function TransactionList({ listOfTransactions, onDeleteClick, onDeleteAllClick }) {
   if (listOfTransactions.length === 0) {
     return null;
   }
@@ -18,6 +18,7 @@ function TransactionList({ listOfTransactions, onDeleteClick }) {
               onDeleteClick={() => onDeleteClick(transaction)}
             />
           ))}
+          {listOfTransactions.length >= 2 &&( <ClearTransactions onDeleteAllClick={onDeleteAllClick} />)}
         </div>
       </div>
     </>

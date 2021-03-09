@@ -11,7 +11,7 @@ function Budget({ budget, balance }) {
       </div>
       {/* Balance */}
       <div className="d-flex justify-content-center m-2 mt-0">
-        <h5 className={balance < 0 ? "text-danger" : "text-dark"} >Balance: <span className={balance < 0 ? "text-danger" : "text-success"}>{numeral(balance).format('$0,0.00')}</span></h5>
+        <h5 className={balance < 0 ? "belowBudget text-danger" : "text-dark"} >Balance: <span className={balance < 0 ? "text-danger" : "text-success"}>{numeral(balance).format('$0,0.00')}</span></h5>
       </div>
     </div>
   );

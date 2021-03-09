@@ -47,6 +47,10 @@ input::-webkit-input-placeholder {
   font-size: 21px;
 }
 
+.belowBudget{
+ font-size: 50px;
+}
+
 .pulse {
   overflow: visible;
   position: relative;
