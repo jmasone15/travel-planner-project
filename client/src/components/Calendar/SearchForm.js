@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { useHistory } from 'react-router';
 import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
 import Card from "./Card"
 import Calender from './Calender';
@@ -9,7 +10,7 @@ import AddStuff from "./AddStuff"
 import SearchBar from "./Autocomplete"
 
 
-function SearchForm() {
+function SearchForm(props) {
 
   const [currentTrip, setCurrentTrip] = useState({})
   const [startDate, setStartDate] = useState(null)
@@ -25,7 +26,8 @@ function SearchForm() {
   const [askOnce, setAskOnce] = useState(false)
   const [latLng, setLatLng] = useState({ lat: 54.526, lng: 95.7129 })
   const [formattedLocation, setFormattedLocation] = useState("")
-  const [reset, setReset] = useState()
+  const [reset, setReset] = useState();
+  const history = useHistory();
 
 
   useEffect(async () => {
@@ -57,7 +59,6 @@ function SearchForm() {
 
 
   useEffect(() => {
-    console.log(JSON.stringify(currentTrip.days));
 
   }, [currentTrip, editDate, latLng, formattedLocation, reset])
 
@@ -184,7 +185,12 @@ function SearchForm() {
 
 
       setCurrentTrip({ ...currentTrip, days: array })
-      
+
+      props.setTripTripName(currentTrip.name);
+      props.setTripStartLocation(currentTrip.startLocation);
+      props.setTripDestination(currentTrip.destination);
+      props.setTripDates(JSON.stringify(array));
+
 
       setReset("")
       setFormattedLocation("")
@@ -195,8 +201,18 @@ function SearchForm() {
 
 
 
+
     }
 
+  }
+
+  function handleTripSubmit(e) {
+    e.preventDefault();
+    console.log(props.tripTripName);
+    console.log(props.tripStartLocation);
+    console.log(props.tripDestination);
+    console.log(props.tripDates);
+    history.push("/review")
   }
 
 
@@ -222,6 +238,8 @@ function SearchForm() {
       <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
       <button type="button" onClick={() => handleBtnClick()}>Submit</button>
       <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
+
+      <button onClick={(e) => handleTripSubmit(e)}>Add to trip!</button>
 
       <MapContainer props={latLng} type={type} />
       <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />

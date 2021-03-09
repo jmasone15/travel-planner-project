@@ -1,3 +1,4 @@
+import numeral from "numeral";
 import React, { useState } from "react";
 
 function ModifyBudget({
@@ -9,14 +10,14 @@ function ModifyBudget({
   const [userModifyBudget, setUserModifyBudget] = useState("");
 
   const handleAddClick = () => {
-    addToBudgetClick(parseInt(userModifyBudget));
-    addToTotalBudgetClick(parseInt(userModifyBudget));
+    addToBudgetClick(numeral(userModifyBudget).value());
+    addToTotalBudgetClick(numeral(userModifyBudget).value());
     setUserModifyBudget("");
   };
 
   const handleSubtractClick = () => {
-    subtractFromBudgetClick(parseInt(userModifyBudget));
-    subtractFromTotalBudgetClick(parseInt(userModifyBudget));
+    subtractFromBudgetClick(numeral(userModifyBudget).value());
+    subtractFromTotalBudgetClick(numeral(userModifyBudget).value());
     setUserModifyBudget("");
   };
 
@@ -25,34 +26,38 @@ function ModifyBudget({
   }
 
   return (
-    <div className="input-group mb-3 mt-5">
+    <div className="input-group mb-3 mt-5 d-flex justify-content-center mt-5">
       <div className="col-lg-8">
+        {/* Input for Modifying Budget */}
         <input
           id="budget"
           type="text"
-          className="form-control"
+          className="form-control curvedInput"
           placeholder="Modify your budget."
           aria-label="Modify your budget."
           aria-describedby="basic-addon2"
           onChange={(event) => setUserModifyBudget(event.target.value)}
           value={userModifyBudget}
         />
-        <div className="input-group-append">
+        <div className="input-group-append d-flex justify-content-end mt-2">
+          {/* Add to Budget */}
           <button
-            className="btn btn-outline-success"
+            className={!numeral.validate(userModifyBudget)?"btn btn-outline-secondary noCurveBtn" : "btn btn-outline-success noCurveBtn"}
             type="button"
             onClick={handleAddClick}
-            disabled={!userModifyBudget || isNaN(userModifyBudget)}
+            disabled={!numeral.validate(userModifyBudget)}
           >
-            Add
+            <i class="fas fa-plus"></i>
           </button>
+
+          {/* Subtract from Budget */}
           <button
-            className="btn btn-outline-danger"
+            className={!numeral.validate(userModifyBudget)?"btn btn-outline-secondary noCurveBtn" : "btn btn-outline-danger noCurveBtn"}
             type="button"
             onClick={handleSubtractClick}
-            disabled={!userModifyBudget || isNaN(userModifyBudget)}
+            disabled={!numeral.validate(userModifyBudget)}
           >
-            Subtract
+            <i class="fas fa-minus"></i>
           </button>
         </div>
       </div>

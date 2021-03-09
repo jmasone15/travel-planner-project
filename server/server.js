@@ -42,7 +42,7 @@ mongoose.connect(process.env.MDB_CONNECT,
 // Routes Set Up
 // When the path has "/auth" in it, express will then use the userRoutes file
 app.use("/user", require("./routes/userRoutes"));
-// app.use("/api", require("./routes/travelRoutes"));
+app.use("/api", require("./routes/travelRoutes"));
 // app.get("*", function (req, res) {
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
