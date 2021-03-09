@@ -41,9 +41,10 @@ function BudgetPage(props) {
     setTransactions(newTransactionList);
   };
 
-  const deleteAllTransactions = ()=>{
-    setTransactions([])
-  }
+  const deleteAllTransactions = () => {
+    setTransactions([]);
+    setBudget(totalBudget);
+  };
 
   const subtractFromBudget = (amount) => {
     const newBudgetTotal = subtractFromBudgetService(budget, amount);
