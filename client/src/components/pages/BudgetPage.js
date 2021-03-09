@@ -41,6 +41,10 @@ function BudgetPage(props) {
     setTransactions(newTransactionList);
   };
 
+  const deleteAllTransactions = ()=>{
+    setTransactions([])
+  }
+
   const subtractFromBudget = (amount) => {
     const newBudgetTotal = subtractFromBudgetService(budget, amount);
     setBudget(newBudgetTotal);
@@ -82,6 +86,7 @@ function BudgetPage(props) {
       <TransactionList
         listOfTransactions={transactions}
         onDeleteClick={deleteTransaction}
+        onDeleteAllClick={deleteAllTransactions}
       />
       {(budget !== 0 || transactions.length > 0) && (
         <ModifyBudget

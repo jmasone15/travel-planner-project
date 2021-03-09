@@ -47,6 +47,10 @@ input::-webkit-input-placeholder {
   font-size: 21px;
 }
 
+.belowBudget{
+ font-size: 50px;
+}
+
 .pulse {
   overflow: visible;
   position: relative;
@@ -64,6 +68,11 @@ input::-webkit-input-placeholder {
   transition: opacity .3s, transform .3s;
   animation: pulse-animation 1.3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
 	z-index: -1;
+}
+
+.centerX{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pulse:hover{
