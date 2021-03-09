@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Link } from "react-router-dom";
-import { gsap } from 'gsap'
+import gsap from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin'
 import { TimelineMax, Power1 } from "gsap/all";
 // import donde from "../../images/dondeLogo.png";
