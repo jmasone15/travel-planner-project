@@ -2,27 +2,69 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import Logout from "../auth/Logout";
+import { useHistory } from 'react-router';
+import axios from "axios";
 
 export default function Navbar() {
-    const { loggedIn } = useContext(AuthContext);
+    const { loggedIn, getLoggedIn } = useContext(AuthContext);
+    const history = useHistory();
+
+    async function logOut() {
+        await axios.get("/user/logout");
+        await getLoggedIn();
+        history.push("/");
+    }
+
+    const nav = {
+        background: "#EAC0A2",
+    };
 
     return (
-        <div>
-            {loggedIn === false && (
-                <>
-                    <Link exact to="/">Login</Link>
-                    <Link to="/signup">Sign Up</Link>
-                </>
-            )}
-            {loggedIn === true && (
-                <>
-                    <Link to="/home">Home</Link>
-                    <Link to="/budget">Budget</Link>
-                    <Link to="/recommend">Destination</Link>
-                    <Link to="/profile">Profile</Link>
-                    <Logout />
-                </>
-            )}
-        </div>
-    )
+        <nav
+            style={nav}
+            className="navbar navbar-expand-lg navbar-dark"
+        >
+
+
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse justify-content-end">
+                {loggedIn === false && (
+                    <Link className="navbar-brand" to="/">
+                        ¿login | signup?
+                    </Link>
+                )}
+                {loggedIn === true && (
+                    <div>
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link
+                                    to="/home"
+                                    className="nav-link active">
+                                    ¿home?
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    to="/profile"
+                                    className="nav-link active">
+                                    ¿profile?
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link active"
+                                    onClick={(e) => logOut(e)}>
+                                    ¿logout?
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            </div>
+        </nav>
+    );
 }

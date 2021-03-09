@@ -27,7 +27,6 @@ export default function Router() {
     return (
         <Wrapper>
             <BrowserRouter>
-                <Navbar />
                 <Switch>
                     {loggedIn === false && (
                         <>
@@ -56,6 +55,7 @@ export default function Router() {
                     )}
                     {loggedIn === true && (
                         <>
+                            <Navbar />
                             <Route path="/home">
                                 <HomePage
                                     setTripName={setTripTripName}
