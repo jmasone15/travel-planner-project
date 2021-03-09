@@ -8,7 +8,7 @@ import { CSSPlugin } from 'gsap/CSSPlugin'
 axios.defaults.withCredentials = true;
 
 function App() {
-
+  gsap.registerPlugin(CSSPlugin)
   return (
     <AuthContextProvider>
       <UserContextProvider>
