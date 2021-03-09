@@ -11,9 +11,9 @@ function BudgetInput({ onChange, putTotalBudget }) {
   };
 
   return (
-    <div className="d-flex justify-content-center budgetInputPosition">
+    <div className="d-flex justify-content-center">
       <div className="input col-lg-8">
-        <div className="">
+        <div className="budgetInputPosition">
           <input
             id="budget"
             type="text"

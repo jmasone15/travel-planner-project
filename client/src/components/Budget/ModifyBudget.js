@@ -1,6 +1,7 @@
 import numeral from "numeral";
 import React, { useState } from "react";
 
+
 function ModifyBudget({
   addToBudgetClick,
   subtractFromBudgetClick,
@@ -26,7 +27,7 @@ function ModifyBudget({
   }
 
   return (
-    <div className="input-group mb-3 mt-5 d-flex justify-content-center mt-5">
+    <div className="input-group my-3 d-flex justify-content-center">
       <div className="col-lg-8">
         {/* Input for Modifying Budget */}
         <input
@@ -42,7 +43,7 @@ function ModifyBudget({
         <div className="input-group-append d-flex justify-content-end mt-2">
           {/* Add to Budget */}
           <button
-            className={!numeral.validate(userModifyBudget)?"btn btn-outline-secondary noCurveBtn" : "btn btn-outline-success noCurveBtn"}
+            className={!numeral.validate(userModifyBudget)?"displayHidden" : "btn btn-outline-success noCurveBtn"}
             type="button"
             onClick={handleAddClick}
             disabled={!numeral.validate(userModifyBudget)}
@@ -52,7 +53,7 @@ function ModifyBudget({
 
           {/* Subtract from Budget */}
           <button
-            className={!numeral.validate(userModifyBudget)?"btn btn-outline-secondary noCurveBtn" : "btn btn-outline-danger noCurveBtn"}
+            className={!numeral.validate(userModifyBudget)?"displayHidden" : "btn btn-outline-danger noCurveBtn"}
             type="button"
             onClick={handleSubtractClick}
             disabled={!numeral.validate(userModifyBudget)}

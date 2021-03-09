@@ -24,43 +24,8 @@ function AddTransaction({ addTransactionClick }) {
 
   return (
     <>
-      {/* transactions */}
-      {/* <div className="mb-3 col-lg-8 justify-content-center">
-        <div>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Expense"
-            aria-label="Expense"
-            aria-describedby="basic-addon2"
-            name="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Amount"
-            aria-label="Amount"
-            aria-describedby="basic-addon2"
-            name="amount"
-            value={amount}
-            onChange={(event) => setAmount(event.target.value)}
-          />
-        </div>
-        <div className=" mt-2d-flex justify-content-end">
-          <button
-            className="btn btn-outline-danger"
-            type="button"
-            onClick={onAddTransactionClick}
-            disabled={!numeral.validate(amount)}
-          >
-            add transaction
-          </button>
-        </div>
-      </div> */}
       <div className="d-flex justify-content-center">
-        <form className="col-lg-8 shadow p-4">
+        <form className="col-lg-8 shadow p-4 mt-1">
           <div className="form-group">
             <label className="labelText" for="expenseName">
               What is the name of your expense?
