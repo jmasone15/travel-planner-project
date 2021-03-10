@@ -37,13 +37,13 @@ function BudgetInput({ onChange, putTotalBudget, save }) {
           {numeral.validate(userBudget) && (
             <div className="input-group-append d-flex justify-content-center">
               <button
-                className="btn btn-success mt-2 p-2 shadow pulse"
+                className="btn btn-block btn-success mt-2 p-2 shadow "
                 onClick={handleClick}
                 disabled={!numeral.validate(userBudget)}
               >
                 Continue To Add Expense
               </button>
-              <SaveBudget save={save} />
+              <SaveBudget save={save} className="btn btn-block btn-secondary" />
             </div>
           )}
         </form>
