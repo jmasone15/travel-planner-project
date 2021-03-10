@@ -147,8 +147,11 @@ class HomePage extends React.Component {
                 <h1> ¿dondé? </h1>
                 <hr />
                 <p>
-                  "This is the home page where we will have content reflecting.
-                  Mostly Talking about the application and how great it is."
+                  dondé (dohn-deh) </p>
+                <p>
+                  Welcome! Let us help you take the hard work of planning Trips out of your hands!
+                  Our site helps optimize your travel itinerary to let you
+                  make the most out of your trip!
                 </p>
                 <Link to="/review">
                   <button
@@ -168,8 +171,7 @@ class HomePage extends React.Component {
               <RouteCard
                 title="Start Trip"
                 src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1908&q=80"
-                text="With supporting text below as a natural lead-in to additional
-              content. With supporting text below as a natural"
+                text="Wanting to go on a well deserved VACATION, but have no idea where to even start? Let us help you out."
               >
                 <Link to="/budget">
                   <button
@@ -186,13 +188,12 @@ class HomePage extends React.Component {
               <RouteCard
                 title="Packing List"
                 src="https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
-                text="With supporting text below as a natural lead-in to additional
-              content. With supporting text below as a natural"
+                text="Ever finding yourself under-packing and forgetting the most important items for your trip? Let us help you out."
               >
-                <Link to="/packinglist">
+                <Link to="/home">
                   <button
                     className="btn btn-warning mt-3"
-                    onClick={(e) => this.changePage(e, "/packinglist")}
+                    onClick={(e) => window.open(PDF)}
                   >
                     <h3> Print Packing List </h3>
                   </button>
@@ -204,12 +205,11 @@ class HomePage extends React.Component {
               <RouteCard
                 title="Itinerary"
                 src="https://images.unsplash.com/photo-1511871893393-82e9c16b81e3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
-                text="With supporting text below as a natural lead-in to additional
-              content. With supporting text below as a natural"
+                text="It is hard to keep track of the time when you are having fun, need help staying organized? Let us help you out."
               >
                 <Link to="/itinerary">
                   <button
-                    className="btn btn-warning mt-3"
+                    className="btn btn-warning mt-3 justify-content-center"
                     onClick={(e) => this.changePage(e, "/itinerary")}
                   >
                     <h3> View Itinerary </h3>
