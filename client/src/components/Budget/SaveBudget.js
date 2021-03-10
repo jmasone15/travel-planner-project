@@ -1,9 +1,9 @@
 import React from 'react'
 
-function SaveBudget({save}) {
+function SaveBudget({save, className}) {
 
     return (
-        <button onClick={save}>
+        <button className={className} onClick={save}>
         Save Budget to Trip
       </button>
     )

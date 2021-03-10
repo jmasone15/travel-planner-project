@@ -4,9 +4,9 @@ import numeral from "numeral";
 // Displays Budget and Balance
 function Budget({ budget, balance }) {
   return (
-    <div className="row d-flex justify-content-center p-1">
+    <div className="row d-flex justify-content-center">
       {/* Budget */}
-      <div className="d-flex justify-content-around m-1">
+      <div className="d-flex justify-content-around">
         <h3>Budget: {numeral(budget).format('$0,0.00')}</h3>
       </div>
       {/* Balance */}

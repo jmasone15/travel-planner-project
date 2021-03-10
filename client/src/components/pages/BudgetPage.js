@@ -102,6 +102,7 @@ function BudgetPage(props) {
                 subtractFromBudgetClick={subtractFromBudget}
                 addToTotalBudgetClick={updateTotalBudgetAdd}
                 subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
+                clearModify={showModifyClick}
               />
             )}
           </>
