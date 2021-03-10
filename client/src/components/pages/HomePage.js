@@ -10,6 +10,7 @@ import * as faIcons from "react-icons/fa";
 import * as mdIcons from "react-icons/md";
 import * as riIcons from "react-icons/ri";
 import "./home.css";
+import PDF from "../../images/packinglist.pdf"
 // import bgTan from "../images/bgTan.png";
 // import donde from "../images/dondeLogo.png";
 
@@ -139,23 +140,22 @@ class HomePage extends React.Component {
                 <div ref={(card3) => (this.card3 = card3)} className="col mb-3">
                   <Card>
                     <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
-                    <Link>
-                      <button
-                        className="btn btn-warning mt-1"
-                        href="../../images/packinglist.pdf"
-                        onClick={(e) => this.changePage(e, "/packinglist")}
-                      >
-                        <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
-                          {" "}
+                    {/* <Link> */}
+                    <button
+                      className="btn btn-warning mt-1"
+                      onClick={(e) => window.open(PDF)}
+                    >
+                      <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
+                        {" "}
                         ¿packinglist?
                       </h3>
-                      </button>
-                    </Link>
+                    </button>
+                    {/* </Link> */}
                   </Card>
                 </div>
                 <div ref={(card4) => (this.card4 = card4)} className="col mt-">
                   <Card>
-                    <Link to="/lodging">
+                    <Link to="/itinerary">
                       <riIcons.RiPagesLine
                         className="text-dark"
                         style={{ fontSize: 100 }}
