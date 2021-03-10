@@ -71,15 +71,18 @@ export default function Router() {
                             </Route>
                             <Route path="/home">
                                 <HomePage
-                                    setTripName={setTripTripName}
-                                    setTripStartLocation={setTripStartLocation}
-                                    setTripDestination={setTripDestination}
-                                    setTripDates={setTripDates}
+
                                     setTripBudget={setTripBudget}
                                 />
                             </Route>
                             <Route path="/budget">
-                                <BudgetPage setTripBudget={setTripBudget} tripBudget={tripBudget} />
+                                <BudgetPage
+                                    setTripBudget={setTripBudget}
+                                    tripBudget={tripBudget}
+                                    setTripName={setTripTripName}
+                                    setTripStartLocation={setTripStartLocation}
+                                    setTripDestination={setTripDestination}
+                                    setTripDates={setTripDates} />
                             </Route>
                             <Route path="/donde">
                                 <Recommend

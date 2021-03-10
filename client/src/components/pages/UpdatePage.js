@@ -34,7 +34,7 @@ export default function UpdatePage(props) {
                 destination: updateDestination
             });
             alert("Trip Updated");
-            history.push("/profile")
+            history.push("/profile");
         } catch (err) {
             console.error(err)
         }

@@ -13,6 +13,7 @@ import SearchBar from "./Autocomplete"
 function SearchForm(props) {
 
   const [currentTrip, setCurrentTrip] = useState({})
+  const [showReview, setShowReview] = useState(false);
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [datesArray, setDatesArray] = useState([])
@@ -191,7 +192,7 @@ function SearchForm(props) {
       props.setTripDestination(currentTrip.destination);
       props.setTripDates(JSON.stringify(array));
 
-
+      setShowReview(true);
       setReset("")
       setFormattedLocation("")
 
@@ -237,6 +238,7 @@ function SearchForm(props) {
 
       <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
       <button type="button" onClick={() => handleBtnClick()}>Submit</button>
+      {showReview ? <button type="button" onClick={history.push("/review")}>Review Trip Info</button> : ""}
       <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
 
       <MapContainer props={latLng} type={type} />

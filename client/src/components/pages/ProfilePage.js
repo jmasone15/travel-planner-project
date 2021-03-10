@@ -14,6 +14,11 @@ export default function ProfilePage(props) {
         setProfileEmail(userData.data.email)
     }
 
+    function getDateRange(x) {
+        let result = x.map(date => date.name)
+        return (`${result[0]} - ${result[result.length - 1]}`)
+    }
+
     async function getTripData() {
         const userTrips = await axios.get(`api/${userId}`)
         setTripArray(userTrips.data);
@@ -25,8 +30,7 @@ export default function ProfilePage(props) {
 
         try {
             await axios.delete(`/api/${id}`);
-            alert("Trip removed")
-            window.location.reload();
+            getTripData();
         } catch (err) {
             console.error(err)
         }
@@ -65,17 +69,7 @@ export default function ProfilePage(props) {
                         <p>Trip Name: {trip.tripName}</p>
                         <p>Budget: {trip.budget}</p>
                         <p>Start Location: {trip.startLocation}</p>
-                        <p>Dates:</p>
-                        <ul>
-                            {trip.dates.map((day) => (
-                                <li>
-                                    {day.name}
-                                    <p>{day.activities.map((a) => (
-                                        <p>Activity: {a}</p>
-                                    ))}</p>
-                                </li>
-                            ))}
-                        </ul>
+                        <p>Dates: {getDateRange(trip.dates)}</p>
                         <button onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
                         <button onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                     </div>

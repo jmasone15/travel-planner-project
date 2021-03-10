@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import UserContext from "../../context/UserContext";
 import AuthContext from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
@@ -57,8 +57,7 @@ class HomePage extends React.Component {
 
   buildNewTrip = (e) => {
     e.preventDefault();
-
-
+    this.changePage(e, "/budget")
   }
 
   render() {
@@ -93,7 +92,7 @@ class HomePage extends React.Component {
                     <Link to="/budget">
                       <button
                         className="btn btn-warning ml-3 mt-3"
-                        onClick={(e) => this.changePage(e, "/budget")}
+                        onClick={(e) => this.buildNewTrip(e)}
                       >
                         <h4 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
                           {" "}
