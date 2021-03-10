@@ -150,10 +150,10 @@ class HomePage extends React.Component {
                   "This is the home page where we will have content reflecting.
                   Mostly Talking about the application and how great it is."
                 </p>
-                <Link to="/review">
+                <Link to="/profile">
                   <button
                     className="btn btn-warning"
-                    onClick={(e) => this.changePage(e, "/review")}
+                    onClick={(e) => this.changePage(e, "/profile")}
                   >
                     {" "}
                     View Trips{" "}
