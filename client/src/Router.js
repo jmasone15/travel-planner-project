@@ -6,19 +6,17 @@ import HomePage from "./components/pages/HomePage";
 import Navbar from "./components/pages/Navbar";
 import BudgetPage from "./components/pages/BudgetPage";
 import AuthContext from "./context/AuthContext";
-import UserContext from "./context/UserContext";
 import Recommend from "./components/pages/Recommend";
 import ReviewPage from "./components/pages/ReviewPage";
 import ProfilePage from "./components/pages/ProfilePage";
-import axios from "axios";
 import UpdatePage from "./components/pages/UpdatePage";
 import Wrapper from "./components/Wrapper";
 import ItineraryPage from "./components/pages/ItineraryPage";
 
 export default function Router() {
     const { loggedIn, getLoggedIn } = useContext(AuthContext);
-    const { userId } = useContext(UserContext);
     const [tripBudget, setTripBudget] = useState(0);
+    const [tripExpenses, setTripExpenses] = useState("");
     const [tripTripName, setTripTripName] = useState("");
     const [tripStartLocation, setTripStartLocation] = useState("");
     const [tripDestination, setTripDestination] = useState("");
@@ -70,15 +68,14 @@ export default function Router() {
                                 <HomePage />
                             </Route>
                             <Route path="/home">
-                                <HomePage
-
-                                    setTripBudget={setTripBudget}
-                                />
+                                <HomePage setTripBudget={setTripBudget} />
                             </Route>
                             <Route path="/budget">
                                 <BudgetPage
                                     setTripBudget={setTripBudget}
                                     tripBudget={tripBudget}
+                                    tripExpenses={tripExpenses}
+                                    setTripExpenses={setTripExpenses}
                                     setTripName={setTripTripName}
                                     setTripStartLocation={setTripStartLocation}
                                     setTripDestination={setTripDestination}
@@ -103,11 +100,13 @@ export default function Router() {
                                     tripDestination={tripDestination}
                                     tripDates={tripDates}
                                     tripBudget={tripBudget}
+                                    tripExpenses={tripExpenses}
                                     setTripName={setTripTripName}
                                     setTripStartLocation={setTripStartLocation}
                                     setTripDestination={setTripDestination}
                                     setTripDates={setTripDates}
                                     setTripBudget={setTripBudget}
+                                    setTripExpenses={setTripExpenses}
                                 />
                             </Route>
                             <Route path="/profile">
