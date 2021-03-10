@@ -87,10 +87,6 @@ function BudgetPage(props) {
             addToTotalBudgetClick={updateTotalBudgetAdd}
             subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
           />
-
-
-          <AddTransaction addTransactionClick={addTransaction} />
-
         </>
       )}
       {budget !== 0 && (
@@ -114,18 +110,6 @@ function BudgetPage(props) {
           )}
         </div>
       )}
-      {/*
-       */}
-
-      {/* {(budget !== 0 || transactions.length > 0) && (
-        <ModifyBudget
-          addToBudgetClick={addBackToBudget}
-          subtractFromBudgetClick={subtractFromBudget}
-          addToTotalBudgetClick={updateTotalBudgetAdd}
-          subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
-        />
-      )} */}
-
       <button onClick={(e) => handleSaveBtn(e, totalBudget)}>
         Save Budget to Trip
       </button>
