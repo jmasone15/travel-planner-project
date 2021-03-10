@@ -138,11 +138,11 @@ function ItineraryPage() {
                 </div>
                 {showActs ? <div className="card-body">
                     <Card style={{ backgroundColor: "#E0E1CC" }}>
-                        <div style={{ textAlign: "center" }}>
+                        <div style={{ textAlign: "center", paddingBottom: "20px" }}>
                             <h3 className="text-center font">Activities in your destination area!</h3>
                             <button name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button><button name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button><button name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button><button name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
                         </div>
-                        <div style={{width: "1000px", height: "300px",  overflow: "scroll"}}>
+                        <div style={{width: "1000px", height: "300px",  overflow: "scroll", justifyContent: "center", display: "flex"}}>
                             {showResults ? <MyCard data={type} activitiesArray={activitiesArray} setActivitiesArray={setActivitiesArray} /> : null}
                         </div>
 
