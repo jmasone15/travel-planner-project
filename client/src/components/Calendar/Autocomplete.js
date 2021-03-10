@@ -18,7 +18,7 @@ export class SearchBar extends React.Component {
     if (this.props.placeholder === "Start location") {
       this.props.setCurrentTrip({ ...this.props.currentTrip, startLocation: place.formatted_address });
     }
-    else {
+    else if (this.props.placeholder === "Destination") {
       this.props.setCurrentTrip({ ...this.props.currentTrip, destination: place.formatted_address });
     }
   }

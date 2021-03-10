@@ -62,20 +62,22 @@ export default function ProfilePage(props) {
 
                 <div style={{ marginTop: "150px", textAlign: "center" }}>
                     <h3>No Trips saved to your profile</h3>
-                    <button class="btn btn-block btn-success mt-2 p-2 shadow " onClick={(e) => btnClick(e)}>Build a new trip!</button>
+                    <button class="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => btnClick(e)}>Build a new trip!</button>
                 </div>
             }
             {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
                         <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
-                            <h3>Your trip to: {trip.destination}</h3>
-                            <p>Trip Name: {trip.tripName}</p>
-                            <p>Budget: {trip.budget}</p>
-                            <p>Start Location: {trip.startLocation}</p>
-                            <p>Dates: {getDateRange(trip.dates)}</p>
-                            <button class="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
-                            <button class="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
+                            <h3><b>Your Trip to:</b> {trip.destination}</h3>
+                            <br />
+                            <p><b>Trip name:</b> {trip.tripName}</p>
+                            <p><b>Budget:</b> {trip.budget}</p>
+                            <p><b>Start Location: </b> {trip.startLocation}</p>
+                            <p><b>Dates:</b> {getDateRange(trip.dates)}</p>
+                            <br />
+                            <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
+                            <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                         </div>
                         <br />
                     </div>
