@@ -28,8 +28,8 @@ function BudgetInput({ onChange, putTotalBudget, save }) {
             id="budget"
             type="text"
             className="form-control curvedInput shadow"
-            placeholder="Enter Budget?"
-            aria-label="Enter Budget?"
+            placeholder="What's your Budget?"
+            aria-label="What's your Budget?"
             aria-describedby="basic-addon2"
             onChange={(event) => setUserBudget(event.target.value)}
             value={userBudget}
@@ -43,7 +43,7 @@ function BudgetInput({ onChange, putTotalBudget, save }) {
               >
                 Continue To Add Expense
               </button>
-              <SaveBudget save={save} className="btn btn-block btn-secondary" />
+              {/* <SaveBudget save={save} className="btn btn-block btn-secondary" /> */}
             </div>
           )}
         </form>

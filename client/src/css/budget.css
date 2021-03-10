@@ -20,8 +20,13 @@ input {
 } */
 
 .tList {
-  background-color: #b1d1b4;
-  opacity: 90%;
+  /* background-color: #b1d1b4; */
+  background-color: #EAC0A2;
+  border-radius: 5px;
+}
+
+.addExpense{
+  background-color: #c2d4d4;
 }
 
 input[type="text"] {
@@ -43,7 +48,6 @@ input::-webkit-input-placeholder {
   height: 400px;
   margin: 0 auto 15px auto;
   padding: 1%;
-  /* border: 2px solid red; */
   border-radius: 0 0 500px 500px;
 }
 
@@ -76,43 +80,3 @@ input::-webkit-input-placeholder {
   margin-right: auto;
 }
 
-
-/* 
-.pulse {
-  overflow: visible;
-  position: relative;
-}
-.pulse:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: inherit;
-  border-radius: inherit;
-  transition: opacity 0.3s, transform 0.3s;
-  animation: pulse-animation 1.3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-  z-index: -1;
-} */
-
-
-/* .pulse:hover {
-  animation-play-state: paused;
-}
-
-@keyframes pulse-animation {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-} */
