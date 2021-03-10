@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useHistory } from 'react-router';
 import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
-import Card from "./Card"
+import { v4 as uuidv4 } from 'uuid';
 import Calender from './Calender';
 import MapContainer from "./MapContainer"
 import Itinerary from "./Itinerary"
@@ -12,6 +12,7 @@ import SearchBar from "./Autocomplete"
 
 function SearchForm(props) {
 
+  const [activitiesArray, setActivitesArray] = useState([])
   const [currentTrip, setCurrentTrip] = useState({})
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
@@ -22,7 +23,7 @@ function SearchForm(props) {
   const [hotelsArray, setHotelsArray] = useState([])
   const [shoppingArray, setShoppingArray] = useState([])
   const [restaurantsArray, setRestaurantsArray] = useState([])
-  const [editDate, setEditDate] = useState(0)
+  const [editDate, setEditDate] = useState("")
   const [askOnce, setAskOnce] = useState(false)
   const [latLng, setLatLng] = useState({ lat: 54.526, lng: 95.7129 })
   const [formattedLocation, setFormattedLocation] = useState("")
@@ -60,7 +61,7 @@ function SearchForm(props) {
 
   useEffect(() => {
 
-  }, [currentTrip, editDate, latLng, formattedLocation, reset])
+  }, [currentTrip, editDate, latLng, formattedLocation, reset, activitiesArray])
 
   function getPoi(where) {
 
@@ -177,6 +178,7 @@ function SearchForm(props) {
       for (let i = 0; i < myDates.length; ++i) {
         let eachDay = {
           name: myDates[i],
+          id: uuidv4(),
           activities: []
         };
         array.push(eachDay)
@@ -221,112 +223,23 @@ function SearchForm(props) {
       <form>
         <div className="form-group">
           <label htmlFor="search">Things to do:</label>
-          <button name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button>
-          <button name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
-          <button name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button>
-          <button name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
+
           <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} />
           <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
           <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
-
-          {/* <input id="my-input-searchbox" name="startLocaation" placeholder={"Start location"} value={formattedLocation} onChange={(e) => setCurrentTrip({ ...currentTrip, startLocation: e.target.value })} />
-          <input id="my-input-searchbox" name="destination" placeholder={"Destination"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, destination: e.target.value })} /> */}
 
         </div>
       </form>
 
       <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
       <button type="button" onClick={() => handleBtnClick()}>Submit</button>
-      <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
+      <Itinerary props={datesArray} setActivitesArray={setActivitesArray} activitiesArray={activitiesArray} showResults={showResults} type={type} handleFormSubmit={handleFormSubmit} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
 
       <button onClick={(e) => handleTripSubmit(e)}>Add to trip!</button>
 
       <MapContainer props={latLng} type={type} />
       <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {showResults ? <Card data={type} /> : null}
     </div>
 
   );

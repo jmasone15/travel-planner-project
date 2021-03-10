@@ -1,6 +1,32 @@
-import React from "react";
+import {React, useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function Card(props) {
+
+    const [newActivity, setNewActivity] = useState({})
+
+    useEffect(() => {
+        
+    }, [props.activitiesArray])
+
+    async function handleBtnClick(name, location, address, photo_reference) {
+        console.log(name, location, address);
+        setNewActivity({name, location, address, photo_reference, id: uuidv4()})
+        
+        await props.setActivitesArray([...props.activitiesArray, newActivity])
+
+
+        // const newData = props.activitiesArray.map(obj => {
+        //     if(obj.fieldName === 'cityId') // check if fieldName equals to cityId
+        //        return {
+        //          ...obj,
+        //          valid: true,
+        //          description: 'You can also add more values here' // Example of data extra fields
+        //        }
+        //     return obj
+        //   });
+    }
+
     console.log(props);
     return (
         <div>
@@ -8,10 +34,10 @@ function Card(props) {
                 <div>
                     <div className="col-md-4">
                         {place.photos ?
-                            <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${place.photos[0].photo_reference}&sensor=false&maxheight=480&maxwidth=720&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                            <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${place.photos[0].photo_reference}&sensor=false&maxheight=150&maxwidth=150&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
                             : null}
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-8">
                         <div className="row">
                             <h3>{place.name}</h3>
                         </div>
@@ -26,7 +52,7 @@ function Card(props) {
                         <p>Reviews: {place.user_ratings_total}</p>
                     </div>
                     <div className="row">
-                        <button key={place.reference} value={{name: place.name, location: place.geometry.location, address: place.formatted_address}}>Add to itenerary</button>
+                        <button key={place.reference} onClick={() => handleBtnClick(place.name, place.geometry.location, place.formatted_address, place.photos[0].photo_reference)}>Add to itenerary</button>
                         </div>
                 </div>
             ))}

@@ -28,7 +28,7 @@ app.use(cors({
 }));
 
 // Mongo DB Setup
-mongoose.connect(process.env.MDB_CONNECT,
+mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

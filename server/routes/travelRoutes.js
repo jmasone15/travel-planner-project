@@ -33,6 +33,35 @@ router.get("/:id", auth, async (req, res) => {
     }
 });
 
+router.get("/activities/:id", auth, async (req, res) => {
+    try {
+        const things = await Travel.findOne({ _id: req.params.id });
+        res.json(things);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
+    }
+});
+
+router.put("/activities/:id", auth, async (req, res) => {
+    try {
+        const newActivity = await Travel.findOneAndUpdate(
+            {
+                _id: req.params.id
+            },
+            {
+                dates: req.body.dates
+            }
+        )
+        res.json(newActivity);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
+    }
+});
+
 router.delete("/:id", auth, async (req, res) => {
     try {
         const deletedTravel = await Travel.deleteOne({ _id: req.params.id });
