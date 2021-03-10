@@ -10,8 +10,9 @@ import * as faIcons from "react-icons/fa";
 import * as mdIcons from "react-icons/md";
 import * as riIcons from "react-icons/ri";
 import "./home.css";
-import PDF from "../../images/packinglist.pdf"
-// import bgTan from "../images/bgTan.png";
+import PDF from "../../images/packinglist.pdf";
+import travel from "../../images/traveling.jpeg";
+import RouteCard from "../RouteCard";
 // import donde from "../images/dondeLogo.png";
 
 class HomePage extends React.Component {
@@ -35,12 +36,12 @@ class HomePage extends React.Component {
         ease: Power1.easeInOut,
       })
       .from(this.card2, 0.2, {
-        y: 50,
+        y: -50,
         autoAlpha: 0,
         ease: Power1.easeInOut,
       })
       .from(this.card3, 0.2, {
-        y: 50,
+        y: -50,
         autoAlpha: 0,
         ease: Power1.easeInOut,
       });
@@ -57,24 +58,22 @@ class HomePage extends React.Component {
 
   buildNewTrip = (e) => {
     e.preventDefault();
-
-
-  }
+  };
 
   render() {
     return (
       <div className="bg">
         <div className="container">
-          <div className="row">
+          {/* <div className="row">
             <div className="col">
               <div
                 ref={(div) => (this.card = div)}
                 className="card shadow p-3 mb-5 mt-5 bg-white rounded"
-              // style={{backgroundImage: `url(${bgTan})`}}
+              style={{backgroundImage: `url(${bgTan})`}}
               >
                 <div className="card-body">
                   <h1 className="text-center font">¿dondé?</h1>
-                  <Card style={{ backgroundColor: "#E0E1CC" }}>
+                  <Card >
                     <p className="p">
                       To take the hard work of planning trip out of your hands!
                       Our site helps optimize your travel itinerary to let you
@@ -97,30 +96,18 @@ class HomePage extends React.Component {
                       >
                         <h4 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
                           {" "}
-                          ¿Start your Trip?
+                          ¿start your trip?
                         </h4>
                       </button>
                     </Link>
                   </Card>
                 </div>
-                {/* <div ref={(card2) => (this.card2 = card2)} className="col mt-5">
-                  <Card>
-                    <faIcons.FaFileInvoiceDollar style={{ fontSize: 100 }} />
-
-                    <Link to="/budget">
-                      <button className="btn btn-warning mt-3">
-                        <h3> ¿budget?</h3>
-                      </button>
-                    </Link>
-                  </Card>
-                </div> */}
               </div>
 
               <div className="row mt-3">
                 <div ref={(card2) => (this.card2 = card2)} className="col mb-3">
                   <Card>
                     <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
-                    {/* <Link> */}
                     <button
                       className="btn btn-warning mt-1"
                       onClick={(e) => window.open(PDF)}
@@ -130,10 +117,9 @@ class HomePage extends React.Component {
                         ¿packinglist?
                       </h3>
                     </button>
-                    {/* </Link> */}
                   </Card>
                 </div>
-                <div ref={(card3) => (this.card3 = card3)} className="col">
+                <div ref={(card3) => (this.card3 = card3)} className="col mt-3">
                   <Card>
                     <Link to="/itinerary">
                       <riIcons.RiPagesLine
@@ -147,6 +133,75 @@ class HomePage extends React.Component {
                   </Card>
                 </div>
               </div>
+            </div>
+          </div> */}
+
+          {/* new homepage setUp */}
+          <div className="row">
+            <div className="card-wrapper" ref={(div) => (this.card = div)}>
+                
+              <Card
+                style={{
+                  backgroundImage: `url(${travel})`,
+                  backgroundSize: "cover",
+                  position: "relative",
+                }}
+              >
+                <h1> ¿dondé? </h1>
+                <hr />
+                <p>
+                  "This is the home page where we will have content reflecting.
+                  Mostly Talking about the application and how great it is."
+                </p>
+                <Link to="/review">
+                      <button
+                        className="btn btn-warning"
+                        onClick={(e) => this.changePage(e, "/review")}
+                      > View Trips </button> </Link>
+              </Card>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col" ref={(card1) => (this.card1 = card1)}>
+              {" "}
+              <RouteCard
+                title="Start Trip"
+                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1908&q=80"
+                text="With supporting text below as a natural lead-in to additional
+              content. With supporting text below as a natural">
+                <Link to="/budget">
+                      <button className="btn btn-warning mt-3"onClick={(e) => this.changePage(e, "/budget")}>
+                        <h3> Start Trip </h3>
+                      </button>
+                </Link>
+                </RouteCard>
+              {" "}
+            </div>
+            <div className="col" ref={(card2) => (this.card2 = card2)}>
+              {" "}
+              <RouteCard title="Packing List"
+                src="https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+                text="With supporting text below as a natural lead-in to additional
+              content. With supporting text below as a natural">
+                <Link to="/packinglist">
+                      <button className="btn btn-warning mt-3"onClick={(e) => this.changePage(e, "/packinglist")}>
+                        <h3> Print Packing List </h3>
+                      </button>
+                </Link>
+                </RouteCard>{" "}
+            </div>
+            <div className="col" ref={(card3) => (this.card3 = card3)}>
+              {" "}
+              <RouteCard title="Itinerary"
+                src="https://images.unsplash.com/photo-1511871893393-82e9c16b81e3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+                text="With supporting text below as a natural lead-in to additional
+              content. With supporting text below as a natural">
+                <Link to="/itinerary">
+                      <button className="btn btn-warning mt-3"onClick={(e) => this.changePage(e, "/itinerary")}>
+                        <h3> View Itinerary </h3>
+                      </button>
+                </Link>
+                </RouteCard>{" "}
             </div>
           </div>
         </div>
