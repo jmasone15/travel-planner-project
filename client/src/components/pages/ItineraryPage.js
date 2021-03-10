@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Itinerary() {
+function ItineraryPage() {
     return (
         <div>
             <h1> This is the Itinerary page </h1>
@@ -8,4 +8,4 @@ function Itinerary() {
     )
 }
 
-export default Itinerary
+export default ItineraryPage;

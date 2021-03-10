@@ -26,7 +26,7 @@ function BudgetPage(props) {
     e.preventDefault();
     props.setTripBudget(value);
     console.log(value);
-    history.push("/recommend");
+    history.push("/donde");
   };
 
   const addTransaction = (transaction) => {
@@ -82,11 +82,11 @@ function BudgetPage(props) {
           <Budget budget={totalBudget} balance={budget} />
           <BudgetOptions reset={resetBudget} />
           <ModifyBudget
-          addToBudgetClick={addBackToBudget}
-          subtractFromBudgetClick={subtractFromBudget}
-          addToTotalBudgetClick={updateTotalBudgetAdd}
-          subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
-        />
+            addToBudgetClick={addBackToBudget}
+            subtractFromBudgetClick={subtractFromBudget}
+            addToTotalBudgetClick={updateTotalBudgetAdd}
+            subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
+          />
           <AddTransaction addTransactionClick={addTransaction} />
         </>
       )}
