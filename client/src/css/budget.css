@@ -14,10 +14,10 @@ input {
   background-size: cover;
 }
 
-form {
+/* form {
   background-color: #b1d1b4;
   opacity: 90%;
-}
+} */
 
 .tList {
   background-color: #b1d1b4;
@@ -68,9 +68,16 @@ input::-webkit-input-placeholder {
 }
 
 .belowBudget {
-  font-size: 50px;
+  font-size: 35px;
 }
 
+.centerX {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* 
 .pulse {
   overflow: visible;
   position: relative;
@@ -88,14 +95,10 @@ input::-webkit-input-placeholder {
   transition: opacity 0.3s, transform 0.3s;
   animation: pulse-animation 1.3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
   z-index: -1;
-}
+} */
 
-.centerX {
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.pulse:hover {
+/* .pulse:hover {
   animation-play-state: paused;
 }
 
@@ -112,4 +115,4 @@ input::-webkit-input-placeholder {
     opacity: 0;
     transform: scale(1.5);
   }
-}
+} */
