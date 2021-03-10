@@ -20,6 +20,7 @@ function BudgetPage(props) {
   const [budget, setBudget] = useState(0);
   const [totalBudget, setTotalBudget] = useState(0);
   const [transactions, setTransactions] = useState([]);
+  const [showModify, setShowModify] = useState(false);
   const history = useHistory();
 
   const handleSaveBtn = (e, value) => {
@@ -72,6 +73,10 @@ function BudgetPage(props) {
     setTransactions([]);
   };
 
+  const showModifyClick = () => {
+    setShowModify(!showModify);
+  };
+
   return (
     <div className="bgThis">
       {budget === 0 && transactions.length === 0 && (
@@ -80,13 +85,15 @@ function BudgetPage(props) {
       {(budget !== 0 || transactions.length > 0) && (
         <>
           <Budget budget={totalBudget} balance={budget} />
-          <BudgetOptions reset={resetBudget} />
-          <ModifyBudget
-            addToBudgetClick={addBackToBudget}
-            subtractFromBudgetClick={subtractFromBudget}
-            addToTotalBudgetClick={updateTotalBudgetAdd}
-            subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
-          />
+          <BudgetOptions reset={resetBudget} showModify={showModifyClick} />
+          {showModify && (
+            <ModifyBudget
+              addToBudgetClick={addBackToBudget}
+              subtractFromBudgetClick={subtractFromBudget}
+              addToTotalBudgetClick={updateTotalBudgetAdd}
+              subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
+            />
+          )}
         </>
       )}
       {budget !== 0 && (
