@@ -53,7 +53,7 @@ router.put("/update/:id", auth, async (req, res) => {
             {
                 tripName: req.body.tripName,
                 budget: req.body.budget,
-                startLocation: req.body.location,
+                startLocation: req.body.startLocation,
                 destination: req.body.destination,
             }
         )

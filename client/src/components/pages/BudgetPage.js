@@ -26,6 +26,10 @@ function BudgetPage(props) {
   const handleSaveBtn = (e) => {
     e.preventDefault();
     props.setTripBudget(totalBudget);
+    props.setTripName("");
+    props.setTripStartLocation("");
+    props.setTripDestination("");
+    props.setTripDates([]);
     console.log(totalBudget);
     history.push("/donde");
   };
