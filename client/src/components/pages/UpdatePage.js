@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import SearchBar from "../Calendar/Autocomplete";
+import Calender from '../Calendar/Calender';
 
 export default function UpdatePage(props) {
 
@@ -9,7 +11,8 @@ export default function UpdatePage(props) {
     const [updateBudget, setUpdateBudget] = useState("");
     const [updateStartLocation, setUpdateStartLocation] = useState("");
     const [updateDestination, setUpdateDestination] = useState("");
-    // const [updateDates, setUpdateDates] = useState("");
+    const [updateStartDate, setUpdateStartDate] = useState("");
+    const [updateEndDate, setUpdateEndDate] = useState("");
     const history = useHistory();
 
     async function getTripData() {
@@ -41,29 +44,46 @@ export default function UpdatePage(props) {
 
     }
 
+    function changePage(e) {
+        e.preventDefault();
+        history.push("/profile")
+    }
+
     useEffect(() => {
         getTripData()
     }, []);
 
     return (
-        <div>
-            <h1>Update Page</h1>
-            <form>
-                <label>Trip Name: </label>
-                <input type="text" value={updateName} onChange={(e) => setUpdateName(e.target.value)} />
-                <br />
-                <label>Budget: </label>
-                <input type="text" value={updateBudget} onChange={(e) => setUpdateBudget(e.target.value)} />
-                <br />
-                <label>Start Location: </label>
-                <input type="text" value={updateStartLocation} onChange={(e) => setUpdateStartLocation(e.target.value)} />
-                <br />
-                <label>Destination: </label>
-                <input type="text" value={updateDestination} onChange={(e) => setUpdateDestination(e.target.value)} />
-                <br />
-                <button onClick={(e) => updateTripData(e)}>Submit Changes</button>
-            </form>
-
+        <div className="bgThis p-5">
+            <div style={{ textAlign: "center" }}>
+                <h1>Update Your Trip</h1>
+            </div>
+            <br />
+            <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ textAlign: "center", width: "600px", marginTop: "50px" }}>
+                <form >
+                    <label><b>Trip name</b></label>
+                    <br />
+                    <input type="text" className="updateInput" value={updateName} onChange={(e) => setUpdateName(e.target.value)} />
+                    <br /><br />
+                    <label><b>Budget</b></label>
+                    <br />
+                    <input type="text" className="updateInput" value={updateBudget} onChange={(e) => setUpdateBudget(e.target.value)} />
+                    <br /><br />
+                    <label><b>Start Location</b></label>
+                    <br />
+                    <input type="text" className="updateInput" value={updateStartLocation} onChange={(e) => setUpdateStartLocation(e.target.value)} />
+                    {/* <SearchBar type="text" value={updateStartLocation} placeholder={updateStartLocation} className="updateInput" onChange={(e) => setUpdateStartLocation(e.target.value)} /> */}
+                    <br /><br />
+                    <label><b>Destination</b></label>
+                    <br />
+                    <input type="text" className="updateInput" value={updateDestination} onChange={(e) => setUpdateDestination(e.target.value)} />
+                    {/* <SearchBar type="text" value={updateDestination} placeholder={updateDestination} className="updateInput" onChange={(e) => setUpdateDestination(e.target.value)} /> */}
+                    <br /><br />
+                    {/* <Calender startDate={updateStartDate} endDate={updateEndDate} setEndDate={setUpdateEndDate} setStartDate={setUpdateStartDate} /> */}
+                    <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTripData(e)}>Submit Changes</button>
+                    <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => changePage(e)}>Go Back</button>
+                </form>
+            </div>
 
         </div>
     )

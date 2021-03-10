@@ -39,6 +39,12 @@ input::-webkit-input-placeholder {
   line-height: 3;
 }
 
+.updateInput {
+  width: 500px;
+  height: 38px;
+  padding: 0px;
+}
+
 .budgetInputPosition {
   margin-top: 15%;
 }
