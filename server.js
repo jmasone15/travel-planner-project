@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+// Needed for localhost
 dotenv.config();
 
 // Server Setup
@@ -52,6 +53,8 @@ mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb
 // When the path has "/auth" in it, express will then use the userRoutes file
 app.use("/user", require("./routes/userRoutes"));
 app.use("/api", require("./routes/travelRoutes"));
+
+// Only use for heroku
 // app.get("*", function (req, res) {
 //     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
