@@ -25,7 +25,7 @@ function SearchForm(props) {
   const [restaurantsArray, setRestaurantsArray] = useState([])
   const [editDate, setEditDate] = useState(0)
   const [askOnce, setAskOnce] = useState(false)
-  const [latLng, setLatLng] = useState({ lat: 54.526, lng: 95.7129 })
+  const [latLng, setLatLng] = useState({ lat: 34.0902, lng: -95.7129 })
   const [formattedLocation, setFormattedLocation] = useState("")
   const [reset, setReset] = useState();
   const history = useHistory();
@@ -217,36 +217,51 @@ function SearchForm(props) {
 
 
   return (
-    <div>
-      <form>
-        <div className="form-group">
-          <label htmlFor="search">Things to do:</label>
-          <button name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button>
-          <button name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
-          <button name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button>
-          <button name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
-          <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} />
-          <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
-          <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+    <div className="wrapper">
+      <MapContainer props={latLng} type={type} style={{
+        position:"fixed",
+        top:"0px",
+        left:"0px",
+        width: "100%",
+        minHeight:"100%",
+        padding:0,
+        border:0,
+        zIndex:0,
+      }}> 
+        <div className="container m-3" style={{
+          height: "44vh",
+          backgroundColor: "white",
+          position: "relative",
+          zIndex: 1
+        }}>
+          <div className="row" style={{
+            textAlign: "center",
+            height: "45vh"
+          }}>
+            <div className="col-md-5 p-2" style={{ margin: "auto" }}>
+              <form>
+                <div className="form-group">
+                  {/* <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} /> */}
+                  <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <br></br>
+                  <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <br></br>
+                  <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
+                  <button type="button" onClick={() => handleBtnClick()}>Submit</button>
+                </div>
+              </form>
 
-          {/* <input id="my-input-searchbox" name="startLocaation" placeholder={"Start location"} value={formattedLocation} onChange={(e) => setCurrentTrip({ ...currentTrip, startLocation: e.target.value })} />
-          <input id="my-input-searchbox" name="destination" placeholder={"Destination"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, destination: e.target.value })} /> */}
+            </div>
 
-        </div>
-      </form>
+          </div>
 
-      <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
-      <button type="button" onClick={() => handleBtnClick()}>Submit</button>
-      {showReview ? <button type="button" onClick={history.push("/review")}>Review Trip Info</button> : ""}
-      <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
+          {/* <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} /> */}
 
-      <MapContainer props={latLng} type={type} />
-      <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />
+        </div >
 
+      </MapContainer>
 
-      {showResults ? <MyCard data={type} /> : null}
     </div>
-
   );
 }
 
