@@ -23,9 +23,8 @@ function AddTransaction({ addTransactionClick }) {
   };
 
   return (
-    <>
-      <div className="">
-        <form className="col-lg-12 shadow p-4">
+      <div className="shadow p-4 addExpense">
+        <form className="col-lg-12">
           <div className="form-group">
             <label className="labelText" for="expenseName">
               What is the name of your expense?
@@ -35,11 +34,14 @@ function AddTransaction({ addTransactionClick }) {
               className="form-control"
               id="expenseName"
               aria-describedby="expenseName"
-              placeholder="Enter name"
+              placeholder="Enter expense name"
               name="name"
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
+            <small id="nameRequired" className={!name ? "form-text text-danger" : "form-text text-muted"}>
+              An expense name is required.
+            </small>
           </div>
           <div className="form-group mt-4">
             <label className="labelText" for="expenseAmount">
@@ -54,27 +56,26 @@ function AddTransaction({ addTransactionClick }) {
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
             />
-            <small id="emailHelp" class="form-text text-muted">
-              An expense amount is required.
+            <small id="amountRequired" className= {!numeral.validate(amount) ? "form-text text-danger" : "form-text text-muted"} >
+              A valid expense amount is required.
             </small>
           </div>
-          <div className="d-flex justify-content-end">
+          <div className="col-8 centerX">
             <button
-              type="button"
+              // type="button"
               className={
-                !numeral.validate(amount)
-                  ? "btn btn-outline-secondary mt-2"
-                  : "btn btn-outline-danger mt-2"
+                !numeral.validate(amount) || !name
+                  ? "btn btn-block btn-outline-secondary mt-2"
+                  : "btn btn-block btn-primary mt-2"
               }
               onClick={onAddTransactionClick}
-              disabled={!numeral.validate(amount)}
+              disabled={!numeral.validate(amount) || !name}
             >
               Confirm
             </button>
           </div>
         </form>
       </div>
-    </>
   );
 }
 

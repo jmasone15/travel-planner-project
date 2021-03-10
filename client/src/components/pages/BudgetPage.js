@@ -102,7 +102,7 @@ function BudgetPage(props) {
               showModify={showModifyClick}
               save={handleSaveBtn}
             />
-            {showModify && (
+            {(showModify || budget < 0) && (
               <ModifyBudget
                 addToBudgetClick={addBackToBudget}
                 subtractFromBudgetClick={subtractFromBudget}
