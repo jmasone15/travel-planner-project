@@ -1,8 +1,8 @@
 
 .user_card {
-    height: 400px;
+    height: 425px;
     width: 350px;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-bottom: auto;
     background: #B1D1B4;
     opacity: 80%;
@@ -30,6 +30,10 @@
 
 .brand_logo {
     width: 3%;
+}
+
+thisFont{
+    font-size: 12px;
 }
 
 .form_container {
