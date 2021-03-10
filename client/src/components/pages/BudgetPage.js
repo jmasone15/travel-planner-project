@@ -23,10 +23,10 @@ function BudgetPage(props) {
   const [showModify, setShowModify] = useState(false);
   const history = useHistory();
 
-  const handleSaveBtn = (e, value) => {
+  const handleSaveBtn = (e) => {
     e.preventDefault();
-    props.setTripBudget(value);
-    console.log(value);
+    props.setTripBudget(totalBudget);
+    console.log(totalBudget);
     history.push("/donde");
   };
 
@@ -71,6 +71,7 @@ function BudgetPage(props) {
     setTotalBudget(0);
     setBudget(0);
     setTransactions([]);
+    setShowModify(false);
   };
 
   const showModifyClick = () => {
@@ -78,48 +79,58 @@ function BudgetPage(props) {
   };
 
   return (
-    <div className="bgThis">
+    <div className="bgThis p-5">
       {budget === 0 && transactions.length === 0 && (
-        <BudgetInput onChange={setBudget} putTotalBudget={setTotalBudget} />
-      )}
-      {(budget !== 0 || transactions.length > 0) && (
-        <>
-          <Budget budget={totalBudget} balance={budget} />
-          <BudgetOptions reset={resetBudget} showModify={showModifyClick} />
-          {showModify && (
-            <ModifyBudget
-              addToBudgetClick={addBackToBudget}
-              subtractFromBudgetClick={subtractFromBudget}
-              addToTotalBudgetClick={updateTotalBudgetAdd}
-              subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
-            />
-          )}
-        </>
+        <BudgetInput
+          onChange={setBudget}
+          putTotalBudget={setTotalBudget}
+          save={handleSaveBtn}
+        />
       )}
       {budget !== 0 && (
-        <div className="row justify-content-center col-sm-12">
-          <div className="col-lg-5 col-md-6">
-            <div className="row">
-              <AddTransaction addTransactionClick={addTransaction} />
-            </div>
-            <div className="row">
-              <BudgetGraph listOfTransactions={transactions} />
-            </div>
-          </div>
-          {transactions.length > 0 && (
-            <div className="col-lg-5 col-md-6 col-sm-12">
-              <TransactionList
-                listOfTransactions={transactions}
-                onDeleteClick={deleteTransaction}
-                onDeleteAllClick={deleteAllTransactions}
+        <div className="container shadow bg-light p-5 mt-3 col-lg-10">
+          <>
+            <Budget budget={totalBudget} balance={budget} />
+            <BudgetOptions
+              reset={resetBudget}
+              showModify={showModifyClick}
+              save={handleSaveBtn}
+            />
+            {showModify && (
+              <ModifyBudget
+                addToBudgetClick={addBackToBudget}
+                subtractFromBudgetClick={subtractFromBudget}
+                addToTotalBudgetClick={updateTotalBudgetAdd}
+                subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
               />
+            )}
+          </>
+          {budget !== 0 && (
+            <div className="row justify-content-center">
+              <div className="col-lg-5 col-md-6">
+                <div className="row">
+                  <AddTransaction addTransactionClick={addTransaction} />
+                </div>
+                <div className="row">
+                  <BudgetGraph listOfTransactions={transactions} />
+                </div>
+              </div>
+              {transactions.length > 0 && (
+                <div className="col-lg-5 col-md-6 col-sm-12">
+                  <TransactionList
+                    listOfTransactions={transactions}
+                    onDeleteClick={deleteTransaction}
+                    onDeleteAllClick={deleteAllTransactions}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
       )}
-      <button onClick={(e) => handleSaveBtn(e, totalBudget)}>
+      {/* <button onClick={(e) => handleSaveBtn(e, totalBudget)}>
         Save Budget to Trip
-      </button>
+      </button> */}
     </div>
   );
 }

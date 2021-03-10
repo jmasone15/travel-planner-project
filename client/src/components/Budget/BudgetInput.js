@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import numeral from "numeral";
+import { SaveBudget } from ".";
 
-function BudgetInput({ onChange, putTotalBudget }) {
+function BudgetInput({ onChange, putTotalBudget, save }) {
   const [userBudget, setUserBudget] = useState("");
 
-  const handleClick = () => {
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, [])
+
+
+  const handleClick = (event) => {
+    event.preventDefault();
     onChange(numeral(userBudget).value());
     putTotalBudget(numeral(userBudget).value());
     setUserBudget(0);
@@ -12,30 +21,32 @@ function BudgetInput({ onChange, putTotalBudget }) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="input col-lg-8">
-        <div className="budgetInputPosition">
+      <div className="input col-lg-5">
+        <form className="budgetInputPosition">
           <input
+            ref={inputEl}
             id="budget"
             type="text"
-            className="form-control curvedInput"
-            placeholder="What's your Budget?"
-            aria-label="What's your Budget?"
+            className="form-control curvedInput shadow"
+            placeholder="Enter Budget?"
+            aria-label="Enter Budget?"
             aria-describedby="basic-addon2"
             onChange={(event) => setUserBudget(event.target.value)}
             value={userBudget}
           />
-          <div className="input-group-append d-flex justify-content-end">
-            <button
-              // className="btn btn-outline-success mt-2 p-1 noCurveBtn"
-              className= {!numeral.validate(userBudget)? "displayHidden" : "btn btn-success mt-2 p-2 shadow pulse"}
-              type="button"
-              onClick={handleClick}
-              disabled={!numeral.validate(userBudget)}
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
+          {numeral.validate(userBudget) && (
+            <div className="input-group-append d-flex justify-content-center">
+              <button
+                className="btn btn-success mt-2 p-2 shadow pulse"
+                onClick={handleClick}
+                disabled={!numeral.validate(userBudget)}
+              >
+                Continue To Add Expense
+              </button>
+              <SaveBudget save={save} />
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );

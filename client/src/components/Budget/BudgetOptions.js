@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { SaveBudget } from ".";
 
-function BudgetOptions({ reset, showModify }) {
+function BudgetOptions({ reset, showModify, save }) {
   const handleResetClick = () => {
     reset();
   };
@@ -21,6 +22,7 @@ function BudgetOptions({ reset, showModify }) {
       >
         <i className="fas fa-edit"></i> Modify Budget
       </button>
+      <SaveBudget save={save} />
     </div>
   );
 }
