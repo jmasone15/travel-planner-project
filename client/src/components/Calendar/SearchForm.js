@@ -189,7 +189,7 @@ function SearchForm(props) {
       props.setTripTripName(currentTrip.name);
       props.setTripStartLocation(currentTrip.startLocation);
       props.setTripDestination(currentTrip.destination);
-      props.setTripDates(JSON.stringify(array));
+      props.setTripDates(array);
 
       setShowReview(true);
       setReset("")
