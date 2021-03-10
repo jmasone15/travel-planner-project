@@ -33,7 +33,7 @@ function MyCard(props) {
                     </div>
                     <div className="col-md-8" style={{paddingLeft: "90px"}}>
                     <h3>{place.name}</h3>
-                    <h4>Rating: {place.rating}</h4> <p>Reviews: {place.user_ratings_total}</p>
+                    <h6>Rating: {place.rating}</h6> <p>Reviews: {place.user_ratings_total}</p>
                     <p>{place.formatted_address}</p>
                     <button key={place.reference} onClick={() => handleBtnClick(place.name, place.geometry.location, place.formatted_address, place.photos[0].photo_reference)}>Add to itenerary</button>
                     </div>

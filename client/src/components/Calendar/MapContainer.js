@@ -1,12 +1,13 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export class MapContainer extends Component {
 
 
 
 
-  displayMarkers = () => {
+  displayMarkers = (lat, lng) => {
     if (this.props.type) {
       return this.props.type.map((place, index) => {
         return <Marker key={place.reference} position={{
@@ -16,13 +17,26 @@ export class MapContainer extends Component {
           onClick={() => console.log("You clicked me!")} />
       })
     }
+    else {
+      return <Marker key={uuidv4()} position={{
+        lat: lat,
+        lng: lng
+      }}
+        onClick={() => console.log("You clicked me!")} />
+    }
+
   }
 
+
   render() {
+    const style = {
+
+    }
     return (
       <Map
         google={this.props.google}
-        zoom={12}
+        style={style}
+        zoom={5}
         gestureHandling="greedy"
         initialCenter={
           {
@@ -31,7 +45,7 @@ export class MapContainer extends Component {
           }
         }
       >
-        {this.displayMarkers()}
+        {this.displayMarkers(this.props.props.lat, this.props.props.lng)}
       </Map>
     );
   }
