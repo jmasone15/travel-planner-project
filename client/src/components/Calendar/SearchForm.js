@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useHistory } from 'react-router';
 import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
-import Card from "./Card"
+import MyCard from "./MyCard"
 import Calender from './Calender';
 import MapContainer from "./MapContainer"
 import Itinerary from "./Itinerary"
@@ -138,7 +138,6 @@ function SearchForm(props) {
         break;
       case "hotels":
         setType(hotelsArray);
-
         setShowResults(true);
         break;
       case "shopping":
@@ -243,88 +242,7 @@ function SearchForm(props) {
       <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {showResults ? <Card data={type} /> : null}
+      {showResults ? <MyCard data={type} /> : null}
     </div>
 
   );

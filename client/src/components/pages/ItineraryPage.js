@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "../../css/budget.css";
+import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
 import Card from "../Card";
 import axios from "axios";
 import ReactToPdf from "react-to-pdf";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
 import "./home.css";
+import MyCard from '../Calendar/MyCard';
 
 function ItineraryPage() {
     const { userId } = useContext(UserContext);
@@ -14,6 +16,12 @@ function ItineraryPage() {
     const [showPDF, setShowPDF] = useState(false);
     const [showActs, setShowActs] = useState(false);
     const [profileEmail, setProfileEmail] = useState("");
+    const [showResults, setShowResults] = useState()
+    const [type, setType] = useState([])
+    const [poiArray, setPoiArray] = useState([])
+    const [hotelsArray, setHotelsArray] = useState([])
+    const [shoppingArray, setShoppingArray] = useState([])
+    const [restaurantsArray, setRestaurantsArray] = useState([])
 
     async function getUserData() {
         const userData = await axios.get(`user/profile/${userId}`);
@@ -48,10 +56,67 @@ function ItineraryPage() {
         return (`${result[0]} - ${result[result.length - 1]}`)
     }
 
+    function handleFormSubmit(e) {
+        e.preventDefault();
+
+        const name = e.target.name
+        switch (name) {
+          case "attractions":
+            setType(poiArray);
+            setShowResults(true);
+            break;
+          case "hotels":
+            setType(hotelsArray);
+    
+            setShowResults(true);
+            break;
+          case "shopping":
+            setType(shoppingArray);
+            setShowResults(true);
+            break;
+          case "restaurants":
+            setType(restaurantsArray);
+            setShowResults(true);
+            break;
+        }
+    }
+
+    function getPoi(where) {
+
+        attractions(where).then((results) => {
+            setPoiArray(results.data.results);
+        })
+    }
+
+    function getHotels(where) {
+        hotels(where).then((results) => {
+            setHotelsArray(results.data.results);
+        })
+    }
+
+    function getShop(where) {
+        shopping(where).then((results) => {
+            setShoppingArray(results.data.results);
+        })
+    }
+
+    function getFood(where) {
+        restaurants(where).then((results) => {
+            setRestaurantsArray(results.data.results);
+        })
+    }
+
     useEffect(() => {
         getUserData();
         getTripData();
-    }, []);
+        console.log(type);
+        if (selectedTrip.destination !== undefined) {
+            getPoi(selectedTrip.destination)
+            getHotels(selectedTrip.destination)
+            getShop(selectedTrip.destination)
+            getFood(selectedTrip.destination)
+        }
+    }, [selectedTrip]);
     return (
         <div className="bg">
             <div
@@ -74,14 +139,10 @@ function ItineraryPage() {
                     <Card style={{ backgroundColor: "#E0E1CC" }}>
                         <div style={{ textAlign: "center" }}>
                             <h3 className="text-center font">Activities in your destination area!</h3>
-                            <button>Activities</button><button>Restaurant</button><button>Entertainment</button><button>Night Life</button>
+                            <button name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button><button name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button><button name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button><button name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
                         </div>
-                        <div>
-                            <ul>
-                                <li className="p">Activity</li>
-                                <li className="p">Activity</li>
-                                <li className="p">Activity</li>
-                            </ul>
+                        <div style={{width: "1000px", height: "300px",  overflow: "scroll"}}>
+                            {showResults ? <MyCard data={type}/> : null}
                         </div>
 
                     </Card>
