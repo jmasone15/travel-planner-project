@@ -11,6 +11,7 @@ import ReviewPage from "./components/pages/ReviewPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import UpdatePage from "./components/pages/UpdatePage";
 import Wrapper from "./components/Wrapper";
+import Itinerary from "./components/pages/Itinerary";
 import ItineraryPage from "./components/pages/ItineraryPage";
 
 export default function Router() {
@@ -22,6 +23,16 @@ export default function Router() {
     const [tripDestination, setTripDestination] = useState("");
     const [tripDates, setTripDates] = useState([]);
     const [updateId, setUpdateId] = useState("");
+    const [tripArray, setTripArray] = useState([]);
+    const [selectedTrip, setSelectedTrip] = useState({});
+    const [activitiesArray, setActivitiesArray] = useState([])
+    const [profileEmail, setProfileEmail] = useState("");
+    const [showResults, setShowResults] = useState()
+    const [type, setType] = useState([])
+    const [poiArray, setPoiArray] = useState([])
+    const [hotelsArray, setHotelsArray] = useState([])
+    const [shoppingArray, setShoppingArray] = useState([])
+    const [restaurantsArray, setRestaurantsArray] = useState([])
 
     return (
         <Wrapper>
@@ -121,7 +132,36 @@ export default function Router() {
                                 />
                             </Route>
                             <Route path="/itinerary">
-                                <ItineraryPage />
+                                <ItineraryPage
+                                    tripArray={tripArray}
+                                    selectedTrip={selectedTrip}
+                                    activitiesArray={activitiesArray}
+                                    profileEmail={profileEmail}
+                                    showResults={showResults}
+                                    type={type}
+                                    poiArray={poiArray}
+                                    hotelsArray={hotelsArray}
+                                    shoppingArray={shoppingArray}
+                                    restaurantsArray={restaurantsArray}
+                                    setTripArray={setTripArray}
+                                    setSelectedTrip={setSelectedTrip}
+                                    setActivitiesArray={setActivitiesArray}
+                                    setProfileEmail={setProfileEmail}
+                                    setShowResults={setShowResults}
+                                    setType={setType}
+                                    setPoiArray={setPoiArray}
+                                    setHotelsArray={setHotelsArray}
+                                    setShoppingArray={setShoppingArray}
+                                    setRestaurantsArray={setRestaurantsArray}
+                                />
+                            </Route>
+                            <Route path="/pdf">
+                                <Itinerary
+                                    tripArray={tripArray}
+                                    selectedTrip={selectedTrip}
+                                    activitiesArray={activitiesArray}
+                                    profileEmail={profileEmail}
+                                />
                             </Route>
                         </>
                     )}
