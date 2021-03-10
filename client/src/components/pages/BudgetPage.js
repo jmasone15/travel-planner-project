@@ -87,14 +87,36 @@ function BudgetPage(props) {
             addToTotalBudgetClick={updateTotalBudgetAdd}
             subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
           />
+
+
           <AddTransaction addTransactionClick={addTransaction} />
+
         </>
       )}
-      <TransactionList
-        listOfTransactions={transactions}
-        onDeleteClick={deleteTransaction}
-        onDeleteAllClick={deleteAllTransactions}
-      />
+      {budget !== 0 && (
+        <div className="row justify-content-center col-sm-12">
+          <div className="col-lg-5 col-md-6">
+            <div className="row">
+              <AddTransaction addTransactionClick={addTransaction} />
+            </div>
+            <div className="row">
+              <BudgetGraph listOfTransactions={transactions} />
+            </div>
+          </div>
+          {transactions.length > 0 && (
+            <div className="col-lg-5 col-md-6 col-sm-12">
+              <TransactionList
+                listOfTransactions={transactions}
+                onDeleteClick={deleteTransaction}
+                onDeleteAllClick={deleteAllTransactions}
+              />
+            </div>
+          )}
+        </div>
+      )}
+      {/*
+       */}
+
       {/* {(budget !== 0 || transactions.length > 0) && (
         <ModifyBudget
           addToBudgetClick={addBackToBudget}
@@ -103,7 +125,7 @@ function BudgetPage(props) {
           subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
         />
       )} */}
-      <BudgetGraph listOfTransactions={transactions} />
+
       <button onClick={(e) => handleSaveBtn(e, totalBudget)}>
         Save Budget to Trip
       </button>

@@ -33,7 +33,7 @@ function ModifyBudget({
         <input
           id="budget"
           type="text"
-          className="form-control curvedInput"
+          className="form-control curvedInput shadow"
           placeholder="Modify your budget."
           aria-label="Modify your budget."
           aria-describedby="basic-addon2"
