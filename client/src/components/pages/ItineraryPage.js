@@ -15,6 +15,7 @@ function ItineraryPage() {
     const [selectedTrip, setSelectedTrip] = useState({});
     const [showPDF, setShowPDF] = useState(false);
     const [showActs, setShowActs] = useState(false);
+    const [activitiesArray, setActivitiesArray] = useState([])
     const [profileEmail, setProfileEmail] = useState("");
     const [showResults, setShowResults] = useState()
     const [type, setType] = useState([])
@@ -109,14 +110,14 @@ function ItineraryPage() {
     useEffect(() => {
         getUserData();
         getTripData();
-        console.log(type);
+        console.log(activitiesArray);
         if (selectedTrip.destination !== undefined) {
             getPoi(selectedTrip.destination)
             getHotels(selectedTrip.destination)
             getShop(selectedTrip.destination)
             getFood(selectedTrip.destination)
         }
-    }, [selectedTrip]);
+    }, [selectedTrip, activitiesArray]);
     return (
         <div className="bg">
             <div
@@ -142,7 +143,7 @@ function ItineraryPage() {
                             <button name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button><button name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button><button name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button><button name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
                         </div>
                         <div style={{width: "1000px", height: "300px",  overflow: "scroll"}}>
-                            {showResults ? <MyCard data={type}/> : null}
+                            {showResults ? <MyCard data={type} activitiesArray={activitiesArray} setActivitiesArray={setActivitiesArray} /> : null}
                         </div>
 
                     </Card>

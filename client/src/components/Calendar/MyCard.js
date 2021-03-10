@@ -1,7 +1,26 @@
-import React from "react";
+import {React, useState, useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function MyCard(props) {
-    console.log(props);
+
+    const [newActivity, setNewActivity] = useState({})
+
+    useEffect(() => {
+        
+    }, [props.activitiesArray])
+
+
+    async function handleBtnClick(name, location, address, photo_reference) {
+
+        await setNewActivity({name, location, address, photo_reference, id: uuidv4()})
+        setActs()
+        
+
+    }
+
+    async function setActs() {
+        await props.setActivitiesArray([...props.activitiesArray, newActivity])
+    }
     return (
         <div>
             {props.data.map((place, index) => (
@@ -16,7 +35,7 @@ function MyCard(props) {
                     <h3>{place.name}</h3>
                     <h4>Rating: {place.rating}</h4> <p>Reviews: {place.user_ratings_total}</p>
                     <p>{place.formatted_address}</p>
-                    <button key={place.reference} value={{name: place.name, location: place.geometry.location, address: place.formatted_address}}>Add to itenerary</button>
+                    <button key={place.reference} onClick={() => handleBtnClick(place.name, place.geometry.location, place.formatted_address, place.photos[0].photo_reference)}>Add to itenerary</button>
                     </div>
                     </div>
                 </div>
