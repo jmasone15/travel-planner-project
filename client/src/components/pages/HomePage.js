@@ -22,35 +22,25 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.timeline
-      .from(this.card, 0.3, {
+      .from(this.card, 0.4, {
         display: "none",
-        y: -25,
+        y: -50,
         autoAlpha: 0,
         delay: 0.25,
         ease: Power1.easeIn,
       })
-      .from(this.card1, 0.1, {
-        y: -25,
+      .from(this.card1, 0.2, {
+        y: -50,
         autoAlpha: 0,
         ease: Power1.easeInOut,
       })
-      .from(this.card2, 0.1, {
-        y: -25,
+      .from(this.card2, 0.2, {
+        y: 50,
         autoAlpha: 0,
         ease: Power1.easeInOut,
       })
-      .from(this.card3, 0.1, {
-        y: 25,
-        autoAlpha: 0,
-        ease: Power1.easeInOut,
-      })
-      .from(this.card4, 0.1, {
-        y: 25,
-        autoAlpha: 0,
-        ease: Power1.easeInOut,
-      })
-      .from(this.pack, 0.1, {
-        y: 25,
+      .from(this.card3, 0.2, {
+        y: 50,
         autoAlpha: 0,
         ease: Power1.easeInOut,
       });
@@ -73,7 +63,7 @@ class HomePage extends React.Component {
             <div className="col">
               <div
                 ref={(div) => (this.card = div)}
-                className="card shadow p-3 mb-5 bg-white rounded"
+                className="card shadow p-3 mb-5 mt-5 bg-white rounded"
               // style={{backgroundImage: `url(${bgTan})`}}
               >
                 <div className="card-body">
@@ -87,43 +77,27 @@ class HomePage extends React.Component {
                   </Card>
                 </div>
               </div>
-              {/* <div ref={(pack) => (this.pack = pack)}>
-                <Card>
-                  <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
-                  <Link to="/packinglist">
-                    <button
-                      className="btn btn-warning mt-1"
-                      onClick={(e) => this.changePage(e, "/packinglist")}
-                    >
-                      <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
-                        {" "}
-                        ¿packinglist?
-                      </h3>
-                    </button>
-                  </Link>
-                </Card>
-              </div> */}
             </div>
             <div className="col">
               <div className="row">
-                <div ref={(card1) => (this.card1 = card1)} className="col mb-3">
+                <div ref={(card1) => (this.card1 = card1)} className="col mb-3 mt-5">
                   <Card>
                     <faIcons.FaRoute style={{ fontSize: 100 }} />
 
-                    <Link to="/donde">
+                    <Link to="/budget">
                       <button
-                        className="btn btn-warning mt-3"
-                        onClick={(e) => this.changePage(e, "/donde")}
+                        className="btn btn-warning ml-3 mt-3"
+                        onClick={(e) => this.changePage(e, "/budget")}
                       >
-                        <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
+                        <h4 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
                           {" "}
-                          ¿dondé?
-                        </h3>
+                          ¿Start your Trip?
+                        </h4>
                       </button>
                     </Link>
                   </Card>
                 </div>
-                <div ref={(card2) => (this.card2 = card2)} className="col mt-">
+                {/* <div ref={(card2) => (this.card2 = card2)} className="col mt-5">
                   <Card>
                     <faIcons.FaFileInvoiceDollar style={{ fontSize: 100 }} />
 
@@ -133,11 +107,11 @@ class HomePage extends React.Component {
                       </button>
                     </Link>
                   </Card>
-                </div>
+                </div> */}
               </div>
 
               <div className="row mt-3">
-                <div ref={(card3) => (this.card3 = card3)} className="col mb-3">
+                <div ref={(card2) => (this.card2 = card2)} className="col mb-3">
                   <Card>
                     <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
                     {/* <Link> */}
@@ -153,7 +127,7 @@ class HomePage extends React.Component {
                     {/* </Link> */}
                   </Card>
                 </div>
-                <div ref={(card4) => (this.card4 = card4)} className="col mt-">
+                <div ref={(card3) => (this.card3 = card3)} className="col">
                   <Card>
                     <Link to="/itinerary">
                       <riIcons.RiPagesLine
