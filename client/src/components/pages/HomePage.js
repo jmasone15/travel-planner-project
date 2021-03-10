@@ -153,10 +153,10 @@ class HomePage extends React.Component {
                   Our site helps optimize your travel itinerary to let you
                   make the most out of your trip!
                 </p>
-                <Link to="/review">
+                <Link to="/profile">
                   <button
                     className="btn btn-warning"
-                    onClick={(e) => this.changePage(e, "/review")}
+                    onClick={(e) => this.changePage(e, "/profile")}
                   >
                     {" "}
                     View Trips{" "}
