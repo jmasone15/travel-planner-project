@@ -1,8 +1,8 @@
 import axios from "axios";
+import GOOGLE_API_KEY from "./key";
 const BASEURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 const Locate = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI"
 const language = "&language=en"
-const APIKEY = "&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI";
 const getCity = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
 
 
@@ -20,27 +20,27 @@ function getLocation() {
 }
 
 function getUserCity(lat, lng) {
-    return axios.get(getCity + lat + "," + lng + "&locality" + APIKEY);
+    return axios.get(getCity + lat + "," + lng + "&locality" + GOOGLE_API_KEY);
 }
 
 function attractions(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+points+of+interest" + language + APIKEY);
+    return axios.get(BASEURL + query + "+points+of+interest" + language + GOOGLE_API_KEY);
 }
 
 function hotels(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+hotels" + language + APIKEY);
+    return axios.get(BASEURL + query + "+hotels" + language + GOOGLE_API_KEY);
 }
 
 function shopping(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+shopping" + language + APIKEY);
+    return axios.get(BASEURL + query + "+shopping" + language + GOOGLE_API_KEY);
 }
 
 function restaurants(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+restaurants" + language + APIKEY);
+    return axios.get(BASEURL + query + "+restaurants" + language + GOOGLE_API_KEY);
 }
 
 // function hotels(where) {
