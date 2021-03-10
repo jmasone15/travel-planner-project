@@ -7,6 +7,7 @@ router.post("/new", auth, async (req, res) => {
         const newTravel = new Travel({
             tripName: req.body.tripName,
             budget: req.body.budget,
+            expenses: req.body.expenses,
             startLocation: req.body.startLocation,
             destination: req.body.destination,
             dates: req.body.dates,
