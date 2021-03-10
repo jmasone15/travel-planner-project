@@ -55,6 +55,12 @@ class HomePage extends React.Component {
     }, timelineDuration);
   };
 
+  buildNewTrip = (e) => {
+    e.preventDefault();
+
+
+  }
+
   render() {
     return (
       <div className="bg">

@@ -52,11 +52,23 @@ export default function Router() {
                             <Route path="/profile">
                                 <Login />
                             </Route>
+                            <Route path="/update">
+                                <Login />
+                            </Route>
+                            <Route path="/itinerary">
+                                <Login />
+                            </Route>
                         </>
                     )}
                     {loggedIn === true && (
                         <>
                             <Navbar />
+                            <Route exact path="/">
+                                <HomePage />
+                            </Route>
+                            <Route exact path="/signup">
+                                <HomePage />
+                            </Route>
                             <Route path="/home">
                                 <HomePage
                                     setTripName={setTripTripName}

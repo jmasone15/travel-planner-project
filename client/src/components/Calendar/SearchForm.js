@@ -194,7 +194,7 @@ function SearchForm(props) {
 
       setReset("")
       setFormattedLocation("")
-      
+
 
 
 
@@ -206,14 +206,14 @@ function SearchForm(props) {
 
   }
 
-  function handleTripSubmit(e) {
-    e.preventDefault();
-    console.log(props.tripTripName);
-    console.log(props.tripStartLocation);
-    console.log(props.tripDestination);
-    console.log(props.tripDates);
-    history.push("/review")
-  }
+  // function handleTripSubmit(e) {
+  //   e.preventDefault();
+  //   console.log(props.tripTripName);
+  //   console.log(props.tripStartLocation);
+  //   console.log(props.tripDestination);
+  //   console.log(props.tripDates);
+  //   history.push("/review")
+  // }
 
 
   return (
@@ -238,8 +238,6 @@ function SearchForm(props) {
       <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
       <button type="button" onClick={() => handleBtnClick()}>Submit</button>
       <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} />
-
-      <button onClick={(e) => handleTripSubmit(e)}>Add to trip!</button>
 
       <MapContainer props={latLng} type={type} />
       <AddStuff props={setCurrentTrip} currentTrip={currentTrip} editDate={editDate} />
