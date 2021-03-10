@@ -12,6 +12,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import UpdatePage from "./components/pages/UpdatePage";
 import Wrapper from "./components/Wrapper";
 import ItineraryPage from "./components/pages/ItineraryPage";
+import Itinerary from "./components/pages/Itinerary";
 
 export default function Router() {
     const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -122,6 +123,9 @@ export default function Router() {
                             </Route>
                             <Route path="/itinerary">
                                 <ItineraryPage />
+                            </Route>
+                            <Route path="/pdf">
+                                <Itinerary />
                             </Route>
                         </>
                     )}
