@@ -3,11 +3,13 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
+const Verifier = require("email-verifier");
 
 // Register New User
 router.post("/", async (req, res) => {
     try {
         const { email, password, passwordVerify } = req.body;
+        let verifier = new Verifier(process.env.EMAIL_API_KEY);
 
         // Validation
         if (!email || !password || !passwordVerify)
@@ -30,6 +32,29 @@ router.post("/", async (req, res) => {
             return res
                 .status(400)
                 .send("An account with this email already exists.");
+
+        verifier.verify(email, (err, data) => {
+            if (err) {
+                return res
+                    .status(400)
+                    .send("Please enter a valid email");
+            } else {
+                console.log(data)
+            }
+        })
+
+        // await verifier.verify(email, (err, data) => {
+        //     if (err) {
+        //         return res
+        //             .status(400)
+        //             .send("Please enter a valid email");
+        //     } else if (data.formatCheck === 'true' || data.smtpCheck === 'false' || data.dnsCheck === 'true' || data.disposableCheck === 'true') {
+        //         return res
+        //             .status(400)
+        //             .send("Please enter a valid email");
+        //     }
+        // })
+
 
         // Password Hashing
         const salt = await bcrypt.genSalt();
