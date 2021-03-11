@@ -64,76 +64,7 @@ class HomePage extends React.Component {
     return (
       <div className="bg">
         <div className="container">
-          {/* <div className="row">
-            <div className="col">
-              <div
-                ref={(div) => (this.card = div)}
-                className="card shadow p-3 mb-5 mt-5 bg-white rounded"
-              style={{backgroundImage: `url(${bgTan})`}}
-              >
-                <div className="card-body">
-                  <h1 className="text-center font">¿dondé?</h1>
-                  <Card >
-                    <p className="p">
-                      To take the hard work of planning trip out of your hands!
-                      Our site helps optimize your travel itinerary to let you
-                      make the most out of your trip!
-                    </p>
-                  </Card>
-                </div>
-              </div>
-            </div>
-            <div className="col">
-              <div className="row">
-                <div ref={(card1) => (this.card1 = card1)} className="col mb-3 mt-5">
-                  <Card>
-                    <faIcons.FaRoute style={{ fontSize: 100 }} />
-                    <Link to="/budget">
-                      <button
-                        className="btn btn-warning ml-3 mt-3"
-                        onClick={(e) => this.changePage(e, "/budget")}
-                      >
-                        <h4 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
-                          {" "}
-                          ¿start your trip?
-                        </h4>
-                      </button>
-                    </Link>
-                  </Card>
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div ref={(card2) => (this.card2 = card2)} className="col mb-3">
-                  <Card>
-                    <mdIcons.MdCardTravel style={{ fontSize: 100 }} />
-                    <button
-                      className="btn btn-warning mt-1"
-                      onClick={(e) => window.open(PDF)}
-                    >
-                      <h3 style={{ fontFamily: "[adobe-caslon-pro, serif]" }}>
-                        {" "}
-                        ¿packinglist?
-                      </h3>
-                    </button>
-                  </Card>
-                </div>
-                <div ref={(card3) => (this.card3 = card3)} className="col mt-3">
-                  <Card>
-                    <Link to="/itinerary">
-                      <riIcons.RiPagesLine
-                        className="text-dark"
-                        style={{ fontSize: 100 }}
-                      />
-                      <button className="btn btn-warning mt-3">
-                        <h3> ¿itinerary?</h3>
-                      </button>
-                    </Link>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
+        
           {/* new homepage setUp */}
           <div className="row">
             <div className="card-wrapper" ref={(div) => (this.card = div)}>
