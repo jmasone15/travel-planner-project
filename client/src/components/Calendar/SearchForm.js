@@ -187,7 +187,7 @@ function SearchForm(props) {
 
       setCurrentTrip({ ...currentTrip, days: array })
 
-      props.setTripTripName(currentTrip.name);
+      // props.setTripTripName(currentTrip.name);
       props.setTripStartLocation(currentTrip.startLocation);
       props.setTripDestination(currentTrip.destination);
       props.setTripDates(array);

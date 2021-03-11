@@ -94,8 +94,6 @@ export default function Router() {
                             </Route>
                             <Route path="/donde">
                                 <Recommend
-                                    tripTripName={tripTripName}
-                                    setTripTripName={setTripTripName}
                                     tripStartLocation={tripStartLocation}
                                     setTripStartLocation={setTripStartLocation}
                                     tripDestination={tripDestination}
