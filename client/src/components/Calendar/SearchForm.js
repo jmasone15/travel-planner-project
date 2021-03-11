@@ -197,11 +197,6 @@ function SearchForm(props) {
 
 
 
-
-
-
-
-
     }
 
   }
@@ -230,24 +225,27 @@ function SearchForm(props) {
       }}> 
         <div className="container m-3" style={{
           height: "44vh",
-          backgroundColor: "white",
+          // backgroundColor: "white",
           position: "relative",
           zIndex: 1
         }}>
           <div className="row" style={{
             textAlign: "center",
-            height: "45vh"
+            // height: "45vh",
+            width: "auto",
+            marginTop:"10%"
+          
           }}>
-            <div className="col-md-5 p-2" style={{ margin: "auto" }}>
-              <form>
-                <div className="form-group">
+            <div className="col-md-5 p-4 shadow-lg bg-white calendarForm" >
+              <form className="">
+                <div className="form-group m-0">
                   {/* <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} /> */}
-                  <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar placeholder={" Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
-                  <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar placeholder={" Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
                   <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
-                  <button type="button" onClick={() => handleBtnClick()}>Submit</button>
+                  <button className="btn btn-block btn-primary col-lg-8 centerX mt-3" type="button" onClick={() => handleBtnClick()}>Submit</button>
                 </div>
               </form>
 
@@ -256,9 +254,7 @@ function SearchForm(props) {
           </div>
 
           {/* <Itinerary props={datesArray} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} editDate={editDate} setEditDate={setEditDate} /> */}
-
-        </div >
-
+        </div>
       </MapContainer>
 
     </div>

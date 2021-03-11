@@ -24,7 +24,7 @@ export class SearchBar extends React.Component {
   }
   render() {
     return (
-      <input ref={this.autocompleteInput} id="autocomplete" placeholder={this.props.placeholder}
+      <input className="form-control" ref={this.autocompleteInput} id="autocomplete" placeholder={this.props.placeholder}
         type="text"></input>
     );
   }

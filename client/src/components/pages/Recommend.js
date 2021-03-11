@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import SearchForm from "../Calendar/SearchForm";
+import "../../css/searchForm.css"
 
 import MapContainer from "../Calendar/MapContainer"
 
