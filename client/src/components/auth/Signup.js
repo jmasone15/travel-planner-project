@@ -31,7 +31,7 @@ function SignUp() {
       await getLoggedIn();
       history.push("/home");
     } catch (err) {
-      console.error(err);
+      alert(err.request.response);
     }
   }
 
@@ -79,7 +79,7 @@ function SignUp() {
               <div className="input-group mb-3">
                 <div className="input-group-append">
                   <span className="input-group-text">
-                  <i className="fas fa-key"></i>
+                    <i className="fas fa-key"></i>
                   </span>
                 </div>
                 <input
@@ -93,7 +93,7 @@ function SignUp() {
               <div className="input-group mb-2">
                 <div className="input-group-append">
                   <span className="input-group-text">
-                                      <goIcons.GoVerified />
+                    <goIcons.GoVerified />
                   </span>
                 </div>
                 <input

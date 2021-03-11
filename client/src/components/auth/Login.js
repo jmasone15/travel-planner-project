@@ -11,7 +11,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.timeline = new TimelineMax({ paused: true });
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", error: "" };
     this.Comments = gsap.timeline({ paused: true });
   }
 
@@ -23,7 +23,7 @@ class Login extends React.Component {
       await this.props.getLoggedIn();
       this.changePage(e, "/home");
     } catch (err) {
-      console.error(err);
+      alert(err.request.response);
     }
   }
 

@@ -12,15 +12,15 @@ router.post("/", async (req, res) => {
         if (!email || !password || !passwordVerify)
             return res
                 .status(400)
-                .json({ errorMessage: "Please enter all required fields" });
+                .send("Please enter all required fields");
         if (password.length < 6)
             return res
                 .status(400)
-                .json({ errorMessage: "Please enter a password of at least six characters" });
+                .send("Please enter a password of at least six characters");
         if (password !== passwordVerify)
             return res
                 .status(400)
-                .json({ errorMessage: "Passwords don't match." });
+                .send("Passwords don't match.");
 
 
         // Checks if the email the user entered is already in the db
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
         if (existingUser)
             return res
                 .status(400)
-                .json({ errorMessage: "An account with this email already exists." });
+                .send("An account with this email already exists.");
 
         // Password Hashing
         const salt = await bcrypt.genSalt();
@@ -62,17 +62,17 @@ router.post("/login", async (req, res) => {
         if (!email || !password)
             return res
                 .status(400)
-                .json({ errorMessage: "Please enter all required fields" });
+                .send("Please enter all required fields");
 
         const existingUser = await User.findOne({ email });
         if (!existingUser)
-            return res.status(401).json({ errorMessage: "Wrong email or password." });
+            return res.status(401).send("Wrong email or password.");
 
         // BCrypt comapres the entered password with the hashed password in the DB
         // If the hashed password originated from the entered password, the function returns true. Else false.
         const passwordCorrect = await bcrypt.compare(password, existingUser.passwordHash);
         if (!passwordCorrect)
-            return res.status(401).json({ errorMessage: "Wrong email or password." });
+            return res.status(401).send("Wrong email or password.");
 
         // Sign the token
         const token = jwt.sign({ user: existingUser._id }, process.env.JWT_SECRET);
