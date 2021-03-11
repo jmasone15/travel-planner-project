@@ -28,11 +28,11 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                         <hr />
                     </header>
                     <br /><br />
-                    <div className="card">
-                        <div className="card-header">
+                    <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
+                        <div className="container">
                             <h5 className="m-0"><span className="text-muted mr-2"><i className="fa fa-plane"></i></span>Trip Info</h5>
                         </div>
-                        <div className="card-body">
+                        <div className="container">
                             <div className="row mt-n3">
                                 <div className="col-sm-4 mt-3"> <span>Dates:</span>
                                     <p className="font-weight-600 mb-0">{getDateRange(selectedTrip.dates)}</p>
@@ -56,39 +56,11 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                         </div>
                     </div>
                     <br /><br />
-                    {/* <div className="card mt-4">
-                        <div className="card-header">
-                            <h5 className="m-0"><span className="text-muted mr-2"><i className="fa fa-hotel"></i></span>Hotel</h5>
-                        </div>
-                        <div className="card-body">
-                            <div className="row mt-n3">
-                                <div className="col-sm-4 mt-3"> <span>Hotel Name:</span>
-                                    <p className="font-weight-600 mb-0">The Orchid Hotel</p>
-                                </div>
-                                <div className="col-sm-4 mt-3"> <span>Check In:</span>
-                                    <p className="font-weight-600 mb-0">16 Jun 21, Sat</p>
-                                </div>
-                                <div className="col-sm-4 mt-3"> <span>Check Out:</span>
-                                    <p className="font-weight-600 mb-0">18 Jun 21, Sat</p>
-                                </div>
-                                <div className="col-sm-4 mt-3"> <span>Room No:</span>
-                                    <p className="font-weight-600 mb-0">342</p>
-                                </div>
-                                <div className="col-sm-4 mt-3"> <span>Booking No:</span>
-                                    <p className="font-weight-600 mb-0">HQM3912704</p>
-                                </div>
-                                <div className="col-sm-4 mt-3"> <span>Address:</span>
-                                    <p className="font-weight-600 mb-0">Plot No.3, Nr. HDFC Bank, Ashram Road, Ahmedabad, Gujarat, India.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br /><br /> */}
-                    <div className="card mt-4">
-                        <div className="card-header">
+                    <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
+                        <div className="container">
                             <h5 className="m-0"><span className="text-muted mr-2"><i className="fa fa-hotel"></i></span>Budget Transactions</h5>
                         </div>
-                        <div className="card-body">
+                        <div className="container">
                             <div className="row mt-n3">
                                 {selectedTrip.expenses.map((e) => (
                                     <div className="col-sm-4 mt-3"> <span>{e.name}</span>
@@ -99,11 +71,11 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                         </div>
                     </div>
                     <br /><br />
-                    <div className="card mt-4">
-                        <div className="card-header">
+                    <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
+                        <div className="container">
                             <h5 className="m-0"><span className="text-muted mr-2"><i className="fa fa-hotel"></i></span>Activities</h5>
                         </div>
-                        <div className="card-body">
+                        <div className="container">
                             <div className="row mt-n3">
                                 {activitiesArray.map((a) => (
                                     <div className="col-sm-4 mt-3"> <span>{a.name}</span>
