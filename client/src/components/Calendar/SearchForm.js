@@ -182,6 +182,7 @@ function SearchForm(props) {
         array.push(eachDay)
       }
       console.log(array);
+      console.log(currentTrip)
 
 
       setCurrentTrip({ ...currentTrip, days: array })
@@ -194,6 +195,7 @@ function SearchForm(props) {
       setShowReview(true);
       setReset("")
       setFormattedLocation("")
+      history.push("/review")
 
 
 
@@ -214,15 +216,15 @@ function SearchForm(props) {
   return (
     <div className="wrapper">
       <MapContainer props={latLng} type={type} style={{
-        position:"fixed",
-        top:"0px",
-        left:"0px",
+        position: "fixed",
+        top: "0px",
+        left: "0px",
         width: "100%",
-        minHeight:"100%",
-        padding:0,
-        border:0,
-        zIndex:0,
-      }}> 
+        minHeight: "100%",
+        padding: 0,
+        border: 0,
+        zIndex: 0,
+      }}>
         <div className="container m-3" style={{
           height: "44vh",
           // backgroundColor: "white",
@@ -233,16 +235,16 @@ function SearchForm(props) {
             textAlign: "center",
             // height: "45vh",
             width: "auto",
-            marginTop:"10%"
-          
+            marginTop: "10%"
+
           }}>
             <div className="col-md-5 p-4 shadow-lg bg-white calendarForm" >
               <form className="">
                 <div className="form-group m-0">
                   {/* <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} /> */}
-                  <SearchBar placeholder={" Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
-                  <SearchBar placeholder={" Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
                   <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
                   <button className="btn btn-block btn-primary col-lg-8 centerX mt-3" type="button" onClick={() => handleBtnClick()}>Submit</button>
