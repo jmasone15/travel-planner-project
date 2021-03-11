@@ -20,27 +20,27 @@ function getLocation() {
 }
 
 function getUserCity(lat, lng) {
-    return axios.get(getCity + lat + "," + lng + "&locality" + GOOGLE_API_KEY);
+    return axios.get(getCity + lat + "," + lng + "&locality" + "&key=" + GOOGLE_API_KEY);
 }
 
 function attractions(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+points+of+interest" + language + GOOGLE_API_KEY);
+    return axios.get(BASEURL + query + "+points+of+interest" + language + "&key=" +  GOOGLE_API_KEY);
 }
 
 function hotels(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+hotels" + language + GOOGLE_API_KEY);
+    return axios.get(BASEURL + query + "+hotels" + language + "&key=" +  GOOGLE_API_KEY);
 }
 
 function shopping(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+shopping" + language + GOOGLE_API_KEY);
+    return axios.get(BASEURL + query + "+shopping" + language + "&key=" +  GOOGLE_API_KEY);
 }
 
 function restaurants(where) {
     const query = formatQuery(where)
-    return axios.get(BASEURL + query + "+restaurants" + language + GOOGLE_API_KEY);
+    return axios.get(BASEURL + query + "+restaurants" + language + "&key=" +  GOOGLE_API_KEY);
 }
 
 // function hotels(where) {
