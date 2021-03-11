@@ -46,6 +46,7 @@ export class MapContainer extends Component {
         }
       >
         {this.displayMarkers(this.props.props.lat, this.props.props.lng)}
+        {this.props.children}
       </Map>
     );
   }

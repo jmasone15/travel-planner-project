@@ -1,0 +1,12 @@
+.centerX {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendarForm {
+  border-radius: 7px;
+}
+
+.borderColor{
+    border-color: rgb(163, 163, 163);
+}
