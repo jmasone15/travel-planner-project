@@ -32,7 +32,7 @@
     width: 3%;
 }
 
-thisFont{
+.thisFont{
     font-size: 12px;
 }
 
@@ -57,11 +57,11 @@ thisFont{
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
-.input_user,
+/* .input_user,
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
-}
+} */
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #c0392b !important;
 }

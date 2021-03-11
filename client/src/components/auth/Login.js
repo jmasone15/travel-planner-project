@@ -49,7 +49,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="container h-100 mt-5 thisFont">
+      <div className="container h-100 mt-5">
         <video
           autoPlay
           loop
@@ -67,7 +67,7 @@ class Login extends React.Component {
         >
           <source src={Bgv} type="video/mp4" />
         </video>
-        <div className="d-flex justify-content-center h-100">
+        <div className="d-flex justify-content-center h-10">
           <div className="user_card" ref={(login) => (this.login = login)}>
             <div className="d-flex justify-content-center">
               <div className="brand_logo_container"></div>
@@ -88,7 +88,7 @@ class Login extends React.Component {
                     placeholder="email"
                   />
                 </div>
-                <div className="input-group mb-">
+                <div className="input-group mb-4 mt-3">
                   <div className="input-group-append">
                     <span className="input-group-text">
                       <i className="fas fa-key"></i>
