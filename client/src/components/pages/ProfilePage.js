@@ -7,6 +7,8 @@ export default function ProfilePage(props) {
     const { userId } = useContext(UserContext);
     const [tripArray, setTripArray] = useState([]);
     const [profileEmail, setProfileEmail] = useState("");
+    const [updateEmail, setUpdateEmail] = useState("");
+    const [showProfile, setShowProfile] = useState(false);
     const history = useHistory();
 
     async function getUserData() {
@@ -36,6 +38,19 @@ export default function ProfilePage(props) {
         }
     }
 
+    async function updateProfile(e) {
+        e.preventDefault();
+
+        try {
+            await axios.put(`/user/profile/email/${userId}`, { email: updateEmail });
+            alert("Profile Updated");
+            setShowProfile(false);
+            getUserData();
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     async function updateTrip(e, id) {
         e.preventDefault();
         props.setUpdateId(id);
@@ -47,6 +62,12 @@ export default function ProfilePage(props) {
         history.push("/budget")
     }
 
+    function updateClick(e) {
+        e.preventDefault();
+        setUpdateEmail(profileEmail);
+        setShowProfile(true)
+    }
+
     useEffect(() => {
         getUserData();
         getTripData();
@@ -56,7 +77,18 @@ export default function ProfilePage(props) {
         <div className="bgThis p-5">
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
+                <button className="btn btn-primary" onClick={(e) => updateClick(e)}>Edit your profile</button>
             </div>
+            {showProfile ?
+                <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                    <label>Change your profile email:</label>
+                    <input type="text" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
+                    <br /><br />
+                    <div style={{ textAlign: "center" }}>
+                        <button className="btn btn-block btn-primary mt-2 p-2 shadow" onClick={(e) => updateProfile(e)}>Update Profile</button>
+                        <button className="btn btn-block btn-danger mt-2 p-2 shadow">Changed my mind.</button>
+                    </div>
+                </div> : ""}
             <br /><br />
             {tripArray.length === 0 &&
 
@@ -72,7 +104,7 @@ export default function ProfilePage(props) {
                             <h3><b>Your Trip to:</b> {trip.destination}</h3>
                             <br />
                             <p><b>Trip name:</b> {trip.tripName}</p>
-                            <p><b>Budget:</b> {trip.budget}</p>
+                            <p><b>Budget:</b> ${trip.budget}</p>
                             <p><b>Start Location: </b> {trip.startLocation}</p>
                             <p><b>Dates:</b> {getDateRange(trip.dates)}</p>
                             <br />

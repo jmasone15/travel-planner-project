@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 // Register New User
 router.post("/", async (req, res) => {
@@ -124,5 +125,21 @@ router.get("/profile/:id", async (req, res) => {
     }
 });
 
+router.put("/profile/email/:id", auth, async (req, res) => {
+    try {
+        const updateEmail = await User.findOneAndUpdate(
+            {
+                _id: req.params.id
+            },
+            {
+                email: req.body.email,
+            }
+        )
+        res.json(updateEmail)
+    } catch (err) {
+        res.status(500).send();
+        console.error(err)
+    }
+});
 
 module.exports = router;
