@@ -87,7 +87,7 @@ class HomePage extends React.Component {
                 <Link to="/profile">
                   <button
                     className="btn btn-warning"
-                    onClick={(e) => this.changePage(e, "/profile")}
+                  // onClick={(e) => this.changePage(e, "/profile")}
                   >
                     {" "}
                     View Trips{" "}
