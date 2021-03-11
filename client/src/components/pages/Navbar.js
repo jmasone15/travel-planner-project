@@ -4,6 +4,7 @@ import AuthContext from "../../context/AuthContext";
 import Logout from "../auth/Logout";
 import { useHistory } from "react-router";
 import axios from "axios";
+import "../../css/navbar.css"
 
 export default function Navbar() {
   const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -20,7 +21,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={nav} className="navbar navbar-expand-lg navbar-dark">
+    <nav style={nav} className="navbar navbar-expand-lg navbar-dark p-3">
       <button
         className="navbar-toggler"
         type="button"
@@ -47,17 +48,17 @@ export default function Navbar() {
             <div className="navbar-nav">
               <ul className="navbar-nav">
                 <li className="nav-item nav-link">
-                  <Link to="/home" className="nav-link active">
+                  <Link to="/home" className="nav-link active navLinks">
                     ¿home?
                   </Link>
                 </li>
                 <li className="nav-item nav-link">
-                  <Link to="/profile" className="nav-link active">
+                  <Link to="/profile" className="nav-link active navLinks">
                     ¿profile?
                   </Link>
                 </li>
                 <li className="nav-item nav-link">
-                  <Link className="nav-link active" onClick={(e) => logOut(e)}>
+                  <Link className="nav-link active navLinks" onClick={(e) => logOut(e)}>
                     ¿logout?
                   </Link>
                 </li>
