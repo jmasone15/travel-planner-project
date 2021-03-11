@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import HomePage from "./components/pages/HomePage";
@@ -47,25 +47,25 @@ export default function Router() {
                                 <Signup />
                             </Route>
                             <Route path="/home">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/budget">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/donde">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/review">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/profile">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/update">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                             <Route path="/itinerary">
-                                <Login />
+                                <Redirect to="/" />
                             </Route>
                         </>
                     )}
@@ -73,10 +73,10 @@ export default function Router() {
                         <>
                             <Navbar />
                             <Route exact path="/">
-                                <HomePage />
+                                <Redirect to="/home" />
                             </Route>
                             <Route exact path="/signup">
-                                <HomePage />
+                                <Redirect to="/home" />
                             </Route>
                             <Route path="/home">
                                 <HomePage setTripBudget={setTripBudget} />
