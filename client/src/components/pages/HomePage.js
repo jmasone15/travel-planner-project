@@ -64,7 +64,7 @@ class HomePage extends React.Component {
     return (
       <div className="bg">
         <div className="container">
-        
+
           {/* new homepage setUp */}
           <div className="row">
             <div className="card-wrapper" ref={(div) => (this.card = div)}>
@@ -141,7 +141,7 @@ class HomePage extends React.Component {
                 <Link to="/itinerary">
                   <button
                     className="btn btn-warning mt-3 justify-content-center"
-                    onClick={(e) => this.changePage(e, "/itinerary")}
+                  // onClick={(e) => this.changePage(e, "/itinerary")}
                   >
                     <h3> View Itinerary </h3>
                   </button>

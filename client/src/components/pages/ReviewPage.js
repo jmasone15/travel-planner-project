@@ -1,15 +1,22 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import UserContext from '../../context/UserContext';
 import { useHistory } from "react-router-dom";
+import { set } from 'mongoose';
 
 export default function ReviewPage(props) {
     const { userId } = useContext(UserContext);
+    const [showTripData, setShowTripData] = useState(false);
     const history = useHistory();
 
     function getDateRange(x) {
         let result = x.map(date => date.name)
         return (`${result[0]} - ${result[result.length - 1]}`)
+    }
+
+    function reviewTrip(e) {
+        e.preventDefault();
+        setShowTripData(true);
     }
 
     function changePage(e) {
@@ -48,18 +55,28 @@ export default function ReviewPage(props) {
 
     return (
         <div className="bgThis">
-            <br /><br />
+            <br />
             <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
-                <h3><b>Your Trip to:</b> {props.tripDestination}</h3>
-                <br />
-                <p><b>Trip name:</b> {props.tripTripName}</p>
-                <p><b>Budget:</b> {props.tripBudget}</p>
-                <p><b>Start Location: </b> {props.tripStartLocation}</p>
-                <p><b>Dates:</b> {getDateRange(props.tripDates)}</p>
-                <br />
-                <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => saveTravelPlans(e)}>Save Trip!</button>
-                <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => changePage(e)}>Restart Trip</button>
+                <form>
+                    <label>Name your trip:</label>
+                    <input type="text" placeholder="My Super Amazing Trip!" value={props.tripTripName} onChange={(e) => props.setTripName(e.target.value)} />
+                    <button className="btn btn-secondary mt-2 p-2 shadow" onClick={(e) => reviewTrip(e)} >Review Trip</button>
+                </form>
             </div>
+            <br /><br />
+            {showTripData ?
+                <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                    <h3><b>Your Trip to:</b> {props.tripDestination}</h3>
+                    <br />
+                    <p><b>Trip name:</b> {props.tripTripName}</p>
+                    <p><b>Budget:</b> {props.tripBudget}</p>
+                    <p><b>Start Location: </b> {props.tripStartLocation}</p>
+                    <p><b>Dates:</b> {getDateRange(props.tripDates)}</p>
+                    <br />
+                    <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => saveTravelPlans(e)}>Save Trip!</button>
+                    <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => changePage(e)}>Restart Trip</button>
+                </div>
+                : ""}
             <br />
         </div>
     )
