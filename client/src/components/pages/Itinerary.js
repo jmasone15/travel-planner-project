@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactToPdf from "react-to-pdf";
+// import ReactToPdf from "react-to-pdf";
 import "../../css/itinerary.css"
 // import "./home.css";
 export default function Itinerary({ selectedTrip, profileEmail, activitiesArray }) {
-    const ref = React.createRef();
+    // const ref = React.createRef();
 
     // Get First and last date
     function getDateRange(x) {
@@ -16,7 +16,7 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
 
     return (
         <div classNameName="bgThis">
-            <div style={{ width: "500", height: "1000" }} ref={ref}>
+            <div style={{ width: "500", height: "1000" }}>
                 <div>
                     <header>
                         <div>
@@ -85,7 +85,7 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                             </div>
                         </div>
                     </div>
-                    <ReactToPdf targetRef={ref} filename="itinerary.pdf" scale={0.75}>
+                    {/* <ReactToPdf targetRef={ref} filename="itinerary.pdf" scale={0.75}>
                         {({ toPdf }) => (
                             <footer className="text-center mt-3">
                                 <p><strong>Four Amigos Inc.</strong><br />
@@ -98,7 +98,7 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                                 </div>
                             </footer>
                         )}
-                    </ReactToPdf>
+                    </ReactToPdf> */}
                 </div>
             </div>
         </div >
