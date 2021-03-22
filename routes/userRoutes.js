@@ -150,17 +150,21 @@ router.get("/profile/:id", async (req, res) => {
     }
 });
 
-router.put("/profile/email/:id", auth, async (req, res) => {
+router.put("/profile/info/:id", auth, async (req, res) => {
+
     try {
-        const updateEmail = await User.findOneAndUpdate(
+        const salt = await bcrypt.genSalt();
+        const passwordHash = await bcrypt.hash(req.body.password, salt);
+        const updateInfo = await User.findOneAndUpdate(
             {
                 _id: req.params.id
             },
             {
                 email: req.body.email,
+                passwordHash: passwordHash
             }
         )
-        res.json(updateEmail)
+        res.json(updateInfo)
     } catch (err) {
         res.status(500).send();
         console.error(err)
