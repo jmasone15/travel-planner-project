@@ -71,6 +71,6 @@ app.use("/user", require("./routes/userRoutes"));
 app.use("/api", require("./routes/travelRoutes"));
 
 // Only use for heroku
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
