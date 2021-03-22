@@ -36,15 +36,22 @@ function ModifyBudget({
 
   return (
     <div className="mb-3 d-flex justify-content-center">
-      <div className="input-group col-lg-8 col-md-12 shadow p-0">
+      <div className="col-lg-8 col-md-12 shadow p-3">
+      <div className="d-flex justify-content-end p-0">
+        <button onClick={clearModify} className="btn">
+          <i class="fas fa-times"></i>
+        </button>
+        </div>
         {/* Input for Modifying Budget */}
+        <label className="labelText">Modify your budget</label>
+        <div className="input-group">
         <input
           ref={inputEl}
           id="budget"
           type="text"
           className="form-control curvedInput"
-          placeholder="Enter amount"
-          aria-label="Enter amount"
+          placeholder="$0.00"
+          aria-label="$0.00"
           aria-describedby="basic-addon2"
           onChange={(event) => setUserModifyBudget(event.target.value)}
           value={userModifyBudget}
@@ -79,10 +86,6 @@ function ModifyBudget({
           </button>
         </div>
       </div>
-      <div>
-        <button onClick={clearModify} className="btn">
-          <i class="fas fa-ban fa-2x text-danger"></i>
-        </button>
       </div>
     </div>
   );
