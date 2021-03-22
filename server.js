@@ -8,17 +8,17 @@ const cors = require("cors");
 // Needed for localhost
 dotenv.config();
 
-var allowCrossDomain = function(req, res, next) {
+var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
-      res.send(200);
+        res.send(200);
     }
     else {
-      next();
+        next();
     }
 };
 
@@ -43,27 +43,27 @@ if (process.env.NODE_ENV === "production") {
 // Mongo DB Setup
 
 // For Heroku use this
-// mongoose.connect(
-//     process.env.MONGODB_URI || 'mongodb://localhost/travelplannerdb',
-//     {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useCreateIndex: true,
-//         useFindAndModify: false
-//     }
-// );
-
-//For local project use this
-mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/travelplannerdb',
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
-    },
-    (err) => {
-        if (err) return console.error(err);
-        console.log("Connected to MongoDB");
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
     }
 );
+
+//For local project use this
+// mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     },
+//     (err) => {
+//         if (err) return console.error(err);
+//         console.log("Connected to MongoDB");
+//     }
+// );
 
 // Routes Set Up
 // When the path has "/auth" in it, express will then use the userRoutes file
