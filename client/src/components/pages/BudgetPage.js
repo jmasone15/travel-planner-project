@@ -93,13 +93,12 @@ function BudgetPage(props) {
           save={handleSaveBtn}
           totalBudget={totalBudget}
           resetBudget={resetBudget}
-          // deleteAllTransactions={deleteAllTransactions}
         />
       )}
       {(totalBudget !==0) && (
         <div className="container shadow bg-light p-5 mt-3 col-lg-10">
           <>
-            <Budget budget={totalBudget} balance={budget} />
+            <Budget budget={totalBudget} balance={budget}  />
             <BudgetOptions
               reset={resetBudget}
               showModify={showModifyClick}
@@ -112,6 +111,7 @@ function BudgetPage(props) {
                 addToTotalBudgetClick={updateTotalBudgetAdd}
                 subtractFromTotalBudgetClick={updateTotalBudgetSubtract}
                 clearModify={showModifyClick}
+                totalBudget={totalBudget}
               />
             )}
           </>
