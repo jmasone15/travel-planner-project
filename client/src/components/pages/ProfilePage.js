@@ -48,7 +48,7 @@ export default function ProfilePage(props) {
             setShowProfile(false);
             getUserData();
         } catch (err) {
-            console.error(err)
+            alert(err.request.response);
         }
     }
 

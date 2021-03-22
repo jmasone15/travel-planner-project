@@ -156,6 +156,11 @@ router.get("/profile/:id", async (req, res) => {
 router.put("/profile/info/:id", auth, async (req, res) => {
 
     try {
+        // Validation
+        const { valid } = await isEmailValid(req.body.email);
+        if (!valid) return res.status(400).send("Please provide a valid email address.");
+
+        // Password Encryption
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(req.body.password, salt);
         const updateInfo = await User.findOneAndUpdate(
@@ -167,6 +172,21 @@ router.put("/profile/info/:id", auth, async (req, res) => {
                 passwordHash: passwordHash
             }
         )
+        const resetMsg = {
+            to: req.body.email,
+            from: "fouramigos36@gmail.com",
+            subject: 'Profile Info Changed!',
+            text: 'Welcome to Donde!',
+            html: `Hello<strong> ${req.body.email}</strong>,<br><br>Your account info has been reset. If you did not reset your account info, please reply to this email and reach out to the dev team for further assitance.`,
+        }
+        sgMail
+            .send(resetMsg)
+            .then(() => {
+                console.log('Info email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
         res.json(updateInfo)
     } catch (err) {
         res.status(500).send();
