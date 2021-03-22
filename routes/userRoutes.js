@@ -3,8 +3,13 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const emailValidator = require('deep-email-validator');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+async function isEmailValid(email) {
+    return emailValidator.validate(email)
+}
 
 // Register New User
 router.post("/", async (req, res) => {
@@ -24,7 +29,8 @@ router.post("/", async (req, res) => {
             return res
                 .status(400)
                 .send("Passwords don't match.");
-
+        const { valid } = await isEmailValid(email);
+        if (!valid) return res.status(400).send("Please provide a valid email address.");
 
         // Checks if the email the user entered is already in the db
         const existingUser = await User.findOne({ email });
