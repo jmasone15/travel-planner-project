@@ -53,7 +53,7 @@ mongoose.connect(
     }
 );
 
-//For local project use this
+// For local project use this
 // mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
 //     {
 //         useNewUrlParser: true,
