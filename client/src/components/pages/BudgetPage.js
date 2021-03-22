@@ -86,14 +86,17 @@ function BudgetPage(props) {
 
   return (
     <div className="bgThis p-5">
-      {budget === 0 && transactions.length === 0 && (
+      {(totalBudget === 0) && (
         <BudgetInput
           onChange={setBudget}
           putTotalBudget={setTotalBudget}
           save={handleSaveBtn}
+          totalBudget={totalBudget}
+          resetBudget={resetBudget}
+          // deleteAllTransactions={deleteAllTransactions}
         />
       )}
-      {budget !== 0 && (
+      {(totalBudget !==0) && (
         <div className="container shadow bg-light p-5 mt-3 col-lg-10">
           <>
             <Budget budget={totalBudget} balance={budget} />
@@ -112,7 +115,7 @@ function BudgetPage(props) {
               />
             )}
           </>
-          {budget !== 0 && (
+          {totalBudget !==0 && (
             <div className="row justify-content-center">
               <div className="col-lg-5 col-md-6">
                 <div className="row">
