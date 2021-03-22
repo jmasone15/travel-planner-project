@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import numeral from "numeral";
-import { SaveBudget } from ".";
+// import { SaveBudget } from ".";
 
-function BudgetInput({ onChange, putTotalBudget, save }) {
+function BudgetInput({ onChange, putTotalBudget, save}) {
   const [userBudget, setUserBudget] = useState("");
 
   const inputEl = useRef(null);

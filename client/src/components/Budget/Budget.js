@@ -2,7 +2,12 @@ import React from "react";
 import numeral from "numeral";
 
 // Displays Budget and Balance
-function Budget({ budget, balance }) {
+function Budget({ budget, balance, totalBudget, resetBudget }) {
+  if (totalBudget === 0){
+    resetBudget()
+  }
+
+
   return (
     <div className="row d-flex justify-content-center">
       {/* Budget */}
