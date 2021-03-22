@@ -21,15 +21,16 @@ function BudgetInput({ onChange, putTotalBudget, save}) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="input col-lg-5">
+      <div className="input bg-white p-3 col-lg-5 shadow">
+        <h3>What's Your Budget?</h3>
         <form className="budgetInputPosition">
           <input
             ref={inputEl}
             id="budget"
             type="text"
-            className="form-control curvedInput shadow"
-            placeholder="What's your Budget?"
-            aria-label="What's your Budget?"
+            className="form-control curvedInput"
+            placeholder="$0.00"
+            aria-label="$0.00"
             aria-describedby="basic-addon2"
             onChange={(event) => setUserBudget(event.target.value)}
             value={userBudget}
