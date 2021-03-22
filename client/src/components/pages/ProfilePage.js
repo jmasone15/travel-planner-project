@@ -8,6 +8,7 @@ export default function ProfilePage(props) {
     const [tripArray, setTripArray] = useState([]);
     const [profileEmail, setProfileEmail] = useState("");
     const [updateEmail, setUpdateEmail] = useState("");
+    const [updatePass, setUpdatePass] = useState("");
     const [showProfile, setShowProfile] = useState(false);
     const history = useHistory();
 
@@ -42,7 +43,7 @@ export default function ProfilePage(props) {
         e.preventDefault();
 
         try {
-            await axios.put(`/user/profile/email/${userId}`, { email: updateEmail });
+            await axios.put(`/user/profile/info/${userId}`, { email: updateEmail, password: updatePass });
             alert("Profile Updated");
             setShowProfile(false);
             getUserData();
@@ -50,6 +51,8 @@ export default function ProfilePage(props) {
             console.error(err)
         }
     }
+
+
 
     async function updateTrip(e, id) {
         e.preventDefault();
@@ -62,10 +65,10 @@ export default function ProfilePage(props) {
         history.push("/budget")
     }
 
-    function updateClick(e) {
+    function updateClick(e, value) {
         e.preventDefault();
         setUpdateEmail(profileEmail);
-        setShowProfile(true)
+        setShowProfile(value)
     }
 
     useEffect(() => {
@@ -77,16 +80,19 @@ export default function ProfilePage(props) {
         <div className="bgThis p-5">
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
-                <button className="btn btn-primary" onClick={(e) => updateClick(e)}>Edit your profile</button>
+                <button className="btn btn-primary" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
             </div>
             {showProfile ?
                 <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
                     <label>Change your profile email:</label>
                     <input type="text" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
                     <br /><br />
+                    <label>Change your profile password:</label>
+                    <input type="password" value={updatePass} onChange={(e) => setUpdatePass(e.target.value)} />
+                    <br /><br />
                     <div style={{ textAlign: "center" }}>
                         <button className="btn btn-block btn-primary mt-2 p-2 shadow" onClick={(e) => updateProfile(e)}>Update Profile</button>
-                        <button className="btn btn-block btn-danger mt-2 p-2 shadow">Changed my mind.</button>
+                        <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => updateClick(e, false)}>Changed my mind.</button>
                     </div>
                 </div> : ""}
             <br /><br />
