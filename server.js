@@ -31,6 +31,7 @@ app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 // If it is JSON, it parses the data and puts in into req.body
 // Middleware
 app.use(allowCrossDomain);
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
