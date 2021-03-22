@@ -28,13 +28,13 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.timeline.from(this.login, 1, {
+    this.timeline.from(this.login, .5, {
       display: "none",
       y: -100,
       autoAlpha: 0,
-      delay: 1,
+      delay: .25,
       ease: Power1.easeIn,
-      paused: false,
+      // paused: false,
     });
     this.timeline.play();
   }
