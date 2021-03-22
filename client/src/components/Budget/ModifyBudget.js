@@ -7,6 +7,7 @@ function ModifyBudget({
   addToTotalBudgetClick,
   subtractFromTotalBudgetClick,
   clearModify,
+  totalBudget
 }) {
   const [userModifyBudget, setUserModifyBudget] = useState("");
 
@@ -31,6 +32,7 @@ function ModifyBudget({
   if (userModifyBudget === 0) {
     return null;
   }
+
 
   return (
     <div className="mb-3 d-flex justify-content-center">
@@ -65,13 +67,13 @@ function ModifyBudget({
           {/* Subtract from Budget */}
           <button
             className={
-              !numeral.validate(userModifyBudget)
+              !numeral.validate(userModifyBudget) || userModifyBudget >= totalBudget
                 ? "btn btn-outline-secondary noCurveBtn"
                 : "btn btn-danger noCurveBtn"
             }
             type="button"
             onClick={handleSubtractClick}
-            disabled={!numeral.validate(userModifyBudget)}
+            disabled={!numeral.validate(userModifyBudget) || userModifyBudget >= totalBudget}
           >
             <i class="fas fa-minus"></i>
           </button>
