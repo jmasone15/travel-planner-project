@@ -3,13 +3,13 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-const Verifier = require("email-verifier");
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 // Register New User
 router.post("/", async (req, res) => {
     try {
         const { email, password, passwordVerify } = req.body;
-        let verifier = new Verifier(process.env.EMAIL_API_KEY);
 
         // Validation
         if (!email || !password || !passwordVerify)
@@ -33,40 +33,37 @@ router.post("/", async (req, res) => {
                 .status(400)
                 .send("An account with this email already exists.");
 
-        verifier.verify(email, (err, data) => {
-            if (err) {
-                return res
-                    .status(400)
-                    .send("Please enter a valid email");
-            } else {
-                console.log(data)
-            }
-        })
-
-        // await verifier.verify(email, (err, data) => {
-        //     if (err) {
-        //         return res
-        //             .status(400)
-        //             .send("Please enter a valid email");
-        //     } else if (data.formatCheck === 'true' || data.smtpCheck === 'false' || data.dnsCheck === 'true' || data.disposableCheck === 'true') {
-        //         return res
-        //             .status(400)
-        //             .send("Please enter a valid email");
-        //     }
-        // })
-
+        const msg = {
+            to: email,
+            from: "fouramigos36@gmail.com",
+            subject: 'Welcome to Donde!',
+            text: 'Welcome to Donde!',
+            html: `Hello<strong> ${email}</strong>,<br><br>Thank you for making an account on Donde!<br><br>https://shielded-woodland-30004.herokuapp.com/<br><br>If you have any issues feel free to reply to this email to reach out to the dev team.`,
+        }
 
         // Password Hashing
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
 
         // Save a New User
-        const newUser = new User({ email, passwordHash });
+        const newUser = new User({
+            email: email,
+            passwordHash: passwordHash
+        });
         // Returns most recent user document that has been saved.
         const savedUser = await newUser.save();
 
         // Sign the token
         const token = jwt.sign({ user: savedUser._id }, process.env.JWT_SECRET);
+
+        sgMail
+            .send(msg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
 
         // Send the token in a HTTP-only cookie
         res.cookie("token", token, {
@@ -170,5 +167,54 @@ router.put("/profile/info/:id", auth, async (req, res) => {
         console.error(err)
     }
 });
+
+// Route to activate the user's account
+// router.put("/verify/:token", (req, res) => {
+//     User.findOne({ temporarToken: req.params.token }, (err, user) => {
+//         if (err) throw err; // Throw error if cannot login
+//         const token = req.params.token; // Save the token from URL for verification
+//         console.log("the token is", token);
+//         // Function to verify the user's token
+//         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+//             if (err) {
+//                 res.json({ success: false, message: "Activation link has expired." }); // Token is expired
+//             } else if (!user) {
+//                 res.json({ success: false, message: "Activation link has expired." }); // Token may be valid but does not match any user in the database
+//             } else {
+//                 user.temporaryToken = false; // Remove temporary token
+//                 user.verified = true; // Change account status to Verified
+//                 // Mongoose Method to save user into the database
+//                 user.save(err => {
+//                     if (err) {
+//                         console.log(err); // If unable to save user, log error info to console/terminal
+//                     } else {
+//                         // If save succeeds, create e-mail object
+//                         const emailActivate = {
+//                             from: "fouramigos36@gmail.com",
+//                             to: user.email,
+//                             subject: "Localhost Account Activated",
+//                             text: `Hello ${user.email
+//                                 }, Your account has been successfully activated!`,
+//                             html: `Hello<strong> ${user.email
+//                                 }</strong>,<br><br>Your account has been successfully activated!`
+//                         };
+//                         sgMail
+//                             .send(emailActivate)
+//                             .then(() => {
+//                                 console.log('Account Verified Confirmation Sent')
+//                             })
+//                             .catch((error) => {
+//                                 console.error(error)
+//                             })
+//                         res.json({
+//                             succeed: true,
+//                             message: "User has been successfully verified."
+//                         });
+//                     }
+//                 });
+//             }
+//         });
+//     });
+// });
 
 module.exports = router;
