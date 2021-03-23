@@ -26,3 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 node_modules
 sendgrid.env
+sendgrid.env
