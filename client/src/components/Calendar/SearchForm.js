@@ -35,7 +35,7 @@ function SearchForm(props) {
   useEffect(async () => {
 
     if (!askOnce) {
-      const userLocation = await getLocation()
+      const userLocation = await axios.get("/google/location")
       setAskOnce(true)
       setLatLng({ lat: userLocation.data.location.lat, lng: userLocation.data.location.lng })
       const userCity = await axios.get("/google/userCity", {lat: userLocation.data.location.lat, lng: userLocation.data.location.lng})
