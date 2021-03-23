@@ -1,11 +1,10 @@
-
 .user_card {
     height: 425px;
     width: 350px;
     margin-top: 15%;
     margin-bottom: auto;
     background: #B1D1B4;
-    /* background: transparent; */
+    background-image: url(../../images/bgGreen.png);
     opacity: 100%;
     position: relative;
     display: flex;
@@ -22,9 +21,11 @@
     position: absolute;
     height: 170px;
     width: 170px;
+    z-index: 1;
     top: -75px;
     border-radius: 50%;
     background: #EDD769;
+    background-image: url(../../images/donde2-01.png);
     padding: 10px;
     text-align: center;
 }
@@ -45,6 +46,11 @@
     background: #4C6967 !important;
     color: white !important;
 }
+.login_btn:hover {
+    width: 100%;
+    background: #6baaa6 !important;
+    color: white !important;
+}
 .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
@@ -58,11 +64,11 @@
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
-/* .input_user,
-.input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-} */
+
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #c0392b !important;
+    background-color: #EDD769 !important;
 }
+
+
+
+

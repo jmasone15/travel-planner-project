@@ -28,11 +28,11 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.timeline.from(this.login, .5, {
-      display: "none",
+    this.timeline.from(this.login, 1, {
+      // display: "none",
       y: -100,
       autoAlpha: 0,
-      delay: .25,
+      delay: .5,
       ease: Power1.easeIn,
       // paused: false,
     });
@@ -49,7 +49,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="container h-100 mt-5">
+      <div className="">
         <video
           autoPlay
           loop
