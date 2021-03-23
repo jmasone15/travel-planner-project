@@ -10,4 +10,5 @@ export default {
     logout: function () {
         return axios.post("user/logout")
     }
+    
 } 
