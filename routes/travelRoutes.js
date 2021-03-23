@@ -23,6 +23,8 @@ router.post("/new", auth, async (req, res) => {
     }
 });
 
+// Get route
+
 router.get("/:id", auth, async (req, res) => {
     try {
         const travels = await Travel.find({ userId: req.params.id });
