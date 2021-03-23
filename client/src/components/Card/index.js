@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-function Card(props) {
+function Card({className, ref, style, children}) {
     return (
-        <div ref={props.ref} style={props.style} className="card shadow p-3 mb-3 mt-5 bg-white rounded">
-            <div className="card-body">{props.children}</div>
+        <div ref={ref} style={style} className={className}>
+            <div className="card-body">{children}</div>
         </div>
     );
 }
