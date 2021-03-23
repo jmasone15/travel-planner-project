@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router";
 import "../../css/budget.css";
-import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../routes/API"
-import Card from "../Card";
+import { attractions, hotels, shopping, restaurants } from "../../routes/API"
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
