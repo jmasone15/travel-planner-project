@@ -104,7 +104,7 @@ function SignUp() {
                   placeholder="verify password..."
                 />
               </div>
-              <small id="passwordHelpBlock" class="form-text text-muted">
+              <small id="passwordHelpBlock" class="form-text text-muted text-center">
                 Your password must be 6 characters long
               </small>
               <div className="form-group">
