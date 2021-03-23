@@ -22,7 +22,7 @@ class HomePage extends React.Component {
   componentDidMount() {
     this.timeline
       .from(this.card, 0.4, {
-        display: "none",
+        // display: "none",
         y: -50,
         autoAlpha: 0,
         delay: 0.25,
