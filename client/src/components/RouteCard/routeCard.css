@@ -30,7 +30,8 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    min-height: 300px;
+    background-color: #e0e1cc;
+    min-height: 350px;
     height: 100%;
   }
   .card:hover {
@@ -83,4 +84,8 @@
   body {
     margin: 0;
     background-image: linear-gradient(to right, #ECE9E6 , #FFFFFF);
+}
+
+.cardBgColor {
+  background-color: #e0e1cc;
 }

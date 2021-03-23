@@ -1,18 +1,16 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import UserContext from "../../context/UserContext";
-import AuthContext from "../../context/AuthContext";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import Card from "../Card";
 import { Link } from "react-router-dom";
-import { TimelineMax, Power1 } from "gsap/all";
-import * as faIcons from "react-icons/fa";
-import * as mdIcons from "react-icons/md";
-import * as riIcons from "react-icons/ri";
+import { TimelineMax, Power1 } from "gsap/all";// import axios from "axios";
 import "./home.css";
 import PDF from "../../images/packinglist.pdf";
 import travel from "../../images/traveling.jpeg";
-import RouteCard from "../RouteCard";
+import RouteCard from "../RouteCard";// import UserContext from "../../context/UserContext";
+// import AuthContext from "../../context/AuthContext";
+// import { useHistory } from "react-router-dom";
+// import * as faIcons from "react-icons/fa";
+// import * as mdIcons from "react-icons/md";
+// import * as riIcons from "react-icons/ri";
 // import donde from "../images/dondeLogo.png";
 
 class HomePage extends React.Component {
@@ -73,10 +71,13 @@ class HomePage extends React.Component {
                   backgroundImage: `url(${travel})`,
                   backgroundSize: "cover",
                   position: "relative",
+                  padding: "50px",
+                  width:"100%"
                 }}
+                className="card shadow mt-5 cardBgColor"
               >
                 <h1> ¿dondé? </h1>
-                <hr />
+                <hr className="my-4" />
                 <p>
                   dondé (dohn-deh) </p>
                 <p>
@@ -89,16 +90,14 @@ class HomePage extends React.Component {
                     className="btn btn-warning"
                   // onClick={(e) => this.changePage(e, "/profile")}
                   >
-                    {" "}
-                    View Trips{" "}
-                  </button>{" "}
+                    View Trips
+                  </button>
                 </Link>
               </Card>
             </div>
           </div>
           <div className="row">
-            <div className="col" ref={(card1) => (this.card1 = card1)}>
-              {" "}
+            <div className="col-lg-4 col-md-6 col-sm-12" ref={(card1) => (this.card1 = card1)}>
               <RouteCard
                 title="Start Trip"
                 src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1908&q=80"
@@ -106,16 +105,15 @@ class HomePage extends React.Component {
               >
                 <Link to="/budget">
                   <button
-                    className="btn btn-warning mt-3"
+                    className="btn btn-warning"
                     onClick={(e) => this.changePage(e, "/budget")}
                   >
-                    <h3> Start Trip </h3>
+                    Start Trip
                   </button>
                 </Link>
-              </RouteCard>{" "}
+              </RouteCard>
             </div>
-            <div className="col" ref={(card2) => (this.card2 = card2)}>
-              {" "}
+            <div className="col-lg-4 col-md-6 col-sm-12" ref={(card2) => (this.card2 = card2)}>
               <RouteCard
                 title="Packing List"
                 src="https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
@@ -123,16 +121,15 @@ class HomePage extends React.Component {
               >
                 <Link to="/home">
                   <button
-                    className="btn btn-warning mt-3"
+                    className="btn btn-warning"
                     onClick={(e) => window.open(PDF)}
                   >
-                    <h3> Print Packing List </h3>
+                    Packing List
                   </button>
                 </Link>
-              </RouteCard>{" "}
+              </RouteCard>
             </div>
-            <div className="col" ref={(card3) => (this.card3 = card3)}>
-              {" "}
+            <div className="col-lg-4 col-md-6 col-sm-12" ref={(card3) => (this.card3 = card3)}>
               <RouteCard
                 title="Itinerary"
                 src="https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
@@ -140,13 +137,13 @@ class HomePage extends React.Component {
               >
                 <Link to="/itinerary">
                   <button
-                    className="btn btn-warning mt-3 justify-content-center"
+                    className="btn btn-warning justify-content-center"
                   // onClick={(e) => this.changePage(e, "/itinerary")}
                   >
-                    <h3> View Itinerary </h3>
+                    View Itinerary
                   </button>
                 </Link>
-              </RouteCard>{" "}
+              </RouteCard>
             </div>
           </div>
         </div>

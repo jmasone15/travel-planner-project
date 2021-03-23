@@ -1,6 +1,6 @@
 import React from "react";
 import "./routeCard.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function RouteCard(props) {
   return (
@@ -14,17 +14,17 @@ function RouteCard(props) {
     // </div>
 
     <div class="card-wrapper col-lg-12 col-md-12 mt-5 col-xs-12" ref={props.ref}>
-      <div class="card">
+      <div class="card shadow">
         <div class="card-img-wrapper">
           <img
                       class="card-img-top"
                       src={props.src}
             // src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1908&q=80"
-            alt="Card image cap"
-          />{" "}
+            alt="Card img cap"
+          />
         </div>
         <div class="card-body">
-          <h5 class="card-title text-center">{props.title}</h5>
+          <h3 class="card-title text-center">{props.title}</h3>
           <div class="card-content">
             <p class="card-text">
               {props.text}
