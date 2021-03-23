@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router";
 import "../../css/budget.css";
-import { attractions, hotels, shopping, restaurants } from "../../../../routes/API"
+import Card from "../Card";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
@@ -59,25 +59,25 @@ function ItineraryPage(props) {
 
     function getPoi(where) {
 
-        attractions(where).then((results) => {
+        axios.get("/google/attractions", where).then((results) => {
             props.setPoiArray(results.data.results);
         })
     }
 
     function getHotels(where) {
-        hotels(where).then((results) => {
+        axios.get("/google/hotels", where).then((results) => {
             props.setHotelsArray(results.data.results);
         })
     }
 
     function getShop(where) {
-        shopping(where).then((results) => {
+        axios.get("/google/shopping", where).then((results) => {
             props.setShoppingArray(results.data.results);
         })
     }
 
     function getFood(where) {
-        restaurants(where).then((results) => {
+        axios.get("/google/restaurants", where).then((results) => {
             props.setRestaurantsArray(results.data.results);
         })
     }

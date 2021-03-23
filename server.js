@@ -69,6 +69,7 @@ mongoose.connect(
 // When the path has "/auth" in it, express will then use the userRoutes file
 app.use("/user", require("./routes/userRoutes"));
 app.use("/api", require("./routes/travelRoutes"));
+app.use("/google", require("./routes/API"));
 
 // Only use for heroku
 app.get("*", function (req, res) {

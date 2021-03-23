@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../../../routes/API"
 import MyCard from "./MyCard"
 import Calender from './Calender';
+import axios from "axios";
 import MapContainer from "./MapContainer"
 import Itinerary from "./Itinerary"
 import AddStuff from "./AddStuff"
@@ -37,7 +38,7 @@ function SearchForm(props) {
       const userLocation = await getLocation()
       setAskOnce(true)
       setLatLng({ lat: userLocation.data.location.lat, lng: userLocation.data.location.lng })
-      const userCity = await getUserCity(userLocation.data.location.lat, userLocation.data.location.lng)
+      const userCity = await axios.get("/google/userCity", {lat: userLocation.data.location.lat, lng: userLocation.data.location.lng})
       const results = userCity.data.results
       await cityState(results)
     }
@@ -65,25 +66,25 @@ function SearchForm(props) {
 
   function getPoi(where) {
 
-    attractions(where).then((results) => {
+    axios.get("/google/attractions", where).then((results) => {
       setPoiArray(results.data.results);
     })
   }
 
   function getHotels(where) {
-    hotels(where).then((results) => {
+    axios.get("/google/hotels", where).then((results) => {
       setHotelsArray(results.data.results);
     })
   }
 
   function getShop(where) {
-    shopping(where).then((results) => {
+    axios.get("/google/shopping", where).then((results) => {
       setShoppingArray(results.data.results);
     })
   }
 
   function getFood(where) {
-    restaurants(where).then((results) => {
+    axios.get("/google/restaurants", where).then((results) => {
       setRestaurantsArray(results.data.results);
     })
   }
