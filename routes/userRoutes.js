@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 const emailValidator = require('deep-email-validator');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const emails = require("../email/emailTemplate");
 
 async function isEmailValid(email) {
     return emailValidator.validate(email)
@@ -44,7 +45,7 @@ router.post("/", async (req, res) => {
             from: "fouramigos36@gmail.com",
             subject: 'Welcome to Donde!',
             text: 'Welcome to Donde!',
-            html: `Hello<strong> ${email}</strong>,<br><br>Thank you for making an account on Donde!<br><br>https://shielded-woodland-30004.herokuapp.com/<br><br>If you have any issues feel free to reply to this email to reach out to the dev team.`,
+            html: emails.welcome
         }
 
         // Password Hashing
@@ -177,7 +178,7 @@ router.put("/profile/info/:id", auth, async (req, res) => {
             from: "fouramigos36@gmail.com",
             subject: 'Profile Info Changed!',
             text: 'Welcome to Donde!',
-            html: `Hello<strong> ${req.body.email}</strong>,<br><br>Your account info has been reset. If you did not reset your account info, please reply to this email and reach out to the dev team for further assitance.`,
+            html: emails.reset
         }
         sgMail
             .send(resetMsg)
