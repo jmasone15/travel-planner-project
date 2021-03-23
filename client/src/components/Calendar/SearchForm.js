@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useHistory } from 'react-router';
-import { attractions, hotels, shopping, restaurants, getLocation, getUserCity } from "../../../../routes/API"
 import MyCard from "./MyCard"
 import Calender from './Calender';
 import axios from "axios";
