@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 import { useHistory } from "react-router-dom";
 import { set } from 'mongoose';
@@ -7,11 +7,17 @@ import { set } from 'mongoose';
 export default function ReviewPage(props) {
     const { userId } = useContext(UserContext);
     const [showTripData, setShowTripData] = useState(false);
+    const [profileEmail, setProfileEmail] = useState("");
     const history = useHistory();
 
     function getDateRange(x) {
         let result = x.map(date => date.name)
         return (`${result[0]} - ${result[result.length - 1]}`)
+    }
+
+    async function getUserData() {
+        const userData = await axios.get(`user/profile/${userId}`);
+        setProfileEmail(userData.data.email)
     }
 
     function reviewTrip(e) {
@@ -36,7 +42,8 @@ export default function ReviewPage(props) {
                 startLocation: props.tripStartLocation,
                 destination: props.tripDestination,
                 dates: props.tripDates,
-                userId: userId
+                userId: userId,
+                email: profileEmail
             }
             await axios.post("/api/new", travelData);
             alert("Trip Added!")
@@ -46,12 +53,17 @@ export default function ReviewPage(props) {
             props.setTripStartLocation("");
             props.setTripDates([]);
             props.setTripExpenses([]);
+            setProfileEmail("");
             history.push("/profile");
 
         } catch (err) {
             console.error(err);
         }
     }
+
+    useEffect(() => {
+        getUserData();
+    }, []);
 
     return (
         <div className="bgThis">
