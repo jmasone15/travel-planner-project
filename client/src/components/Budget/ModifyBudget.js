@@ -36,7 +36,7 @@ function ModifyBudget({
 
   return (
     <div className="mb-3 d-flex justify-content-center">
-      <div className="col-lg-8 col-md-12 shadow p-3">
+      <div className="col-lg-8 col-md-12 shadow p-3 yellowBg rounded">
       <div className="d-flex justify-content-end p-0">
         <button onClick={clearModify} className="btn">
           <i class="fas fa-times"></i>
