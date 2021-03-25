@@ -129,7 +129,7 @@ class Login extends React.Component {
                           this.state.password
                         )
                       }
-                      type="button"
+                      type="submit"
                       name="button"
                       className="btn login_btn"
                     >

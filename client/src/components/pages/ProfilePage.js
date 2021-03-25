@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 export default function ProfilePage(props) {
     const { userId } = useContext(UserContext);
@@ -77,7 +79,7 @@ export default function ProfilePage(props) {
     }, []);
 
     return (
-        <div className="bgThis p-5">
+        <div className="bgThis">
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
                 <button className="btn btn-primary" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
@@ -116,6 +118,9 @@ export default function ProfilePage(props) {
                             <br />
                             <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
                             <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
+                            <Link to="/itinerary">
+                            <button className="btn btn-block btn-warning mt-2 p-2 shadow"> Itinerary</button>
+                            </Link>
                         </div>
                         <br />
                     </div>
