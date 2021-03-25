@@ -34,7 +34,7 @@ function AddTransaction({ addTransactionClick }) {
               className="form-control"
               id="expenseName"
               aria-describedby="expenseName"
-              placeholder="$0.00"
+              placeholder="lodging, flight, shopping, etc"
               name="name"
               value={name}
               onChange={(event) => setName(event.target.value)}
