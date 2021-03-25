@@ -72,6 +72,6 @@ app.use("/api", require("./routes/travelRoutes"));
 app.use("/google", require("./routes/API"));
 
 // Only use for heroku
-// app.get("*", function (req, res) {
-//     res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
