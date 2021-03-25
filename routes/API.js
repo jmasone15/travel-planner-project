@@ -1,7 +1,7 @@
-import axios from "axios";
+const axios = require("axios");
 const router = require("express").Router();
 const auth = require("../middleware/auth");
-import GOOGLE_API_KEY from "./key";
+const GOOGLE_API_KEY = require("./key");
 const BASEURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=";
 const Locate = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI"
 const language = "&language=en"
@@ -40,7 +40,7 @@ router.get("/userCity", auth, async (req, res) => {
 router.get("/attractions", auth, async (req, res) => {
     try {
         const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+points+of+interest" + language + "&key=" +  GOOGLE_API_KEY));
+        res.json(await axios.get(BASEURL + query + "+points+of+interest" + language + "&key=" + GOOGLE_API_KEY));
 
     } catch (err) {
         console.error(err);
@@ -51,7 +51,7 @@ router.get("/attractions", auth, async (req, res) => {
 router.get("/hotels", auth, async (req, res) => {
     try {
         const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+hotels" + language + "&key=" +  GOOGLE_API_KEY));
+        res.json(await axios.get(BASEURL + query + "+hotels" + language + "&key=" + GOOGLE_API_KEY));
 
     } catch (err) {
         console.error(err);
@@ -62,7 +62,7 @@ router.get("/hotels", auth, async (req, res) => {
 router.get("/shopping", auth, async (req, res) => {
     try {
         const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+shopping" + language + "&key=" +  GOOGLE_API_KEY));
+        res.json(await axios.get(BASEURL + query + "+shopping" + language + "&key=" + GOOGLE_API_KEY));
 
     } catch (err) {
         console.error(err);
@@ -73,7 +73,7 @@ router.get("/shopping", auth, async (req, res) => {
 router.get("/restaurants", auth, async (req, res) => {
     try {
         const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+restaurants" + language + "&key=" +  GOOGLE_API_KEY));
+        res.json(await axios.get(BASEURL + query + "+restaurants" + language + "&key=" + GOOGLE_API_KEY));
 
     } catch (err) {
         console.error(err);
