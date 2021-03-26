@@ -76,7 +76,7 @@ export default function ProfilePage(props) {
     useEffect(() => {
         getUserData();
         getTripData();
-    }, []);
+    });
 
     return (
         <div className="bgThis">
@@ -119,7 +119,7 @@ export default function ProfilePage(props) {
                             <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
                             <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                             <Link to="/itinerary">
-                            <button className="btn btn-block btn-warning mt-2 p-2 shadow"> Itinerary</button>
+                                <button className="btn btn-block btn-warning mt-2 p-2 shadow"> Itinerary</button>
                             </Link>
                         </div>
                         <br />
