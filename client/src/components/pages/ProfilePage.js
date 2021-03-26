@@ -3,6 +3,7 @@ import axios from "axios";
 import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import bgBlue from "../../images/bgBlue.png";
 
 
 export default function ProfilePage(props) {
@@ -76,10 +77,18 @@ export default function ProfilePage(props) {
     useEffect(() => {
         getUserData();
         getTripData();
-    }, []);
+    });
 
     return (
-        <div className="bgThis">
+        // <div className="bgThis">
+        <div style={{
+            backgroundImage: `url(${bgBlue})`,
+            // backgroundSize: "cover",
+            position: "relative",
+            height: "100vh",
+            height:" 100%",
+            width: "100%"
+        }}>
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
                 <button className="btn btn-primary" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
@@ -105,6 +114,7 @@ export default function ProfilePage(props) {
                     <button class="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => btnClick(e)}>Build a new trip!</button>
                 </div>
             }
+                
             {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
@@ -126,6 +136,6 @@ export default function ProfilePage(props) {
                     </div>
                 ))
             }
-        </div >
+                    </div>
     )
 }
