@@ -20,7 +20,7 @@ function ItineraryPage(props) {
     }
 
     async function getTripData() {
-        const userTrips = await axios.get(`api/${userId}`)
+        const userTrips = await axios.get(`/api/${userId}`)
         props.setTripArray(userTrips.data);
         console.log(userTrips.data)
     }
@@ -59,25 +59,25 @@ function ItineraryPage(props) {
 
     function getPoi(where) {
 
-        axios.get("/google/attractions", where).then((results) => {
+        axios.get(`/google/attractions/${where}`).then((results) => {
             props.setPoiArray(results.data.results);
         })
     }
 
     function getHotels(where) {
-        axios.get("/google/hotels", where).then((results) => {
+        axios.get(`/google/hotels/${where}`).then((results) => {
             props.setHotelsArray(results.data.results);
         })
     }
 
     function getShop(where) {
-        axios.get("/google/shopping", where).then((results) => {
+        axios.get(`/google/shopping/${where}`).then((results) => {
             props.setShoppingArray(results.data.results);
         })
     }
 
     function getFood(where) {
-        axios.get("/google/restaurants", where).then((results) => {
+        axios.get(`/google/restaurants/${where}`).then((results) => {
             props.setRestaurantsArray(results.data.results);
         })
     }
@@ -88,8 +88,6 @@ function ItineraryPage(props) {
     }
 
     useEffect(() => {
-        getUserData();
-        getTripData();
         console.log(props.activitiesArray);
         if (props.selectedTrip.destination !== undefined) {
             getPoi(props.selectedTrip.destination)
@@ -98,6 +96,12 @@ function ItineraryPage(props) {
             getFood(props.selectedTrip.destination)
         }
     }, [props.selectedTrip, props.activitiesArray]);
+
+    useEffect(() => {
+        getUserData();
+        getTripData();
+    }, []);
+
     return (
         <div className="bgThis">
             <br />

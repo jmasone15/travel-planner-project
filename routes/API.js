@@ -9,12 +9,12 @@ const getCity = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
 
 
 function formatQuery(query) {
-    if (typeof query == "object") {
-        query = query.formatted_address
+    if (typeof query === "object") {
+        query === query.formatted_address
     }
-    const newQuery = query.replace(',', '').toLowerCase().split(" ").join("+")
-
-    return newQuery
+    const newQuery = query.replace(',', '').toLowerCase().split(" ").join("+");
+    const newNewQuery = newQuery.replace(',', '');
+    return newNewQuery
 }
 
 router.post("/location", auth, async (req, res) => {
@@ -37,10 +37,12 @@ router.get("/userCity", auth, async (req, res) => {
     }
 });
 
-router.get("/attractions", auth, async (req, res) => {
+router.get("/attractions/:where", auth, async (req, res) => {
     try {
-        const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+points+of+interest" + language + "&key=" + GOOGLE_API_KEY));
+        const query = formatQuery(req.params.where)
+        const attractionsData = await axios.get(BASEURL + query + "+points+of+interest" + language + "&key=" + GOOGLE_API_KEY);
+
+        res.status(200).json(attractionsData.data);
 
     } catch (err) {
         console.error(err);
@@ -48,10 +50,12 @@ router.get("/attractions", auth, async (req, res) => {
     }
 });
 
-router.get("/hotels", auth, async (req, res) => {
+router.get("/hotels/:where", auth, async (req, res) => {
     try {
-        const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+hotels" + language + "&key=" + GOOGLE_API_KEY));
+        const query = formatQuery(req.params.where)
+        const hotelsData = await axios.get(BASEURL + query + "+hotels" + language + "&key=" + GOOGLE_API_KEY);
+
+        res.status(200).json(hotelsData.data);
 
     } catch (err) {
         console.error(err);
@@ -59,10 +63,12 @@ router.get("/hotels", auth, async (req, res) => {
     }
 });
 
-router.get("/shopping", auth, async (req, res) => {
+router.get("/shopping/:where", auth, async (req, res) => {
     try {
-        const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+shopping" + language + "&key=" + GOOGLE_API_KEY));
+        const query = formatQuery(req.params.where)
+        const shoppingData = await axios.get(BASEURL + query + "+shopping" + language + "&key=" + GOOGLE_API_KEY);
+
+        res.status(200).json(shoppingData.data);
 
     } catch (err) {
         console.error(err);
@@ -70,10 +76,12 @@ router.get("/shopping", auth, async (req, res) => {
     }
 });
 
-router.get("/restaurants", auth, async (req, res) => {
+router.get("/restaurants/:where", auth, async (req, res) => {
     try {
-        const query = formatQuery(req.where)
-        res.json(await axios.get(BASEURL + query + "+restaurants" + language + "&key=" + GOOGLE_API_KEY));
+        const query = formatQuery(req.params.where)
+        const restaurantsData = await axios.get(BASEURL + query + "+restaurants" + language + "&key=" + GOOGLE_API_KEY);
+
+        res.status(200).json(restaurantsData.data);
 
     } catch (err) {
         console.error(err);

@@ -130,6 +130,7 @@ export default function ProfilePage(props) {
                             <button style={{backgroundColor: "#69ab8e"}} className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                             <Link to="/itinerary">
                             <button style={{backgroundColor: "#edd769"}} className="btn btn-block mt-2 p-2 shadow"> Itinerary</button>
+
                             </Link>
                         </div>
                         <br />
