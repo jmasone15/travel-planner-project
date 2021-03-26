@@ -1,17 +1,11 @@
 import React from "react";
 import Card from "../Card";
 import { Link } from "react-router-dom";
-import { TimelineMax, Power1 } from "gsap/all";// import axios from "axios";
+import { TimelineMax, Power1 } from "gsap/all";
 import "./home.css";
 import PDF from "../../images/packinglist.pdf";
 import travel from "../../images/traveling.jpeg";
-import RouteCard from "../RouteCard";// import UserContext from "../../context/UserContext";
-// import AuthContext from "../../context/AuthContext";
-// import { useHistory } from "react-router-dom";
-// import * as faIcons from "react-icons/fa";
-// import * as mdIcons from "react-icons/md";
-// import * as riIcons from "react-icons/ri";
-// import donde from "../images/dondeLogo.png";
+import RouteCard from "../RouteCard";
 
 class HomePage extends React.Component {
   constructor(props) {
