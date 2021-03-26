@@ -91,10 +91,10 @@ export default function ProfilePage(props) {
         }}>
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
-                <button className="btn btn-primary" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
+                <button style={{backgroundColor:"#4c6967"}} className="btn text-white" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
             </div>
             {showProfile ?
-                <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor:"#b1d1b4b7"}}>
                     <label>Change your profile email:</label>
                     <input type="text" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
                     <br /><br />
@@ -118,7 +118,7 @@ export default function ProfilePage(props) {
             {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
-                        <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                        <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e0e1ccb7"}}>
                             <h3><b>Your Trip to:</b> {trip.destination}</h3>
                             <br />
                             <p><b>Trip name:</b> {trip.tripName}</p>
@@ -126,10 +126,10 @@ export default function ProfilePage(props) {
                             <p><b>Start Location: </b> {trip.startLocation}</p>
                             <p><b>Dates:</b> {getDateRange(trip.dates)}</p>
                             <br />
-                            <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
-                            <button className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
+                            <button style={{backgroundColor: "#b1d1b4"}} className="btn btn-block mt-2 p-2 shadow" onClick={(e) => removeTrip(e, trip._id)}>Remove Trip</button>
+                            <button style={{backgroundColor: "#69ab8e"}} className="btn btn-block btn-success mt-2 p-2 shadow" onClick={(e) => updateTrip(e, trip._id)}>Update Trip</button>
                             <Link to="/itinerary">
-                            <button className="btn btn-block btn-warning mt-2 p-2 shadow"> Itinerary</button>
+                            <button style={{backgroundColor: "#edd769"}} className="btn btn-block mt-2 p-2 shadow"> Itinerary</button>
                             </Link>
                         </div>
                         <br />
