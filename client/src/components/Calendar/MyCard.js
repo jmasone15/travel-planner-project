@@ -12,8 +12,7 @@ function MyCard(props) {
 
     async function handleBtnClick(name, location, address, photo_reference) {
         await setNewActivity({ name, location, address, photo_reference, id: uuidv4() })
-        setActs()
-        alert("Activity added!")
+        setActs();
     }
 
     async function setActs() {
@@ -23,7 +22,7 @@ function MyCard(props) {
         <div>
             {props.data.map((place, index) => (
                 <div>
-                    <div className="row" style={{ paddingBottom: "20px", paddingTop: "20px" }}>
+                    <div className="row" key={index} style={{ paddingBottom: "20px", paddingTop: "20px" }}>
                         <div className="col-md-3">
                             {place.photos ?
                                 <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${place.photos[0].photo_reference}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />

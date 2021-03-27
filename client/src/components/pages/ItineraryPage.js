@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router";
 import "../../css/budget.css";
-import Card from "../Card";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
@@ -11,8 +10,9 @@ import MyCard from '../Calendar/MyCard';
 function ItineraryPage(props) {
     const { userId } = useContext(UserContext);
     const history = useHistory();
-    const [showPDF, setShowPDF] = useState(false);
     const [showActs, setShowActs] = useState(false);
+    const [currentTrip, setCurrentTrip] = useState("");
+    const [currentAct, setCurrentAct] = useState("attractions");
 
     async function getUserData() {
         const userData = await axios.get(`user/profile/${userId}`);
@@ -25,11 +25,21 @@ function ItineraryPage(props) {
         console.log(userTrips.data)
     }
 
-    async function getSelectedTrip(e, id) {
-        const sTrip = await axios.get(`/api/trip/${id}`)
+    async function getSelectedTrip(e, id, place) {
+        e.preventDefault();
+        const sTrip = await axios.get(`/api/trip/${id}`);
         props.setSelectedTrip(sTrip.data);
-        setShowPDF(true);
+        setCurrentTrip(place);
         setShowActs(true);
+        props.setType(props.poiArray);
+        props.setShowResults(true);
+    }
+
+    async function resetPage(e) {
+        e.preventDefault();
+        setShowActs(false);
+        setCurrentTrip("");
+        props.setActivitiesArray([]);
     }
 
     function handleFormSubmit(e) {
@@ -40,19 +50,22 @@ function ItineraryPage(props) {
             case "attractions":
                 props.setType(props.poiArray);
                 props.setShowResults(true);
+                setCurrentAct("attractions");
                 break;
             case "hotels":
                 props.setType(props.hotelsArray);
-
                 props.setShowResults(true);
+                setCurrentAct("hotels");
                 break;
             case "shopping":
                 props.setType(props.shoppingArray);
                 props.setShowResults(true);
+                setCurrentAct("shopping");
                 break;
             case "restaurants":
                 props.setType(props.restaurantsArray);
                 props.setShowResults(true);
+                setCurrentAct("restaurants");
                 break;
         }
     }
@@ -60,6 +73,7 @@ function ItineraryPage(props) {
     function getPoi(where) {
 
         axios.get(`/google/attractions/${where}`).then((results) => {
+            console.log(results)
             props.setPoiArray(results.data.results);
         })
     }
@@ -104,53 +118,63 @@ function ItineraryPage(props) {
 
     return (
         <div className="bgThis">
-            <br />
-            <div
-                className="container shadow bg-light p-5 mt-3 col-lg-10"
-            >
-                <div className="">
-                    <h1 className="text-center font">Itinerary</h1>
-                    <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
-                        <h3 className="text-center font">Which trip do you want to build out?</h3>
-                        <div>
-                            <ul>
-                                {props.tripArray.map((trip) => (
-                                    <li style={{ fontSize: "20px", marginBottom: "25px", cursor: "pointer" }} onClick={(e) => getSelectedTrip(e, trip._id)} key={trip._id}>Trip to: {trip.destination}</li>
-                                ))}
-                            </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="col-4">
+                        <div className="container">
+                            <div className="row">
+                                {!showActs ?
+                                    <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
+                                        <h3 className="text-center font">Choose a trip:</h3>
+                                        {props.tripArray.map((trip) => (
+                                            <p style={{ fontSize: "20px", cursor: "pointer" }} onClick={(e) => getSelectedTrip(e, trip._id, trip.destination)} key={trip._id}>{trip.destination}</p>
+                                        ))}
+                                    </div>
+                                    : <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
+                                        <h3 className="text-center font">{currentTrip}</h3>
+                                        <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => changePage(e)}>Generate PDF!</button>
+                                        <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Restart</button>
+                                    </div>
+                                }
+                            </div>
+                            {showActs ?
+                                <div className="row">
+                                    <div class="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
+                                        <h3 className="text-center font">Your Selected Activities</h3>
+                                        {props.activitiesArray.map((act) => (
+                                            <p style={{ fontSize: "17px", cursor: "pointer" }}>{act.name}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                                : ""}
                         </div>
+                    </div>
+                    <div className="col-8">
+                        {showActs ? <div className="">
+                            <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
+                                <div className="row">
+                                    <div style={{ textAlign: "center", paddingBottom: "20px" }}>
+                                        {currentAct === "attractions" ? <button className="btn btn-success" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>
+                                            : <button className="btn btn-secondary" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>}
+                                        {currentAct === "restaurants" ? <button className="btn btn-success" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
+                                            : <button className="btn btn-secondary" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>}
+                                        {currentAct === "shopping" ? <button className="btn btn-success" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>
+                                            : <button className="btn btn-secondary" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>}
+                                        {currentAct === "hotels" ? <button className="btn btn-success" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>
+                                            : <button className="btn btn-secondary" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>}
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div style={{ width: "auto", height: "300px", overflow: "scroll", justifyContent: "center", display: "flex" }}>
+                                        {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} /> : null}
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div> : ""}
                     </div>
                 </div>
-                {showActs ? <div className="">
-                    <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
-                        <div className="row">
-                            <div className="col">
-                                <div style={{ textAlign: "center", paddingBottom: "20px" }}>
-                                    <h2 className="text-center font">Choose Activities!</h2>
-                                    <button className="btn btn-warning" name="attractions" onClick={(e) => handleFormSubmit(e)}>Attractions</button>
-                                    <br /><br />
-                                    <button className="btn btn-danger" name="restaurants" onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
-                                    <br /><br />
-                                    <button className="btn btn-secondary" name="shopping" onClick={(e) => handleFormSubmit(e)}>Shopping</button>
-                                    <br /><br />
-                                    <button className="btn btn-info" name="hotels" onClick={(e) => handleFormSubmit(e)}>Hotels</button>
-                                </div>
-                            </div>
-                            <div className="col-lg-10">
-                                <div style={{ width: "auto", height: "300px", overflow: "scroll", justifyContent: "center", display: "flex" }}>
-                                    {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} /> : null}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br />
-                    <div style={{ textAlign: "center" }}>
-                        {showPDF ? <button className="btn-lg btn-success mt-2 p-2 shadow" onClick={(e) => changePage(e)}>Generate PDF!</button> : ""}
-                    </div>
-                </div> : ""}
             </div>
-
         </div>
     )
 }
