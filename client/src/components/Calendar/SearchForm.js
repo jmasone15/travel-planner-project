@@ -164,7 +164,8 @@ function SearchForm(props) {
       const formattedPlace = currentTrip.destination.replace(/[,.]+/g,' ').toLowerCase().replace(/[\s]+/g,'+');
       console.log(formattedPlace);
       axios.get(`/google/pic/${formattedPlace}`).then((e) => {
-        props.setDestinationPicture(e)
+        console.log(e);
+        props.setDestinationPicture(e.data)
       })
 
     

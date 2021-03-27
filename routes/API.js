@@ -40,10 +40,12 @@ router.get("/userCity", auth, async (req, res) => {
 });
 
 router.get(`/pic/:formattedPlace`, auth, async (req, res) => {
+    console.log(req.params.formattedPlace);
     try {
         const destinationInfo = await axios.get(BASEURL + req.params.formattedPlace  + language + "&key=" + GOOGLE_API_KEY);
 
-        res.status(200).json(destinationInfo.results.photos.photo_reference);
+        console.log(destinationInfo);
+        res.status(200).json(destinationInfo.data.results[0].photos[0].photo_reference);
 
     } catch (err) {
         console.error(err);
