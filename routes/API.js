@@ -43,7 +43,7 @@ router.get(`/pic/:formattedPlace`, auth, async (req, res) => {
     try {
         const destinationInfo = await axios.get(BASEURL + req.params.formattedPlace  + language + "&key=" + GOOGLE_API_KEY);
 
-        res.status(200).json(destinationInfo.photos.photo_reference);
+        res.status(200).json(destinationInfo.results.photos.photo_reference);
 
     } catch (err) {
         console.error(err);
