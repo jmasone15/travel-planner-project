@@ -12,7 +12,7 @@ function formatQuery(query) {
     if (typeof query === "object") {
         query === query.formatted_address
     }
-    const newQuery = query.replace(/[ ,.]/g, '').toLowerCase().split(" ").join("+");
+    const newQuery = query.replace(/[ ,.]/g, ' ').toLowerCase().split(" ").join("+");
     const newNewQuery = newQuery.replace(',', '');
     return newNewQuery
 }
