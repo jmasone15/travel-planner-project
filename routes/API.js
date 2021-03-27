@@ -19,7 +19,9 @@ function formatQuery(query) {
 
 router.post("/location", auth, async (req, res) => {
     try {
-        res.json(await axios.post(Locate));
+        let userLocation = await axios.post(Locate)
+        console.log(userLocation);
+        res.json(userLocation);
 
     } catch (err) {
         console.error(err);
@@ -36,6 +38,21 @@ router.get("/userCity", auth, async (req, res) => {
         res.status(500).send();
     }
 });
+
+router.get(`/pic/:destination`, auth, async (req, res) => {
+    try {
+        const query = formatQuery(req.params.destination)
+        const destinationInfo = await axios.get(BASEURL + query  + language + "&key=" + GOOGLE_API_KEY);
+
+        
+
+        res.status(200).json(destinationInfo.photos.photo_reference);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
+    }
+})
 
 router.get("/attractions/:where", auth, async (req, res) => {
     try {
