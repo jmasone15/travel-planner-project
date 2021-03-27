@@ -128,34 +128,11 @@ function SearchForm(props) {
     }
   }
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  
 
-    const name = e.target.name
-    switch (name) {
-      case "attractions":
-        setType(poiArray);
-        setShowResults(true);
-        break;
-      case "hotels":
-        setType(hotelsArray);
-        setShowResults(true);
-        break;
-      case "shopping":
-        setType(shoppingArray);
-        setShowResults(true);
-        break;
-      case "restaurants":
-        setType(restaurantsArray);
-        setShowResults(true);
-        break;
-    }
+  async function handleBtnClick() {
 
-  }
-
-  function handleBtnClick() {
-
-
+    
 
     if ((startDate !== null) && (endDate !== null)) {
 
@@ -184,10 +161,11 @@ function SearchForm(props) {
       console.log(array);
       console.log(currentTrip)
 
+      axios.get(`/google/pic/${currentTrip.destination}`).then((e) => {
+        props.setDestinationPicture(e)
+      })
 
-      setCurrentTrip({ ...currentTrip, days: array })
-
-      // props.setTripTripName(currentTrip.name);
+    
       props.setTripStartLocation(currentTrip.startLocation);
       props.setTripDestination(currentTrip.destination);
       props.setTripDates(array);
@@ -203,14 +181,6 @@ function SearchForm(props) {
 
   }
 
-  // function handleTripSubmit(e) {
-  //   e.preventDefault();
-  //   console.log(props.tripTripName);
-  //   console.log(props.tripStartLocation);
-  //   console.log(props.tripDestination);
-  //   console.log(props.tripDates);
-  //   history.push("/review")
-  // }
 
 
   return (
@@ -244,7 +214,7 @@ function SearchForm(props) {
                   {/* <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} /> */}
                   <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
-                  <SearchBar placeholder={"Destination"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar placeholder={"Destination"} setDestinationPicture={props.setDestinationPicture} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
                   <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
                   <button className="btn btn-block btn-primary col-lg-8 centerX mt-3" type="button" onClick={() => handleBtnClick()}>Submit</button>

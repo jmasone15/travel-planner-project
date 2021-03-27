@@ -12,6 +12,8 @@ function Recommend(props) {
     return (
         <div>
             <SearchForm
+                destinationPicture={props.destinationPicture}
+                setDestinationPicture={props.setDestinationPicture}
                 tripTripName={props.tripTripName}
                 setTripTripName={props.setTripTripName}
                 tripStartLocation={props.tripStartLocation}

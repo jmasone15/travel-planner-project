@@ -78,6 +78,9 @@ export default function ReviewPage(props) {
             <br /><br />
             {showTripData ?
                 <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                    {props.destinationPicture ?
+                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.destinationPicture}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                                : null}
                     <h3><b>Your Trip to:</b> {props.tripDestination}</h3>
                     <br />
                     <p><b>Trip name:</b> {props.tripTripName}</p>
