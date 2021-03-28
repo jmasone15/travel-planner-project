@@ -33,7 +33,7 @@ export default function Router() {
     const [hotelsArray, setHotelsArray] = useState([])
     const [shoppingArray, setShoppingArray] = useState([])
     const [restaurantsArray, setRestaurantsArray] = useState([])
-    const [destinationPicture, setDestinationPicture] = useState()
+    const [destinationPicture, setDestinationPicture] = useState("")
 
     return (
         <Wrapper>
@@ -108,6 +108,7 @@ export default function Router() {
                             <Route path="/review">
                                 <ReviewPage
                                     destinationPicture={destinationPicture}
+                                    setDestinationPicture={setDestinationPicture}
                                     tripTripName={tripTripName}
                                     tripStartLocation={tripStartLocation}
                                     tripDestination={tripDestination}

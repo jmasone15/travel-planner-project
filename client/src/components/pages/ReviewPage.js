@@ -15,10 +15,7 @@ export default function ReviewPage(props) {
         return (`${result[0]} - ${result[result.length - 1]}`)
     }
 
-    async function getUserData() {
-        const userData = await axios.get(`user/profile/${userId}`);
-        setProfileEmail(userData.data.email)
-    }
+    
 
     function reviewTrip(e) {
         e.preventDefault();
@@ -32,12 +29,14 @@ export default function ReviewPage(props) {
 
     async function saveTravelPlans(e) {
         e.preventDefault();
-        console.log(props.tripExpenses);
+        console.log(props.destinationPicture);
+        
 
         try {
             const travelData = {
                 tripName: props.tripTripName,
                 budget: props.tripBudget,
+                pic: props.destinationPicture,
                 expenses: JSON.parse(props.tripExpenses),
                 startLocation: props.tripStartLocation,
                 destination: props.tripDestination,
@@ -49,6 +48,7 @@ export default function ReviewPage(props) {
             alert("Trip Added!")
             props.setTripName("");
             props.setTripBudget(0);
+            props.setDestinationPicture("")
             props.setTripDestination("");
             props.setTripStartLocation("");
             props.setTripDates([]);
@@ -62,7 +62,11 @@ export default function ReviewPage(props) {
     }
 
     useEffect(() => {
-        getUserData();
+        const getUserData = async () => {
+            const userData = await axios.get(`user/profile/${userId}`);
+            setProfileEmail(userData.data.email)
+        }
+        getUserData()
     }, []);
 
     return (

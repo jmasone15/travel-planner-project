@@ -4,6 +4,7 @@ import UserContext from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import bgBlue from "../../images/bgBlue.png";
+import ReviewPage from './ReviewPage';
 
 
 export default function ProfilePage(props) {
@@ -119,6 +120,9 @@ export default function ProfilePage(props) {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
                         <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e0e1ccb7"}}>
+                        {trip.pic ?
+                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.pic}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                                : null}
                             <h3><b>Your Trip to:</b> {trip.destination}</h3>
                             <br />
                             <p><b>Trip name:</b> {trip.tripName}</p>
