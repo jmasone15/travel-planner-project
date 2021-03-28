@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Tab, Row, Col, Container, ListGroup } from "react-bootstrap";
 import Attraction from "./Attraction";
+import "../../css/searchForm.css"
 
 function MyCard(props) {
 
@@ -21,10 +22,11 @@ function MyCard(props) {
         await props.setActivitiesArray([...props.activitiesArray, newActivity])
     }
     return (
+        // style={{ width: "auto", height: "750px", overflowY: "scroll" }}
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link">
             <Row>
                 <Col sm={3}>
-                    <ListGroup>
+                    <ListGroup style={{ overflowY: "scroll", width: "auto", height: "750px" }}>
                         {props.data.map((place, index) => (
                             <ListGroup.Item action key={index} href={`#link${place.name}`}>
                                 {place.name}
@@ -57,7 +59,7 @@ function MyCard(props) {
                     </Tab.Content>
                 </Col>
             </Row>
-        </Tab.Container>
+        </Tab.Container >
     )
 }
 
