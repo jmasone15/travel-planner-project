@@ -33,6 +33,7 @@ function ItineraryPage(props) {
         setShowActs(true);
         props.setType(props.poiArray);
         props.setShowResults(true);
+        console.log(props.activitiesArray);
     }
 
     async function resetPage(e) {
@@ -132,6 +133,16 @@ function ItineraryPage(props) {
                                     </div>
                                     : <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
                                         <h3 className="text-center font">{currentTrip}</h3>
+                                        <div style={{ textAlign: "center", paddingBottom: "20px" }}>
+                                            {currentAct === "attractions" ? <button className="btn btn-success" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>
+                                                : <button className="btn btn-secondary" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>}
+                                            {currentAct === "restaurants" ? <button className="btn btn-success" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
+                                                : <button className="btn btn-secondary" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>}
+                                            {currentAct === "shopping" ? <button className="btn btn-success" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>
+                                                : <button className="btn btn-secondary" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>}
+                                            {currentAct === "hotels" ? <button className="btn btn-success" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>
+                                                : <button className="btn btn-secondary" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>}
+                                        </div>
                                         <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => changePage(e)}>Generate PDF!</button>
                                         <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Restart</button>
                                     </div>
@@ -153,19 +164,7 @@ function ItineraryPage(props) {
                         {showActs ? <div className="">
                             <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
                                 <div className="row">
-                                    <div style={{ textAlign: "center", paddingBottom: "20px" }}>
-                                        {currentAct === "attractions" ? <button className="btn btn-success" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>
-                                            : <button className="btn btn-secondary" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>}
-                                        {currentAct === "restaurants" ? <button className="btn btn-success" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>
-                                            : <button className="btn btn-secondary" name="restaurants" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Restaurants</button>}
-                                        {currentAct === "shopping" ? <button className="btn btn-success" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>
-                                            : <button className="btn btn-secondary" name="shopping" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Shopping</button>}
-                                        {currentAct === "hotels" ? <button className="btn btn-success" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>
-                                            : <button className="btn btn-secondary" name="hotels" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Hotels</button>}
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div style={{ width: "auto", height: "300px", overflow: "scroll", justifyContent: "center", display: "flex" }}>
+                                    <div>
                                         {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} /> : null}
                                     </div>
                                 </div>
