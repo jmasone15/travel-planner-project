@@ -10,3 +10,10 @@
 .borderColor{
     border-color: rgb(163, 163, 163);
 }
+
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
