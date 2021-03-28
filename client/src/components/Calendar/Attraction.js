@@ -1,0 +1,21 @@
+import React from 'react'
+
+export default function Attraction({ title, geo, refs, img, rating, address, id, userRatings, btnClick }) {
+
+    return (
+        <div>
+            <div className="row" key={id} style={{ paddingBottom: "20px", paddingTop: "20px", textAlign: "center" }}>
+                <h3>{title}</h3>
+                {img ?
+                    <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${img[0].photo_reference}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                    : ""}
+                <div style={{ marginTop: "10px" }}>
+                    <h5>Rating: {rating}</h5>
+                    <p>Reviews: {userRatings}</p>
+                    <p>{address}</p>
+                    <button className="btn btn-primary mt-2 p-2 shadow" onClick={() => btnClick(title, geo, address, refs)} >Add to itenerary</button>
+                </div>
+            </div>
+        </div>
+    )
+}
