@@ -121,8 +121,8 @@ export default function ProfilePage(props) {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
                         <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e0e1ccb7" }}>
-                            {trip.pic ? //eslint-disable-next-line
-                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.pic}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                            {trip.pic ? 
+                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.pic}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} alt="Destination img" />
                                 : null}
                             <h3><b>Your Trip to:</b> {trip.destination}</h3>
                             <br />
