@@ -94,6 +94,7 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                                 <hr />
                                 <p className="text-1"><strong>NOTE :</strong> This is computer generated itinerary and does not require physical signature.</p>
                                 <div className="btn-group btn-group-sm d-print-none">
+                                 {/* eslint-disable-next-line  */}
                                     <a href="javascript:window.print()" className="btn btn-light border text-black-50 shadow-none"><i className="fa fa-print"></i> Print</a>
                                 </div>
                             </footer>
@@ -101,6 +102,6 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                     </ReactToPdf>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
