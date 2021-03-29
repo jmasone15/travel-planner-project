@@ -93,10 +93,10 @@ export default function ProfilePage(props) {
         }}>
             <div style={{ textAlign: "center" }}>
                 <h1>Welcome, {profileEmail}</h1>
-                <button style={{ backgroundColor: "#4c6967" }} className="btn text-white" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
+                <button style={{ backgroundColor: "#69ab8e" }} className="btn text-white" onClick={(e) => updateClick(e, true)}>Edit your profile</button>
             </div>
             {showProfile ?
-                <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#b1d1b4b7" }}>
+                <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e5e6d7" }}>
                     <label>Change your profile email:</label>
                     <input type="text" value={updateEmail} onChange={(e) => setUpdateEmail(e.target.value)} />
                     <br /><br />
@@ -104,7 +104,8 @@ export default function ProfilePage(props) {
                     <input type="password" value={updatePass} onChange={(e) => setUpdatePass(e.target.value)} />
                     <br /><br />
                     <div style={{ textAlign: "center" }}>
-                        <button className="btn btn-block btn-primary mt-2 p-2 shadow" onClick={(e) => updateProfile(e)}>Update Profile</button>
+                        <button className="btn btn-block btn-primary mt-2 p-2 shadow"
+                            style={{backgroundColor:"#69ab8e"}}onClick={(e) => updateProfile(e)}>Update Profile</button>
                         <button className="btn btn-block btn-danger mt-2 p-2 shadow" onClick={(e) => updateClick(e, false)}>Changed my mind.</button>
                     </div>
                 </div> : ""}
@@ -120,7 +121,7 @@ export default function ProfilePage(props) {
             {
                 tripArray.length !== 0 && tripArray.map((trip) => (
                     <div>
-                        <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e0e1ccb7" }}>
+                        <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor: "#e5e6d7" }}>
                             {trip.pic ? 
                                 <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.pic}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} alt="Destination img" />
                                 : null}
