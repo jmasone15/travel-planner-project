@@ -16,3 +16,12 @@
     padding: 0 i !important;
     /* height: 6rem !important; */
   }
+
+  @keyframes logo-spin {
+      from {
+          transform:rotate(0deg);
+      }
+      to {
+          transform: rotate(360deg);
+      }
+  }
