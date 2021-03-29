@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import Logout from "../auth/Logout";
+// import Logout from "../auth/Logout";
 import { useHistory } from "react-router";
 import axios from "axios";
 import "../../css/navbar.css"

@@ -88,6 +88,7 @@ export default function UpdatePage(props) {
 
     useEffect(() => {
         getTripData()
+        //eslint-disable-next-line
     }, []);
 
     return (
