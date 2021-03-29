@@ -36,7 +36,8 @@ function ModifyBudget({
 
   return (
     <div className="mb-3 d-flex justify-content-center">
-      <div className="col-lg-8 col-md-12 shadow p-3 yellowBg rounded">
+      <div className="col-lg-8 col-md-12 shadow p-3 rounded"
+      style={{backgroundColor:"#f0df8a"}}>
       <div className="d-flex justify-content-end p-0">
         <button onClick={clearModify} className="btn">
           <i className="fas fa-times"></i>

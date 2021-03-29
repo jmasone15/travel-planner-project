@@ -21,7 +21,8 @@ function BudgetInput({ onChange, putTotalBudget, save}) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="input bg-white p-3 col-lg-5 shadow">
+      <div className="input p-3 col-lg-5 shadow text-center"
+      style={{backgroundColor:"#e5e6d7"}}>
         <h3>What's Your Budget?</h3>
         <form className="budgetInputPosition">
           <input
@@ -38,7 +39,8 @@ function BudgetInput({ onChange, putTotalBudget, save}) {
           {numeral.validate(userBudget) && (
             <div className="input-group-append d-flex justify-content-center">
               <button
-                className="btn btn-block btn-success mt-2 p-2 shadow "
+                className="btn btn-block mt-2 p-2 shadow text-white"
+                style={{backgroundColor:"#69ab8e"}}
                 onClick={handleClick}
                 disabled={!numeral.validate(userBudget)}
               >

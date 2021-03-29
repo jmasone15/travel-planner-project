@@ -4,14 +4,15 @@ input {
   padding: 0px;
 }
 
+
 .bgThis {
   background-image: url("../images/bgBlue.png");
-  height: 100vh;
+  height: 250vh;
   /* height: 100%; */
   width: 100%;
   position: relative;
   /* background-repeat: no-repeat;  */
-  background-size: cover;
+  /* background-size: cover; */
 }
 
 /* form {
@@ -87,5 +88,5 @@ input::-webkit-input-placeholder {
 }
 
 .yellowBg{
-  background-color: #f3e6a4;
+  background-color: #f1e6af;
 }
