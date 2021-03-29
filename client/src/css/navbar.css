@@ -4,10 +4,15 @@
 
 .logo {
     width: 10.25rem;
-   margin-bottom: 0%;
-   padding-bottom: 0%;
+    animation: logo-spin infinite 20s linear;
 }
 
-.navbar {
+/* .navbar {
     height: 5.25rem;
-}
+} */
+
+.navbar-brand {
+    max-width: 10.25rem;
+    padding: 0 i !important;
+    /* height: 6rem !important; */
+  }
