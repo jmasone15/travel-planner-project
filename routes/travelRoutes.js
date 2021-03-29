@@ -5,23 +5,23 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post("/new", auth, async (req, res) => {
-    try {
-        const newTravel = new Travel({
-            tripName: req.body.tripName,
-            budget: req.body.budget,
-            expenses: req.body.expenses,
-            startLocation: req.body.startLocation,
-            destination: req.body.destination,
-            dates: req.body.dates,
-            userId: req.body.userId
-        });
+  try {
+    const newTravel = new Travel({
+      tripName: req.body.tripName,
+      budget: req.body.budget,
+      expenses: req.body.expenses,
+      startLocation: req.body.startLocation,
+      destination: req.body.destination,
+      dates: req.body.dates,
+      userId: req.body.userId
+    });
 
-        const createMsg = {
-            to: req.body.email,
-            from: "fouramigos36@gmail.com",
-            subject: 'Welcome to Donde!',
-            text: 'Welcome to Donde!',
-            html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    const createMsg = {
+      to: req.body.email,
+      from: "fouramigos36@gmail.com",
+      subject: 'Welcome to Donde!',
+      text: 'Welcome to Donde!',
+      html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -243,82 +243,96 @@ router.post("/new", auth, async (req, res) => {
       </center>
     </body>
   </html>`
-        }
-
-        sgMail
-            .send(createMsg)
-            .then(() => {
-                console.log('Email sent')
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-
-
-        const saveTravel = await newTravel.save();
-        res.json(saveTravel);
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
     }
+
+    sgMail
+      .send(createMsg)
+      .then(() => {
+        console.log('Email sent')
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+
+    const saveTravel = await newTravel.save();
+    res.json(saveTravel);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
 
 // Get route
 
 router.get("/:id", auth, async (req, res) => {
-    try {
-        const travels = await Travel.find({ userId: req.params.id });
-        res.json(travels);
+  try {
+    const travels = await Travel.find({ userId: req.params.id });
+    res.json(travels);
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
 
 router.get("/trip/:id", auth, async (req, res) => {
-    try {
-        const travel = await Travel.findOne({ _id: req.params.id });
-        res.json(travel);
+  try {
+    const travel = await Travel.findOne({ _id: req.params.id });
+    res.json(travel);
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
 
 router.put("/update/:id", auth, async (req, res) => {
-    try {
-        const updatedTravel = await Travel.findOneAndUpdate(
-            {
-                _id: req.params.id
-            },
-            {
-                tripName: req.body.tripName,
-                budget: req.body.budget,
-                startLocation: req.body.startLocation,
-                destination: req.body.destination,
-                dates: req.body.dates
-            }
-        )
-        res.json(updatedTravel);
+  try {
+    const updatedTravel = await Travel.findOneAndUpdate(
+      {
+        _id: req.params.id
+      },
+      {
+        tripName: req.body.tripName,
+        budget: req.body.budget,
+        startLocation: req.body.startLocation,
+        destination: req.body.destination,
+        dates: req.body.dates
+      }
+    )
+    res.json(updatedTravel);
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
+});
+
+router.put("/activities/:id", auth, async (req, res) => {
+  try {
+
+    const updatedTravel = await Travel.findOneAndUpdate(
+      { _id: req.params.id }, { activities: req.body.activities }
+    )
+    res.json(updatedTravel);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
 
 router.delete("/:id", auth, async (req, res) => {
-    try {
-        const deletedTravel = await Travel.deleteOne({ _id: req.params.id });
-        res.json(deletedTravel);
+  try {
+    const deletedTravel = await Travel.deleteOne({ _id: req.params.id });
+    res.json(deletedTravel);
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
 
 module.exports = router;

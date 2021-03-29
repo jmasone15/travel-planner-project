@@ -13,6 +13,7 @@ function ItineraryPage(props) {
     const [showActs, setShowActs] = useState(false);
     const [currentTrip, setCurrentTrip] = useState("");
     const [currentAct, setCurrentAct] = useState("attractions");
+    const [tripId, setTripId] = useState("");
 
     async function getUserData() {
         const userData = await axios.get(`user/profile/${userId}`);
@@ -28,19 +29,22 @@ function ItineraryPage(props) {
     async function getSelectedTrip(e, id, place) {
         e.preventDefault();
         const sTrip = await axios.get(`/api/trip/${id}`);
+        setTripId(sTrip.data._id);
         props.setSelectedTrip(sTrip.data);
         setCurrentTrip(place);
         setShowActs(true);
         props.setType(props.poiArray);
         props.setShowResults(true);
-        console.log(props.activitiesArray);
     }
 
     async function resetPage(e) {
         e.preventDefault();
+        await axios.put(`/api/activities/${tripId}`, { activities: [] });
+
         setShowActs(false);
         setCurrentTrip("");
         props.setActivitiesArray([]);
+        props.setNewActivity({});
     }
 
     function handleFormSubmit(e) {
@@ -74,7 +78,6 @@ function ItineraryPage(props) {
     function getPoi(where) {
 
         axios.get(`/google/attractions/${where}`).then((results) => {
-            console.log(results)
             props.setPoiArray(results.data.results);
         })
     }
@@ -99,11 +102,13 @@ function ItineraryPage(props) {
 
     async function changePage(e) {
         e.preventDefault();
+        console.log(tripId)
+        await axios.put(`/api/activities/${tripId}`, { activities: props.activitiesArray });
+        getTripData();
         history.push("/pdf");
     }
 
     useEffect(() => {
-        console.log(props.activitiesArray);
         if (props.selectedTrip.destination !== undefined) {
             getPoi(props.selectedTrip.destination)
             getHotels(props.selectedTrip.destination)
@@ -177,7 +182,7 @@ function ItineraryPage(props) {
                                 </div>
                                 <div className="row">
                                     <div>
-                                        {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} /> : null}
+                                        {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} newActivity={props.newActivity} setNewActivity={props.setNewActivity} /> : null}
                                     </div>
                                 </div>
                             </div>

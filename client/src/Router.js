@@ -33,7 +33,8 @@ export default function Router() {
     const [hotelsArray, setHotelsArray] = useState([])
     const [shoppingArray, setShoppingArray] = useState([])
     const [restaurantsArray, setRestaurantsArray] = useState([])
-    const [destinationPicture, setDestinationPicture] = useState("")
+    const [destinationPicture, setDestinationPicture] = useState("");
+    const [newActivity, setNewActivity] = useState(null);
 
     return (
         <Wrapper>
@@ -146,6 +147,8 @@ export default function Router() {
                                     hotelsArray={hotelsArray}
                                     shoppingArray={shoppingArray}
                                     restaurantsArray={restaurantsArray}
+                                    newActivity={newActivity}
+                                    setNewActivity={setNewActivity}
                                     setTripArray={setTripArray}
                                     setSelectedTrip={setSelectedTrip}
                                     setActivitiesArray={setActivitiesArray}
