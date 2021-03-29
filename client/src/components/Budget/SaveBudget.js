@@ -4,7 +4,7 @@ function SaveBudget({save, className}) {
 
     return (
         <button className={className} onClick={save}>
-        Save Budget to Trip <i class="far fa-share-square"></i>
+        Save Budget to Trip <i className="far fa-share-square"></i>
       </button>
     )
 }

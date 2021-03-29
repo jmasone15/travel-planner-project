@@ -14,11 +14,6 @@ function TransactionList({
     <>
       <div className="col-lg-12 p-1 shadow centerX tList">
         <div className="col-lg-12">
-          {/* <div className="row d-flex justify-content-between tList bg-white border m-2">
-            <div className="col-lg-5 border-right px-2 center-text font-weight-bold">Expense</div>
-            <div className="col-lg-4 border-right px-2 center-text font-weight-bold">Amount</div>
-            <div className="col-lg-3 centerX "><ClearTransactions onDeleteAllClick={onDeleteAllClick} /></div>
-          </div> */}
           {listOfTransactions.map((transaction) => (
             <Transaction
               key={transaction.id}

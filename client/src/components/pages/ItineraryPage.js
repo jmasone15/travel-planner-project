@@ -5,7 +5,9 @@ import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
 import "./home.css";
+
 const MyCard = React.lazy(() => import('../Calendar/MyCard'));
+import { FaTrash } from 'react-icons/fa';
 
 function ItineraryPage(props) {
     const { userId } = useContext(UserContext);
@@ -31,20 +33,29 @@ function ItineraryPage(props) {
         const sTrip = await axios.get(`/api/trip/${id}`);
         setTripId(sTrip.data._id);
         props.setSelectedTrip(sTrip.data);
+        props.setActivitiesArray(sTrip.data.activities)
         setCurrentTrip(place);
         setShowActs(true);
         props.setType(props.poiArray);
         props.setShowResults(true);
     }
 
-    async function resetPage(e) {
+    function resetPage(e) {
         e.preventDefault();
-        await axios.put(`/api/activities/${tripId}`, { activities: [] });
 
         setShowActs(false);
         setCurrentTrip("");
-        props.setActivitiesArray([]);
         props.setNewActivity({});
+        getTripData();
+    }
+
+    async function removeActivity(e, value) {
+        e.preventDefault();
+
+        let i = props.activitiesArray.indexOf(value);
+        props.activitiesArray.splice(i, 1)
+        await axios.put(`/api/activities/${tripId}`, { activities: props.activitiesArray });
+        getTripData();
     }
 
     function handleFormSubmit(e) {
@@ -100,12 +111,12 @@ function ItineraryPage(props) {
         })
     }
 
-    async function changePage(e) {
+    async function saveActivities(e) {
         e.preventDefault();
         console.log(tripId)
         await axios.put(`/api/activities/${tripId}`, { activities: props.activitiesArray });
-        getTripData();
-        history.push("/pdf");
+        alert("Activities saved!")
+        history.push("/pdf")
     }
 
     useEffect(() => {
@@ -144,12 +155,12 @@ function ItineraryPage(props) {
                                         <div>
                                             <h3 className="font">Activities:</h3>
                                             {props.activitiesArray.map((act) => (
-                                                <p style={{ fontSize: "17px", cursor: "pointer" }}>{act.name}</p>
+                                                <p style={{ fontSize: "17px" }}>{act.name}    <FaTrash style={{ cursor: "pointer" }} onClick={(e) => removeActivity(e, act)} /></p>
                                             ))}
                                             <hr />
                                         </div>
-                                        <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => changePage(e)}>Generate PDF!</button>
-                                        <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Restart</button>
+                                        <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => saveActivities(e)}>Save Activities</button>
+                                        <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Go Back</button>
                                     </div>
                                 }
                             </div>

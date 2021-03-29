@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <nav style={nav} className="navbar navbar-expand-lg navbar-dark">
-       <a className="navbar-brand" href="/home"> <img className="logo" src={Logo} alt="Logo..." /> </a>
+      <a className="navbar-brand" href="/home"> <img className="logo" src={Logo} alt="Logo..." /> </a>
       <button
         className="navbar-toggler"
         type="button"
@@ -40,34 +40,36 @@ export default function Navbar() {
         className="collapse navbar-collapse justify-content-end"
         id="navbarNavAltMarkup"
       > */}
-        <div className="navbar-nav collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-          {loggedIn === false && (
-            <Link className="navbar-brand" to="/">
-              ¿login | signup?
-            </Link>
-          )}
-          {loggedIn === true && (
-            <div className="navbar-nav">
-              <ul className="navbar-nav">
-                <li className="nav-item nav-link">
-                  <Link to="/home" className="nav-link active navLinks">
-                    ¿home?
+      <div className="navbar-nav collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        {loggedIn === false && (
+          <Link className="navbar-brand" to="/">
+            ¿login | signup?
+          </Link>
+        )}
+        {loggedIn === true && (
+          <div className="navbar-nav">
+            <ul className="navbar-nav">
+              <li className="nav-item nav-link">
+                <Link to="/home" className="nav-link active navLinks">
+                  ¿home?
                   </Link>
+              </li>
+              <li className="nav-item nav-link">
+                <Link to="/profile" className="nav-link active navLinks">
+                  ¿profile?
+                  </Link>
+
                 </li>
                 <li className="nav-item nav-link">
-                  <Link to="/profile" className="nav-link active navLinks">
-                    ¿profile?
-                  </Link>
-                </li>
-                <li className="nav-item nav-link">
-                  <Link className="nav-link active navLinks" onClick={(e) => logOut(e)}>
+                  <Link to="#" className="nav-link active navLinks" onClick={(e) => logOut(e)}>
                     ¿logout?
+
                   </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
       {/* </div> */}
     </nav>
   );
