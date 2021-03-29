@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Tab, Row, Col, Container, ListGroup } from "react-bootstrap";
 import Attraction from "./Attraction";
 import "../../css/searchForm.css"
-import ScrollArea from "react-scrollbar";
+// import ScrollArea from "react-scrollbar";
 
 function MyCard(props) {
 
@@ -60,7 +60,7 @@ function MyCard(props) {
                     </Tab.Content>
                 </Col>
             </Row>
-        </Tab.Container >
+        </Tab.Container>
     )
 }
 
