@@ -50,7 +50,7 @@ function ModifyBudget({
           ref={inputEl}
           id="budget"
           type="text"
-          className="form-control curvedInput"
+          className="form-control"
           placeholder="$0.00"
           aria-label="$0.00"
           aria-describedby="basic-addon2"
