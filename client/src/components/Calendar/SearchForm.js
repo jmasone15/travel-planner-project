@@ -178,7 +178,7 @@ function SearchForm(props) {
                   <SearchBar placeholder={"Destination"} setDestinationPicture={props.setDestinationPicture} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
                   <Calender startDate={startDate} endDate={endDate} setEndDate={setEndDate} setStartDate={setStartDate} />
-                  <button className="btn btn-block btn-primary col-lg-8 centerX mt-3" type="button" onClick={() => handleBtnClick()}>Submit</button>
+                  <button className="btn btn-block text-white col-lg-8 centerX mt-3" style={{ backgroundColor:"#69Ab8E"}}type="button" onClick={() => handleBtnClick()}>Submit</button>
                 </div>
               </form>
 

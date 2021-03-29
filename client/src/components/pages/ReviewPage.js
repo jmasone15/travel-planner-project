@@ -73,16 +73,16 @@ export default function ReviewPage(props) {
     return (
         <div className="bgThis">
             <br />
-            <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+            <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor:"#e5e6d7"}}>
                 <form>
                     <label>Name your trip:</label>
                     <input type="text" placeholder="My Super Amazing Trip!" value={props.tripTripName} onChange={(e) => props.setTripName(e.target.value)} />
-                    <button className="btn btn-secondary mt-2 p-2 shadow" onClick={(e) => reviewTrip(e)} >Review Trip</button>
+                    <button className="btn mt-2 p-2 shadow text-light" style={{backgroundColor:"#69ab8e"}} onClick={(e) => reviewTrip(e)} >Review Trip</button>
                 </form>
             </div>
             <br /><br />
             {showTripData ?
-                <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
+                <div className="container shadow p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px", backgroundColor:"#e5e6d7" }}>
                     {props.destinationPicture ?
                                 <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.destinationPicture}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} alt={"destination img"} />
                                 : null}
