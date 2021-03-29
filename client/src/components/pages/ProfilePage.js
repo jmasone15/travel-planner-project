@@ -78,7 +78,7 @@ export default function ProfilePage(props) {
     useEffect(() => {
         getUserData();
         getTripData();
-    }, []);
+    }, [userId]);
 
     return (
         // <div className="bgThis">
