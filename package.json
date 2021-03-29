@@ -30,6 +30,7 @@
         "if-env": "^1.0.4",
         "jsonwebtoken": "^8.5.1",
         "link": "^0.1.5",
-        "mongoose": "^5.11.18"
+        "mongoose": "^5.11.18",
+        "react-star-ratings": "^2.3.0"
     }
 }
