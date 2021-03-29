@@ -299,6 +299,7 @@ router.put("/update/:id", auth, async (req, res) => {
                 budget: req.body.budget,
                 startLocation: req.body.startLocation,
                 destination: req.body.destination,
+                dates: req.body.dates
             }
         )
         res.json(updatedTravel);

@@ -17,12 +17,7 @@ function SearchForm(props) {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [datesArray, setDatesArray] = useState([])
-  const [showResults, setShowResults] = useState()
   const [type, setType] = useState([])
-  const [poiArray, setPoiArray] = useState([])
-  const [hotelsArray, setHotelsArray] = useState([])
-  const [shoppingArray, setShoppingArray] = useState([])
-  const [restaurantsArray, setRestaurantsArray] = useState([])
   const [editDate, setEditDate] = useState(0)
   const [askOnce, setAskOnce] = useState(false)
   const [latLng, setLatLng] = useState({ lat: 34.0902, lng: -95.7129 })
@@ -42,51 +37,12 @@ function SearchForm(props) {
       await cityState(results)
     }
 
-
-    if (currentTrip.destination !== undefined) {
-      getPoi(currentTrip.destination)
-      getHotels(currentTrip.destination)
-      getShop(currentTrip.destination)
-      getFood(currentTrip.destination)
-    }
-    else if (currentTrip.startLocation !== undefined) {
-      getPoi(currentTrip.startLocation)
-      getHotels(currentTrip.startLocation)
-      getShop(currentTrip.startLocation)
-      getFood(currentTrip.startLocation)
-    }
-
   }, [currentTrip]);
 
 
   useEffect(() => {
 
   }, [currentTrip, editDate, latLng, formattedLocation, reset])
-
-  function getPoi(where) {
-
-    axios.get("/google/attractions", where).then((results) => {
-      setPoiArray(results.data.results);
-    })
-  }
-
-  function getHotels(where) {
-    axios.get("/google/hotels", where).then((results) => {
-      setHotelsArray(results.data.results);
-    })
-  }
-
-  function getShop(where) {
-    axios.get("/google/shopping", where).then((results) => {
-      setShoppingArray(results.data.results);
-    })
-  }
-
-  function getFood(where) {
-    axios.get("/google/restaurants", where).then((results) => {
-      setRestaurantsArray(results.data.results);
-    })
-  }
 
   async function cityState(results) {
 
