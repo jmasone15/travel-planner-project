@@ -22,7 +22,6 @@ function ItineraryPage(props) {
     async function getTripData() {
         const userTrips = await axios.get(`/api/${userId}`)
         props.setTripArray(userTrips.data);
-        console.log(userTrips.data)
     }
 
     async function getSelectedTrip(e, id, place) {
@@ -33,7 +32,6 @@ function ItineraryPage(props) {
         setShowActs(true);
         props.setType(props.poiArray);
         props.setShowResults(true);
-        console.log(props.activitiesArray);
     }
 
     async function resetPage(e) {
@@ -41,6 +39,7 @@ function ItineraryPage(props) {
         setShowActs(false);
         setCurrentTrip("");
         props.setActivitiesArray([]);
+        props.setNewActivity({});
     }
 
     function handleFormSubmit(e) {
@@ -74,7 +73,6 @@ function ItineraryPage(props) {
     function getPoi(where) {
 
         axios.get(`/google/attractions/${where}`).then((results) => {
-            console.log(results)
             props.setPoiArray(results.data.results);
         })
     }
@@ -103,7 +101,6 @@ function ItineraryPage(props) {
     }
 
     useEffect(() => {
-        console.log(props.activitiesArray);
         if (props.selectedTrip.destination !== undefined) {
             getPoi(props.selectedTrip.destination)
             getHotels(props.selectedTrip.destination)
@@ -177,7 +174,7 @@ function ItineraryPage(props) {
                                 </div>
                                 <div className="row">
                                     <div>
-                                        {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} /> : null}
+                                        {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} newActivity={props.newActivity} setNewActivity={props.setNewActivity} /> : null}
                                     </div>
                                 </div>
                             </div>

@@ -1,27 +1,24 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Tab, Row, Col, Container, ListGroup } from "react-bootstrap";
 import Attraction from "./Attraction";
 import "../../css/searchForm.css"
-import ScrollArea from "react-scrollbar";
 
 function MyCard(props) {
 
-    const [newActivity, setNewActivity] = useState({});
+    let n = {};
 
     useEffect(() => {
 
     }, [props.activitiesArray])
 
 
-    async function handleBtnClick(name, location, address, photo_reference) {
-        await setNewActivity({ name, location, address, photo_reference, id: uuidv4() })
-        setActs();
+    function handleBtnClick(name, location, address, photo_reference) {
+        n = { name, location, address, photo_reference, id: uuidv4() }
+        console.log(n)
+        props.setActivitiesArray([...props.activitiesArray, n])
     }
 
-    async function setActs() {
-        await props.setActivitiesArray([...props.activitiesArray, newActivity])
-    }
     return (
         // style={{ width: "auto", height: "750px", overflowY: "scroll" }}
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link">
