@@ -53,7 +53,7 @@ function ItineraryPage(props) {
         e.preventDefault();
 
         let i = props.activitiesArray.indexOf(value);
-        props.activitiesArray.splice(i)
+        props.activitiesArray.splice(i, 1)
         await axios.put(`/api/activities/${tripId}`, { activities: props.activitiesArray });
         getTripData();
     }
