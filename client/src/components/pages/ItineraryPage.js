@@ -115,7 +115,7 @@ function ItineraryPage(props) {
     useEffect(() => {
         getUserData();
         getTripData();
-    }, []);
+    }, [userId]);
 
     return (
         <div className="bgThis">
