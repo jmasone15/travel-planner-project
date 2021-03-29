@@ -5,9 +5,10 @@ import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
 import "./home.css";
+import { FaTrash } from 'react-icons/fa';
 
 const MyCard = React.lazy(() => import('../Calendar/MyCard'));
-import { FaTrash } from 'react-icons/fa';
+
 
 function ItineraryPage(props) {
     const { userId } = useContext(UserContext);
