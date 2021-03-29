@@ -13,6 +13,7 @@ function ItineraryPage(props) {
     const [showActs, setShowActs] = useState(false);
     const [currentTrip, setCurrentTrip] = useState("");
     const [currentAct, setCurrentAct] = useState("attractions");
+    const [tripId, setTripId] = useState("");
 
     async function getUserData() {
         const userData = await axios.get(`user/profile/${userId}`);
@@ -22,11 +23,13 @@ function ItineraryPage(props) {
     async function getTripData() {
         const userTrips = await axios.get(`/api/${userId}`)
         props.setTripArray(userTrips.data);
+        console.log(userTrips.data)
     }
 
     async function getSelectedTrip(e, id, place) {
         e.preventDefault();
         const sTrip = await axios.get(`/api/trip/${id}`);
+        setTripId(sTrip.data._id);
         props.setSelectedTrip(sTrip.data);
         setCurrentTrip(place);
         setShowActs(true);
@@ -36,6 +39,8 @@ function ItineraryPage(props) {
 
     async function resetPage(e) {
         e.preventDefault();
+        await axios.put(`/api/activities/${tripId}`, { activities: [] });
+
         setShowActs(false);
         setCurrentTrip("");
         props.setActivitiesArray([]);
@@ -97,6 +102,9 @@ function ItineraryPage(props) {
 
     async function changePage(e) {
         e.preventDefault();
+        console.log(tripId)
+        await axios.put(`/api/activities/${tripId}`, { activities: props.activitiesArray });
+        getTripData();
         history.push("/pdf");
     }
 
