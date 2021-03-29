@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Suspense } from 'react';
 import { useHistory } from "react-router";
 import "../../css/budget.css";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
 import "../../css/itinerary.css"
 import "./home.css";
-import MyCard from '../Calendar/MyCard';
-import { FaTrash } from 'react-icons/fa';
 
+const MyCard = React.lazy(() => import('../Calendar/MyCard'));
+import { FaTrash } from 'react-icons/fa';
 
 function ItineraryPage(props) {
     const { userId } = useContext(UserContext);
@@ -193,7 +193,10 @@ function ItineraryPage(props) {
                                 </div>
                                 <div className="row">
                                     <div>
+                                        <Suspense fallback={<div>Loading...</div>}>
                                         {props.showResults ? <MyCard data={props.type} activitiesArray={props.activitiesArray} setActivitiesArray={props.setActivitiesArray} newActivity={props.newActivity} setNewActivity={props.setNewActivity} /> : null}
+                                        </Suspense>
+                                        
                                     </div>
                                 </div>
                             </div>
