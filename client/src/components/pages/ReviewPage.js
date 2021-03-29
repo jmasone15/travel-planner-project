@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 import { useHistory } from "react-router-dom";
-import { set } from 'mongoose';
+// import { set } from 'mongoose';
 
 export default function ReviewPage(props) {
     const { userId } = useContext(UserContext);
@@ -67,6 +67,7 @@ export default function ReviewPage(props) {
             setProfileEmail(userData.data.email)
         }
         getUserData()
+        //eslint-disable-next-line
     }, []);
 
     return (
@@ -83,7 +84,7 @@ export default function ReviewPage(props) {
             {showTripData ?
                 <div className="container shadow bg-light p-5 mt-3 col-lg-10" style={{ width: "500px", marginTop: "50px" }}>
                     {props.destinationPicture ?
-                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.destinationPicture}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                                <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.destinationPicture}&sensor=false&maxheight=250&maxwidth=250&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} alt={"destination img"} />
                                 : null}
                     <h3><b>Your Trip to:</b> {props.tripDestination}</h3>
                     <br />

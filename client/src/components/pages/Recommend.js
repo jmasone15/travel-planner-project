@@ -1,8 +1,8 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import SearchForm from "../Calendar/SearchForm";
 import "../../css/searchForm.css"
 
-import MapContainer from "../Calendar/MapContainer"
+// import MapContainer from "../Calendar/MapContainer"
 
 function Recommend(props) {
 
