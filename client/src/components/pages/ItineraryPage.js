@@ -48,11 +48,6 @@ function ItineraryPage(props) {
 
         const name = e.target.name
         switch (name) {
-            case "attractions":
-                props.setType(props.poiArray);
-                props.setShowResults(true);
-                setCurrentAct("attractions");
-                break;
             case "hotels":
                 props.setType(props.hotelsArray);
                 props.setShowResults(true);
@@ -67,6 +62,11 @@ function ItineraryPage(props) {
                 props.setType(props.restaurantsArray);
                 props.setShowResults(true);
                 setCurrentAct("restaurants");
+                break;
+            default:
+                props.setType(props.poiArray);
+                props.setShowResults(true);
+                setCurrentAct("attractions");
                 break;
         }
     }
@@ -110,11 +110,13 @@ function ItineraryPage(props) {
             getShop(props.selectedTrip.destination)
             getFood(props.selectedTrip.destination)
         }
+        //eslint-disable-next-line
     }, [props.selectedTrip, props.activitiesArray]);
 
     useEffect(() => {
         getUserData();
         getTripData();
+        //eslint-disable-next-line
     }, [userId]);
 
     return (
