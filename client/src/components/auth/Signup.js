@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import AuthContext from "../../context/AuthContext";
-import Container from "../Card";
+// import Container from "../Card";
 import { Link } from "react-router-dom";
 import * as goIcons from "react-icons/go";
-import * as mdIcons from "react-icons/md";
+// import * as mdIcons from "react-icons/md";
 import "../Card/style.css";
 import Bgv from "../../components/Video/bgv.mp4";
 
