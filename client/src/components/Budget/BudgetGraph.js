@@ -11,6 +11,7 @@ function BudgetGraph({ listOfTransactions }) {
 
   useEffect(() => {
     updateDataVariables();
+    //eslint-disable-next-line
   }, [transactionsLength]);
 
   const updateDataVariables = () => {

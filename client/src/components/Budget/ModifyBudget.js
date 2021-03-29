@@ -39,7 +39,7 @@ function ModifyBudget({
       <div className="col-lg-8 col-md-12 shadow p-3 yellowBg rounded">
       <div className="d-flex justify-content-end p-0">
         <button onClick={clearModify} className="btn">
-          <i class="fas fa-times"></i>
+          <i className="fas fa-times"></i>
         </button>
         </div>
         {/* Input for Modifying Budget */}
@@ -68,7 +68,7 @@ function ModifyBudget({
             onClick={handleAddClick}
             disabled={!numeral.validate(userModifyBudget)}
           >
-            <i class="fas fa-plus"></i>
+            <i className="fas fa-plus"></i>
           </button>
 
           {/* Subtract from Budget */}
@@ -82,7 +82,7 @@ function ModifyBudget({
             onClick={handleSubtractClick}
             disabled={!numeral.validate(userModifyBudget) || userModifyBudget >= totalBudget}
           >
-            <i class="fas fa-minus"></i>
+            <i className="fas fa-minus"></i>
           </button>
         </div>
       </div>

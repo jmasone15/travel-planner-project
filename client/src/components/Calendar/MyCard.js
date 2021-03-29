@@ -57,7 +57,7 @@ function MyCard(props) {
                     </Tab.Content>
                 </Col>
             </Row>
-        </Tab.Container >
+        </Tab.Container>
     )
 }
 

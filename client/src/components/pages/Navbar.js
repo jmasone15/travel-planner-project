@@ -58,10 +58,12 @@ export default function Navbar() {
                 <Link to="/profile" className="nav-link active navLinks">
                   ¿profile?
                   </Link>
-              </li>
-              <li className="nav-item nav-link">
-                <Link className="nav-link active navLinks" onClick={(e) => logOut(e)}>
-                  ¿logout?
+
+                </li>
+                <li className="nav-item nav-link">
+                  <Link to="#" className="nav-link active navLinks" onClick={(e) => logOut(e)}>
+                    ¿logout?
+
                   </Link>
               </li>
             </ul>

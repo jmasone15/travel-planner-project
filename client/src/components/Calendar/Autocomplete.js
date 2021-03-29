@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { GoogleApiWrapper } from 'google-maps-react';
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
