@@ -1,33 +1,32 @@
 import { React, useState, useEffect } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useHistory } from 'react-router';
-import MyCard from "./MyCard"
 import Calender from './Calender';
 import axios from "axios";
+// import MyCard from "./MyCard"
 import MapContainer from "./MapContainer"
-import Itinerary from "./Itinerary"
-import AddStuff from "./AddStuff"
+// import Itinerary from "./Itinerary"
+// import AddStuff from "./AddStuff"
 import SearchBar from "./Autocomplete"
 
 
 function SearchForm(props) {
 
-  const [currentTrip, setCurrentTrip] = useState({})
+  const [currentTrip, setCurrentTrip] = useState({}) //eslint-disable-next-line
   const [showReview, setShowReview] = useState(false);
   const [startDate, setStartDate] = useState(null)
-  const [endDate, setEndDate] = useState(null)
-  const [datesArray, setDatesArray] = useState([])
-  const [type, setType] = useState([])
-  const [editDate, setEditDate] = useState(0)
+  const [endDate, setEndDate] = useState(null) //eslint-disable-next-line
+  const [datesArray, setDatesArray] = useState([]) //eslint-disable-next-line
+  const [type, setType] = useState([]) //eslint-disable-next-line
+  const [editDate, setEditDate] = useState(0) 
   const [askOnce, setAskOnce] = useState(false)
   const [latLng, setLatLng] = useState({ lat: 34.0902, lng: -95.7129 })
   const [formattedLocation, setFormattedLocation] = useState("")
   const [reset, setReset] = useState();
   const history = useHistory();
 
-
+//eslint-disable-next-line
   useEffect(async () => {
-
     if (!askOnce) {
       const userLocation = await axios.get("/google/location")
       setAskOnce(true)
@@ -36,7 +35,7 @@ function SearchForm(props) {
       const results = userCity.data.results
       await cityState(results)
     }
-
+//eslint-disable-next-line
   }, [currentTrip]);
 
 
@@ -52,22 +51,25 @@ function SearchForm(props) {
 
     if (results[1]) {
       var indice = 0;
-      for (var j = 0; j < results.length; j++) {
-        if (results[j].types[0] == 'locality') {
+      for (var j = 0; j < results.length; j++) { //eslint-disable-next-line
+        if (results[j].types[0] == 'locality') { //eslint-disable-next-line
           indice = j;
           break;
         }
       }
 
-      for (var i = 0; i < results[j].address_components.length; i++) {
+      for (var i = 0; i < results[j].address_components.length; i++) { 
+        //eslint-disable-next-line
         if (results[j].address_components[i].types[0] == "locality") {
           //this is the object you are looking for City
           city = results[j].address_components[i];
         }
+        //eslint-disable-next-line
         if (results[j].address_components[i].types[0] == "administrative_area_level_1") {
           //this is the object you are looking for State
           region = results[j].address_components[i];
         }
+        //eslint-disable-next-line
         if (results[j].address_components[i].types[0] == "country") {
           //this is the object you are looking for
           country = results[j].address_components[i];

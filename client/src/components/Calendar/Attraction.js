@@ -8,10 +8,9 @@ export default function Attraction({ title, geo, refs, img, rating, address, id,
             <div className="row" key={id} style={{ paddingBottom: "20px", paddingTop: "20px", textAlign: "center", justifyContent: "center" }}>
                 <h3>{title}</h3>
                 {img ?
-                    <img style={{ width: "750px", height: "500px" }} src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${img[0].photo_reference}&sensor=false&maxheight=1920&maxwidth=1080&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} />
+                    <img style={{ width: "750px", height: "500px" }} src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${img[0].photo_reference}&sensor=false&maxheight=1920&maxwidth=1080&key=AIzaSyCoiYtN7Xjb7P4JIpWRtlMiL9uQirs_icI`} alt = "attraction img" />
                     : ""}
                 <div style={{ marginTop: "10px" }}>
-                    {/* <h5>Rating: {attractionRating}</h5> */}
                     <StarRatings rating={rating} 
                     starDimension="30px"
                     starSpacing="7px"

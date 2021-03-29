@@ -1,6 +1,7 @@
-import { React, useState, useEffect, useRef } from 'react';
+import { React, useRef } from 'react';
+// import {useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from "styled-components";
+// import styled from "styled-components";
 import { useModal, Modal } from 'react-morphing-modal';
 import Activities from "./../Activities"
 import 'react-morphing-modal/dist/ReactMorphingModal.css';
@@ -10,15 +11,15 @@ function Itinerary(props) {
 
     const { modalProps, open } = useModal();
     const triggerRef = useRef(null);
-    const [showmodal, setShowModal] = useState(false);
+    // const [showmodal, setShowModal] = useState(false);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [showmodal])
-    const openModal = () => {
-        console.log(showmodal);
-        setShowModal((prev) => !prev);
-    }
+    // }, [showmodal])
+    // const openModal = () => {
+    //     console.log(showmodal);
+    //     setShowModal((prev) => !prev);
+    // }
 
     function updateValues(day) {
         props.setEditDate(day)
@@ -51,6 +52,5 @@ function Itinerary(props) {
         </div>
     )
 }
-
 
 export default Itinerary;
