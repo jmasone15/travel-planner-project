@@ -60,7 +60,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="nav-item nav-link">
-                  <Link className="nav-link active navLinks" onClick={(e) => logOut(e)}>
+                  <Link to="#" className="nav-link active navLinks" onClick={(e) => logOut(e)}>
                     ¿logout?
                   </Link>
                 </li>
