@@ -1,3 +1,13 @@
 .navLinks{
     font-size: 24px;
 }
+
+.logo {
+    width: 10.25rem;
+   margin-bottom: 0%;
+   padding-bottom: 0%;
+}
+
+.navbar {
+    height: 5.25rem;
+}

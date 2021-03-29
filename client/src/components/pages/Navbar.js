@@ -5,6 +5,7 @@ import Logout from "../auth/Logout";
 import { useHistory } from "react-router";
 import axios from "axios";
 import "../../css/navbar.css"
+import Logo from "../../images/logoDonde.png"
 
 export default function Navbar() {
   const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -21,7 +22,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={nav} className="navbar navbar-expand-lg navbar-dark p-3">
+    <nav style={nav} className="navbar navbar-expand-lg navbar-dark">
+       <a className="navbar-brand" href="/home"> <img className="logo" src={Logo} alt="Logo..." /> </a>
       <button
         className="navbar-toggler"
         type="button"
