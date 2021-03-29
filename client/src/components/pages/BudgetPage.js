@@ -96,7 +96,8 @@ function BudgetPage(props) {
         />
       )}
       {(totalBudget !==0) && (
-        <div className="container shadow bg-light p-5 mt-3 col-lg-10">
+        <div className="container shadow p-5 mt-3 col-lg-10"
+        style={{backgroundColor: "#e0e1cc"}}>
           <>
             <Budget budget={totalBudget} balance={budget}  />
             <BudgetOptions

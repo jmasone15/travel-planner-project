@@ -4,8 +4,8 @@ import AuthContext from "../../context/AuthContext";
 import Logout from "../auth/Logout";
 import { useHistory } from "react-router";
 import axios from "axios";
-import "../../css/navbar.css"
-import Logo from "../../images/logoDonde.png"
+import "../../css/navbar.css";
+import Logo from "../../images/logoDonde.png";
 
 export default function Navbar() {
   const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -23,7 +23,10 @@ export default function Navbar() {
 
   return (
     <nav style={nav} className="navbar navbar-expand-lg navbar-dark">
-       <a className="navbar-brand" href="/home"> <img className="logo" src={Logo} alt="Logo..." /> </a>
+      <a className="navbar-brand" href="/home">
+        {" "}
+        <img className="logo" src={Logo} alt="Logo..." />{" "}
+      </a>
       <button
         className="navbar-toggler"
         type="button"
@@ -36,39 +39,40 @@ export default function Navbar() {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      {/* <div
-        className="collapse navbar-collapse justify-content-end"
+      <div
+        className="navbar-nav collapse navbar-collapse justify-content-end"
         id="navbarNavAltMarkup"
-      > */}
-        <div className="navbar-nav collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-          {loggedIn === false && (
-            <Link className="navbar-brand" to="/">
-              ¿login | signup?
-            </Link>
-          )}
-          {loggedIn === true && (
-            <div className="navbar-nav">
-              <ul className="navbar-nav">
-                <li className="nav-item nav-link">
-                  <Link to="/home" className="nav-link active navLinks">
-                    ¿home?
-                  </Link>
-                </li>
-                <li className="nav-item nav-link">
-                  <Link to="/profile" className="nav-link active navLinks">
-                    ¿profile?
-                  </Link>
-                </li>
-                <li className="nav-item nav-link">
-                  <Link className="nav-link active navLinks" onClick={(e) => logOut(e)}>
-                    ¿logout?
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-      {/* </div> */}
+      >
+        {loggedIn === false && (
+          <Link className="navbar-brand" to="/">
+            ¿login | signup?
+          </Link>
+        )}
+        {loggedIn === true && (
+          <div className="navbar-nav">
+            <ul className="navbar-nav">
+              <li className="nav-item nav-link">
+                <Link to="/home" className="nav-link active navLinks">
+                  ¿home?
+                </Link>
+              </li>
+              <li className="nav-item nav-link">
+                <Link to="/profile" className="nav-link active navLinks">
+                  ¿profile?
+                </Link>
+              </li>
+              <li className="nav-item nav-link">
+                <Link
+                  className="nav-link active navLinks"
+                  onClick={(e) => logOut(e)}
+                >
+                  ¿logout?
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }

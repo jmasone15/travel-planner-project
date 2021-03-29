@@ -7,20 +7,11 @@ input {
 .bgThis {
   background-image: url("../images/bgBlue.png");
   height: 100vh;
-  /* height: 100%; */
   width: 100%;
-  position: relative;
-  /* background-repeat: no-repeat;  */
-  background-size: cover;
+  position:relative;
 }
 
-/* form {
-  background-color: #b1d1b4;
-  opacity: 90%;
-} */
-
 .tList {
-  /* background-color: #b1d1b4; */
   background-color: #EAC0A2;
   border-radius: 5px;
 }

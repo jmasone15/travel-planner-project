@@ -21,8 +21,9 @@ function BudgetInput({ onChange, putTotalBudget, save}) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="input bg-white p-3 col-lg-5 shadow">
-        <h3>What's Your Budget?</h3>
+      <div className="input p-3 col-lg-5 shadow"
+      style={{backgroundColor: "#e0e1cc"}}>
+        <h3 className="text-center">What's Your Budget?</h3>
         <form className="budgetInputPosition">
           <input
             ref={inputEl}
