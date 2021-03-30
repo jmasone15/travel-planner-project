@@ -144,11 +144,14 @@ function ItineraryPage(props) {
                         <div className="container">
                             <div className="row">
                                 {!showActs ?
-                                    <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
-                                        <h3 className="text-center font">Choose a trip:</h3>
+                                    <div className="col shadow p-3 mb-3 mt-5 bg-white rounded " style={{ textAlign: "center"}}>
+                                    <div className="">
+                                    <h3 className="text-center font">Choose a trip:</h3>
                                         {props.tripArray.map((trip) => (
                                             <p style={{ fontSize: "20px", cursor: "pointer" }} onClick={(e) => getSelectedTrip(e, trip._id, trip.destination)} key={trip._id}>{trip.destination}</p>
-                                        ))}
+                                        ))} 
+                                    </div>
+                                                                  
                                     </div>
                                     : <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
                                         <h3 className="text-center font">{currentTrip}</h3>
@@ -159,9 +162,9 @@ function ItineraryPage(props) {
                                                 <p style={{ fontSize: "17px" }}>{act.name}    <FaTrash style={{ cursor: "pointer" }} onClick={(e) => removeActivity(e, act)} /></p>
                                             ))}
                                             <hr />
-                                        </div>
-                                        <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => saveActivities(e)}>Save Activities</button>
-                                        <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Go Back</button>
+                                        </div> 
+                                        <button className="btn-block col-12 btn-success mb-2 p-2 shadow" onClick={(e) => saveActivities(e)}>Save Activities</button>
+                                        <button className="btn-block col-12 btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Go Back</button>
                                     </div>
                                 }
                             </div>
@@ -177,8 +180,8 @@ function ItineraryPage(props) {
                                 : ""} */}
                         </div>
                     </div>
-                    <div className="col-8">
-                        {showActs ? <div className="">
+                    {showActs && (<div className="col-8">
+                        <div className="">
                             <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
                                 <div className="row">
                                     <div style={{ textAlign: "center", paddingBottom: "20px" }}>
@@ -202,8 +205,8 @@ function ItineraryPage(props) {
                                 </div>
                             </div>
                             <br />
-                        </div> : ""}
-                    </div>
+                        </div>
+                    </div>)}
                 </div>
             </div>
         </div>
