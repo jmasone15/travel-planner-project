@@ -1,11 +1,15 @@
 import React from "react";
-import Card from "../Card";
+
 import { Link } from "react-router-dom";
 import { TimelineMax, Power1 } from "gsap/all";
 import "./home.css";
 import PDF from "../../images/packinglist.pdf";
 import travel from "../../images/traveling.jpeg";
+import itenerary from "../../images/itenerary.jpg";
+import packingList from "../../images/packingList.jpg";
+import startTrip from "../../images/startTrip.jpg";
 import RouteCard from "../RouteCard";
+import Card from "../Card";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -94,7 +98,7 @@ class HomePage extends React.Component {
             <div className="col-lg-4 col-md-6 col-sm-12" ref={(card1) => (this.card1 = card1)}>
               <RouteCard
                 title="Start Trip"
-                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1908&q=80"
+                src={startTrip}
                 text="Wanting to go on a well deserved VACATION, but have no idea where to even start? Let us help you out."
               >
                 <Link to="/budget">
@@ -110,7 +114,7 @@ class HomePage extends React.Component {
             <div className="col-lg-4 col-md-6 col-sm-12" ref={(card2) => (this.card2 = card2)}>
               <RouteCard
                 title="Packing List"
-                src="https://images.unsplash.com/photo-1479888230021-c24f136d849f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+                src={packingList}
                 text="Ever finding yourself under-packing and forgetting the most important items for your trip? Let us help you out."
               >
                 <Link to="/home">
@@ -126,7 +130,7 @@ class HomePage extends React.Component {
             <div className="col-lg-4 col-md-6 col-sm-12" ref={(card3) => (this.card3 = card3)}>
               <RouteCard
                 title="Itinerary"
-                src="https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+                src={itenerary}
                 text="It is hard to keep track of the time when you are having fun, need help staying organized? Let us help you out."
               >
                 <Link to="/itinerary">

@@ -1,18 +1,64 @@
 import React, { useContext, useState } from "react"
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import Loadable from 'react-loadable';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
-import HomePage from "./components/pages/HomePage";
 import Navbar from "./components/pages/Navbar";
-import BudgetPage from "./components/pages/BudgetPage";
 import AuthContext from "./context/AuthContext";
-import Recommend from "./components/pages/Recommend";
-import ReviewPage from "./components/pages/ReviewPage";
-import ProfilePage from "./components/pages/ProfilePage";
-import UpdatePage from "./components/pages/UpdatePage";
-import Wrapper from "./components/Wrapper";
-import Itinerary from "./components/pages/Itinerary";
-import ItineraryPage from "./components/pages/ItineraryPage";
+import bgBlue from "./images/bgBlue.png"
+
+const HomePage = Loadable({
+    loader: () => import('./components/pages/HomePage'),
+    loading: () => <div>Loading...</div>
+  });
+
+  const BudgetPage = Loadable({
+    loader: () => import('./components/pages/BudgetPage'),
+    loading: () => <img src={bgBlue}/>
+  });
+
+  const Recommend = Loadable({
+    loader: () => import('./components/pages/Recommend'),
+    loading: () => <div>Loading...</div>
+  });
+
+
+  const ReviewPage = Loadable({
+    loader: () => import('./components/pages/ReviewPage'),
+    loading: () => <div>Loading...</div>
+  });
+
+
+  const ProfilePage = Loadable({
+    loader: () => import('./components/pages/ProfilePage'),
+    loading: () => <div>Loading...</div>
+  });
+
+  const UpdatePage = Loadable({
+    loader: () => import('./components/pages/UpdatePage'),
+    loading: () => <div>Loading...</div>
+  });
+
+  const Wrapper = Loadable({
+    loader: () => import('./components/Wrapper'),
+    loading: () => <div>Loading...</div>
+  });
+
+  const Itinerary = Loadable({
+    loader: () => import('./components/pages/Itinerary'),
+    loading: () => <div>Loading...</div>
+  });
+
+  const ItineraryPage = Loadable({
+    loader: () => import('./components/pages/ItineraryPage'),
+    loading: () => <div>Loading...</div>
+  });
+
+
+//   const BudgetPage = Loadable({
+//     loader: () => import('./components/pages/BudgetPage'),
+//     loading: () => <div>Loading...</div>
+//   });
 
 export default function Router() {
     const { loggedIn, getLoggedIn } = useContext(AuthContext);
