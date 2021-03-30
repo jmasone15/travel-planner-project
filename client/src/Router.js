@@ -19,49 +19,49 @@ import bgBlue from "./images/bgBlue.png"
 const HomePage = Loadable({
     loader: () => import('./components/pages/HomePage'),
     loading: () => <div>Loading...</div>
-  });
+});
 
-  const BudgetPage = Loadable({
+const BudgetPage = Loadable({
     loader: () => import('./components/pages/BudgetPage'),
-    loading: () => <img src={bgBlue}/>
-  });
+    loading: () => <img src={bgBlue} />
+});
 
-  const Recommend = Loadable({
+const Recommend = Loadable({
     loader: () => import('./components/pages/Recommend'),
     loading: () => <div>Loading...</div>
-  });
+});
 
 
-  const ReviewPage = Loadable({
+const ReviewPage = Loadable({
     loader: () => import('./components/pages/ReviewPage'),
     loading: () => <div>Loading...</div>
-  });
+});
 
 
-  const ProfilePage = Loadable({
+const ProfilePage = Loadable({
     loader: () => import('./components/pages/ProfilePage'),
     loading: () => <div>Loading...</div>
-  });
+});
 
-  const UpdatePage = Loadable({
+const UpdatePage = Loadable({
     loader: () => import('./components/pages/UpdatePage'),
     loading: () => <div>Loading...</div>
-  });
+});
 
-  const Wrapper = Loadable({
+const Wrapper = Loadable({
     loader: () => import('./components/Wrapper'),
     loading: () => <div>Loading...</div>
-  });
+});
 
-  const Itinerary = Loadable({
+const Itinerary = Loadable({
     loader: () => import('./components/pages/Itinerary'),
     loading: () => <div>Loading...</div>
-  });
+});
 
-  const ItineraryPage = Loadable({
+const ItineraryPage = Loadable({
     loader: () => import('./components/pages/ItineraryPage'),
     loading: () => <div>Loading...</div>
-  });
+});
 
 
 //   const BudgetPage = Loadable({
