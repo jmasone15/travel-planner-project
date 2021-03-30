@@ -10,6 +10,7 @@
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "components": "^0.1.0",
+    "file-saver": "^2.0.5",
     "google-maps-react": "^2.0.6",
     "gsap": "^3.6.0",
     "numeral": "^2.0.6",
@@ -34,6 +35,9 @@
     "web-vitals": "^1.1.0"
   },
   "proxy": "http://localhost:3001/",
+  "resolutions": {
+    "jspdf/file-saver": "github:eligrey/FileSaver.js#e865e37af9f9947ddcced76b549e27dc45c1cb2e"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
