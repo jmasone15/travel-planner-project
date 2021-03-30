@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require("path");
+const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -34,6 +35,8 @@ app.use(allowCrossDomain);
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -43,27 +46,27 @@ if (process.env.NODE_ENV === "production") {
 // Mongo DB Setup
 
 // For Heroku use this
-mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/travelplannerdb',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false
-    }
-);
-
-// For local project use this
-// mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
+// mongoose.connect(
+//     process.env.MONGODB_URI || 'mongodb://localhost/travelplannerdb',
 //     {
 //         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     },
-//     (err) => {
-//         if (err) return console.error(err);
-//         console.log("Connected to MongoDB");
+//         useUnifiedTopology: true,
+//         useCreateIndex: true,
+//         useFindAndModify: false
 //     }
 // );
+
+// For local project use this
+mongoose.connect(process.env.MDB_CONNECT || "mongodb://localhost/travelplannerdb",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
+    (err) => {
+        if (err) return console.error(err);
+        console.log("Connected to MongoDB");
+    }
+);
 
 // Routes Set Up
 // When the path has "/auth" in it, express will then use the userRoutes file
@@ -72,6 +75,6 @@ app.use("/api", require("./routes/travelRoutes"));
 app.use("/google", require("./routes/API"));
 
 // Only use for heroku
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });

@@ -195,53 +195,91 @@ router.put("/profile/info/:id", auth, async (req, res) => {
     }
 });
 
-// Route to activate the user's account
-// router.put("/verify/:token", (req, res) => {
-//     User.findOne({ temporarToken: req.params.token }, (err, user) => {
-//         if (err) throw err; // Throw error if cannot login
-//         const token = req.params.token; // Save the token from URL for verification
-//         console.log("the token is", token);
-//         // Function to verify the user's token
-//         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-//             if (err) {
-//                 res.json({ success: false, message: "Activation link has expired." }); // Token is expired
-//             } else if (!user) {
-//                 res.json({ success: false, message: "Activation link has expired." }); // Token may be valid but does not match any user in the database
-//             } else {
-//                 user.temporaryToken = false; // Remove temporary token
-//                 user.verified = true; // Change account status to Verified
-//                 // Mongoose Method to save user into the database
-//                 user.save(err => {
-//                     if (err) {
-//                         console.log(err); // If unable to save user, log error info to console/terminal
-//                     } else {
-//                         // If save succeeds, create e-mail object
-//                         const emailActivate = {
-//                             from: "fouramigos36@gmail.com",
-//                             to: user.email,
-//                             subject: "Localhost Account Activated",
-//                             text: `Hello ${user.email
-//                                 }, Your account has been successfully activated!`,
-//                             html: `Hello<strong> ${user.email
-//                                 }</strong>,<br><br>Your account has been successfully activated!`
-//                         };
-//                         sgMail
-//                             .send(emailActivate)
-//                             .then(() => {
-//                                 console.log('Account Verified Confirmation Sent')
-//                             })
-//                             .catch((error) => {
-//                                 console.error(error)
-//                             })
-//                         res.json({
-//                             succeed: true,
-//                             message: "User has been successfully verified."
-//                         });
-//                     }
-//                 });
-//             }
-//         });
-//     });
-// });
+router.post("/forgot", (req, res) => {
+    if (req.body.email === null) {
+        res.status(400).send("email required");
+    }
+    User.findOne({ email: req.body.email }).then((existingUser, err) => {
+        console.log(existingUser)
+        if (existingUser === null) {
+            console.error(err)
+            res.status(404).send("No user associated with email.")
+        } else if (!existingUser) {
+            console.error(err)
+            res.status(404).send("No user associated with email.")
+        } else {
+            const token = jwt.sign({ user: existingUser._id }, process.env.JWT_SECRET);
+            User.updateOne({ email: existingUser.email }, { resetPasswordToken: token }).then((data, err) => {
+                if (err) {
+                    console.error(err)
+                    res.status(500).send();
+                } else if (!res) {
+                    console.error("No user updated")
+                    res.status(404).send();
+                } else {
+                    const passMsg = {
+                        to: existingUser.email,
+                        from: "fouramigos36@gmail.com",
+                        subject: 'Reset Password Link',
+                        text: 'Reset Password Link',
+                        html: `Please reset password at http://localhost:3000/reset/${token} or https://dondetravel.herokuapp.com/reset/${token}`
+                    }
+                    sgMail
+                        .send(passMsg)
+                        .then(() => {
+                            console.log('Password email sent')
+                        })
+                        .catch((error) => {
+                            console.error(error)
+                        })
+                    res.status(200).send("User Updated")
+                }
+            })
+        }
+    });
+});
+
+router.get("/reset", (req, res) => {
+    User.findOne({ resetPasswordToken: req.query.resetPasswordToken }).then((user) => {
+        if (user === null) {
+            res.status(404).send("Password reset link is invalid or has expired")
+        } else {
+            res.status(200).send({
+                email: user.email,
+                message: "all good"
+            });
+        }
+    });
+});
+
+router.put("/reset/password", async (req, res) => {
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(req.body.password, salt);
+    const updateInfo = await User.findOneAndUpdate(
+        {
+            email: req.body.email
+        },
+        {
+            passwordHash: passwordHash,
+            resetPasswordToken: null
+        }
+    )
+    const resetConfirmMsg = {
+        to: req.body.email,
+        from: "fouramigos36@gmail.com",
+        subject: 'Profile Info Changed!',
+        text: 'Welcome to Donde!',
+        html: "Your password has been reset"
+    }
+    sgMail
+        .send(resetConfirmMsg)
+        .then(() => {
+            console.log('Info email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    res.status(200).json(updateInfo);
+})
 
 module.exports = router;

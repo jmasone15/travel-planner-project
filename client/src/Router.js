@@ -13,6 +13,8 @@ import UpdatePage from "./components/pages/UpdatePage";
 import Wrapper from "./components/Wrapper";
 import Itinerary from "./components/pages/Itinerary";
 import ItineraryPage from "./components/pages/ItineraryPage";
+import Forgot from "./components/pages/Forgot";
+import ResetPass from "./components/pages/ResetPass";
 
 export default function Router() {
     const { loggedIn, getLoggedIn } = useContext(AuthContext);
@@ -47,6 +49,12 @@ export default function Router() {
                             </Route>
                             <Route path="/signup">
                                 <Signup />
+                            </Route>
+                            <Route path="/forgot">
+                                <Forgot />
+                            </Route>
+                            <Route path="/reset/:token">
+                                <ResetPass />
                             </Route>
                             <Route path="/home">
                                 <Redirect to="/" />
