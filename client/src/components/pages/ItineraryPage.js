@@ -160,8 +160,8 @@ function ItineraryPage(props) {
                                             ))}
                                             <hr />
                                         </div>
-                                        <button className="btn-lg btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => saveActivities(e)}>Save Activities</button>
-                                        <button className="btn-lg btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Go Back</button>
+                                        <button className="btn-block btn-success mb-2 mr-3 p-2 shadow" onClick={(e) => saveActivities(e)}>Save Activities</button>
+                                        <button className="btn-block btn-danger mb-2 p-2 shadow" onClick={(e) => resetPage(e)}>Go Back</button>
                                     </div>
                                 }
                             </div>
