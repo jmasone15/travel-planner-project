@@ -10,7 +10,7 @@ import AuthContext from "./context/AuthContext";
 // import ProfilePage from "./components/pages/ProfilePage";
 // import UpdatePage from "./components/pages/UpdatePage";
 // import Wrapper from "./components/Wrapper";
-// import Itinerary from "./components/pages/Itinerary";
+import Itinerary from "./components/pages/Itinerary";
 // import ItineraryPage from "./components/pages/ItineraryPage";
 import Forgot from "./components/pages/Forgot";
 import ResetPass from "./components/pages/ResetPass";
@@ -53,10 +53,10 @@ const Wrapper = Loadable({
     loading: () => <div>Loading...</div>
 });
 
-const Itinerary = Loadable({
-    loader: () => import('./components/pages/Itinerary'),
-    loading: () => <div>Loading...</div>
-});
+// const Itinerary = Loadable({
+//     loader: () => import('./components/pages/Itinerary'),
+//     loading: () => <div>Loading...</div>
+// });
 
 const ItineraryPage = Loadable({
     loader: () => import('./components/pages/ItineraryPage'),
