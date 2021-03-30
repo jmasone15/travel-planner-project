@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactToPdf from "react-to-pdf";
+// import ReactToPdf from "react-to-pdf";
 import "../../css/itinerary.css"
 // import "./home.css";
 export default function Itinerary({ selectedTrip, profileEmail, activitiesArray }) {
@@ -85,23 +85,23 @@ export default function Itinerary({ selectedTrip, profileEmail, activitiesArray 
                             </div>
                         </div>
                     </div>
-                    <ReactToPdf targetRef={ref} filename="itinerary.pdf" scale={0.75}>
-                        {({ toPdf }) => (
-                            <footer className="text-center mt-3">
-                                <p><strong>Four Amigos Inc.</strong><br />
+                    {/* <ReactToPdf targetRef={ref} filename="itinerary.pdf" scale={0.75}>
+                        {({ toPdf }) => ( */}
+                    <footer className="text-center mt-3">
+                        <p><strong>Four Amigos Inc.</strong><br />
                                     1600 Amphitheatre Parkway<br />
                                     Mountain View, CA 94043 </p>
-                                <hr />
-                                <p className="text-1"><strong>NOTE :</strong> This is computer generated itinerary and does not require physical signature.</p>
-                                <div className="btn-group btn-group-sm d-print-none">
-                                 {/* eslint-disable-next-line  */}
-                                    <a href="javascript:window.print()" className="btn btn-light border text-black-50 shadow-none"><i className="fa fa-print"></i> Print</a>
-                                </div>
-                            </footer>
-                        )}
-                    </ReactToPdf>
+                        <hr />
+                        <p className="text-1"><strong>NOTE :</strong> This is computer generated itinerary and does not require physical signature.</p>
+                        <div className="btn-group btn-group-sm d-print-none">
+                            {/* eslint-disable-next-line  */}
+                            <a href="javascript:window.print()" className="btn btn-light border text-black-50 shadow-none"><i className="fa fa-print"></i> Print</a>
+                        </div>
+                    </footer>
+                    {/* //     )}
+                    // </ReactToPdf> */}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
