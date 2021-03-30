@@ -25,6 +25,7 @@
         "bcryptjs": "^2.4.3",
         "cookie-parser": "^1.4.5",
         "cors": "^2.8.5",
+        "crypto-js": "^4.0.0",
         "deep-email-validator": "^0.1.18",
         "dotenv": "^8.2.0",
         "email-verifier": "^0.4.1",

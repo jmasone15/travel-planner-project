@@ -145,8 +145,8 @@ class Login extends React.Component {
                 Don't have an account? <Link to="/signup"> ¿Sign Up?</Link>
               </div>
               <div className="d-flex justify-content-center links">
-              {/* eslint-disable-next-line */}
-                <a href="#">Forgot your password?</a>
+                {/* eslint-disable-next-line */}
+                <Link to="/forgot"> Forgot your password?</Link>
               </div>
             </div>
           </div>

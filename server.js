@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require("path");
+const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -34,6 +35,8 @@ app.use(allowCrossDomain);
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
