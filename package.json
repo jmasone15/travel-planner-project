@@ -30,15 +30,11 @@
         "dotenv": "^8.2.0",
         "email-verifier": "^0.4.1",
         "express": "^4.17.1",
-        "file-saver": "^2.0.5",
         "if-env": "^1.0.4",
         "jsonwebtoken": "^8.5.1",
         "link": "^0.1.5",
         "mongoose": "^5.11.18",
         "react-icons": "^4.2.0",
         "react-star-ratings": "^2.3.0"
-    },
-    "resolutions": {
-        "jspdf/file-saver": "file-saver"
     }
 }
