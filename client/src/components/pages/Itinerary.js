@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactToPdf from "react-to-pdf";
 import "../../css/itinerary.css"
+import './node_modules/file-saver/FileSaver.js';
 // import "./home.css";
 export default function Itinerary({ selectedTrip, profileEmail, activitiesArray }) {
     const ref = React.createRef();

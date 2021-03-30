@@ -5,6 +5,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Navbar from "./components/pages/Navbar";
 import AuthContext from "./context/AuthContext";
+import './node_modules/file-saver/FileSaver.js';
 // import Recommend from "./components/pages/Recommend";
 // import ReviewPage from "./components/pages/ReviewPage";
 // import ProfilePage from "./components/pages/ProfilePage";
