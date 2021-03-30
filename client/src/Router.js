@@ -10,8 +10,8 @@ import AuthContext from "./context/AuthContext";
 // import ProfilePage from "./components/pages/ProfilePage";
 // import UpdatePage from "./components/pages/UpdatePage";
 // import Wrapper from "./components/Wrapper";
-import Itinerary from "./components/pages/Itinerary";
-import ItineraryPage from "./components/pages/ItineraryPage";
+// import Itinerary from "./components/pages/Itinerary";
+// import ItineraryPage from "./components/pages/ItineraryPage";
 import Forgot from "./components/pages/Forgot";
 import ResetPass from "./components/pages/ResetPass";
 import bgBlue from "./images/bgBlue.png"
@@ -23,7 +23,7 @@ const HomePage = Loadable({
 
 const BudgetPage = Loadable({
     loader: () => import('./components/pages/BudgetPage'),
-    loading: () => <img src={bgBlue} />
+    loading: () => <img src={bgBlue} alt="background" />
 });
 
 const Recommend = Loadable({
