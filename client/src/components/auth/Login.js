@@ -81,7 +81,8 @@ class Login extends React.Component {
                     </span>
                   </div>
                   <input
-                    type="text"
+                    type="email"
+                    required
                     onChange={(e) => this.setState({ email: e.target.value })}
                     className="form-control input_user"
                     value={this.state.email}
@@ -96,6 +97,7 @@ class Login extends React.Component {
                   </div>
                   <input
                     type="password"
+                    required
                     onChange={(e) =>
                       this.setState({ password: e.target.value })
                     }
