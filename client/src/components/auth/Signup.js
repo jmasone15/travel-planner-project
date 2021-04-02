@@ -68,7 +68,8 @@ function SignUp() {
                   </span>
                 </div>
                 <input
-                  type="text"
+                  type="email"
+                  required
                   onChange={(e) => setEmail(e.target.value)}
                   className="form-control input_user"
                   value={email}
@@ -84,6 +85,7 @@ function SignUp() {
                 </div>
                 <input
                   type="password"
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                   className="form-control input_user"
                   value={password}
