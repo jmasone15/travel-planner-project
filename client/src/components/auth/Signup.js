@@ -60,7 +60,7 @@ function SignUp() {
             <div className="brand_logo_container font"></div>
           </div>
           <div className="d-flex justify-content-center form_container">
-            <form>
+            <form onSubmit={(e) => register(e)}>
               <div className="input-group mb-3 mt-3">
                 <div className="input-group-append">
                   <span className="input-group-text">
@@ -127,10 +127,9 @@ function SignUp() {
               <Link to="/">
                 <div className="d-flex justify-content-center mt-3 login_container">
                   <button
-                    type="button"
+                    type="submit"
                     name="button"
                     className="btn login_btn"
-                    onClick={(e) => register(e)}
                   >
                     ¿Sign Up?
                   </button>

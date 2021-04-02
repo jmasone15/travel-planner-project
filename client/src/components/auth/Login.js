@@ -73,7 +73,13 @@ class Login extends React.Component {
               <div className="brand_logo_container"></div>
             </div>
             <div className="d-flex justify-content-center form_container">
-              <div>
+              <form onSubmit={(e) =>
+                this.handleFormSubmit(
+                  e,
+                  this.state.email,
+                  this.state.password
+                )
+              }>
                 <div className="input-group mb-3">
                   <div className="input-group-append">
                     <span className="input-group-text">
@@ -124,13 +130,6 @@ class Login extends React.Component {
                 <Link to="/home">
                   <div className="d-flex justify-content-center mt-3 login_container">
                     <button
-                      onClick={(e) =>
-                        this.handleFormSubmit(
-                          e,
-                          this.state.email,
-                          this.state.password
-                        )
-                      }
                       type="submit"
                       name="button"
                       className="btn login_btn"
@@ -139,7 +138,7 @@ class Login extends React.Component {
                     </button>
                   </div>
                 </Link>
-              </div>
+              </form>
             </div>
 
             <div className="mt-4">
