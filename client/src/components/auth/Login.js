@@ -127,17 +127,15 @@ class Login extends React.Component {
                     </label>
                   </div>
                 </div>
-                <Link to="/home">
-                  <div className="d-flex justify-content-center mt-3 login_container">
-                    <button
-                      type="submit"
-                      name="button"
-                      className="btn login_btn"
-                    >
-                      ¿Login?
+                <div className="d-flex justify-content-center mt-3 login_container">
+                  <button
+                    type="submit"
+                    name="button"
+                    className="btn login_btn"
+                  >
+                    ¿Login?
                     </button>
-                  </div>
-                </Link>
+                </div>
               </form>
             </div>
 

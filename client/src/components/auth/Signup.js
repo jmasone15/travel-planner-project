@@ -124,17 +124,15 @@ function SignUp() {
                   </label>
                 </div>
               </div>
-              <Link to="/">
-                <div className="d-flex justify-content-center mt-3 login_container">
-                  <button
-                    type="submit"
-                    name="button"
-                    className="btn login_btn"
-                  >
-                    ¿Sign Up?
+              <div className="d-flex justify-content-center mt-3 login_container">
+                <button
+                  type="submit"
+                  name="button"
+                  className="btn login_btn"
+                >
+                  ¿Sign Up?
                   </button>
-                </div>
-              </Link>
+              </div>
             </form>
           </div>
 
