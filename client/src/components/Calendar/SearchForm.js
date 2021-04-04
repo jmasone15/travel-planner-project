@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 // import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useHistory } from 'react-router';
 import Calender from './Calender';
@@ -24,6 +24,8 @@ function SearchForm(props) {
   const [formattedLocation, setFormattedLocation] = useState("")
   const [reset, setReset] = useState();
   const history = useHistory();
+  let checked = false
+
 
 //eslint-disable-next-line
   useEffect(async () => {
@@ -42,7 +44,7 @@ function SearchForm(props) {
 
   useEffect(() => {
 
-  }, [currentTrip, editDate, latLng, formattedLocation, reset])
+  }, [currentTrip, editDate, latLng, formattedLocation, reset, checked])
 
   async function cityState(results) {
 
@@ -78,7 +80,7 @@ function SearchForm(props) {
       }
 
       //city data
-      await setCurrentTrip({ ...currentTrip, startLocation: city.long_name + " " + region.long_name + " " + country.short_name })
+      await setCurrentTrip({ ...currentTrip, startLocation: city.long_name + ", " + region.short_name + ", " + country.short_name })
       setFormattedLocation(city.long_name + ", " + region.long_name + " " + country.short_name)
 
 
@@ -144,6 +146,14 @@ function SearchForm(props) {
   }
 
 
+  function handleChecked(e) {
+    e.preventDefault()
+    checked = (!checked)
+    if (checked) {
+      document.getElementById("autocomplete").value = currentTrip.startLocation
+    }
+  }
+
 
   return (
     <div className="wrapper">
@@ -172,9 +182,15 @@ function SearchForm(props) {
           }}>
             <div className="col-md-5 p-4 shadow-lg bg-white calendarForm" >
               <form className="">
+                
+              <button className="btn btn-sm mb-2 text-white" style={{ backgroundColor: "#6699CC", float: "left" }} onClick={(e) => handleChecked(e)}>Use current location</button>
                 <div className="form-group m-0">
                   {/* <input name="title" placeholder={"Trip name"} value={reset} onChange={(e) => setCurrentTrip({ ...currentTrip, name: e.target.value })} /> */}
-                  <SearchBar placeholder={"Start location"} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  <SearchBar  placeholder={"Start location"} id="start" currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
+                  {/* <input type="checkbox" id="useLocate"  /> */}
+                  
+                  
+                  
                   <br></br>
                   <SearchBar placeholder={"Destination"} setDestinationPicture={props.setDestinationPicture} currentTrip={currentTrip} setCurrentTrip={setCurrentTrip} />
                   <br></br>
