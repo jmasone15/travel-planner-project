@@ -28,10 +28,11 @@ function SearchForm(props) {
 //eslint-disable-next-line
   useEffect(async () => {
     if (!askOnce) {
-      const userLocation = await axios.get("/google/location")
+      const userLocation = await axios.post("/google/location")
       setAskOnce(true)
-      setLatLng({ lat: userLocation.data.location.lat, lng: userLocation.data.location.lng })
-      const userCity = await axios.get("/google/userCity", {lat: userLocation.data.location.lat, lng: userLocation.data.location.lng})
+      console.log(userLocation);
+      setLatLng({ lat: userLocation.data.lat, lng: userLocation.data.lng })
+      const userCity = await axios.get(`/google/userCity/${userLocation.data.lat},${userLocation.data.lng}`)
       const results = userCity.data.results
       await cityState(results)
     }

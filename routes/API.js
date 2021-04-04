@@ -20,8 +20,8 @@ function formatQuery(query) {
 router.post("/location", auth, async (req, res) => {
     try {
         let userLocation = await axios.post(Locate)
-        console.log(userLocation);
-        res.json(userLocation);
+        console.log(userLocation.data.location);
+        res.json(userLocation.data.location);
 
     } catch (err) {
         console.error(err);
@@ -29,9 +29,11 @@ router.post("/location", auth, async (req, res) => {
     }
 });
 
-router.get("/userCity", auth, async (req, res) => {
+router.get("/userCity/:coords", auth, async (req, res) => {
     try {
-        res.json(await axios.get(getCity + req.lat + "," + req.lng + "&locality" + "&key=" + GOOGLE_API_KEY));
+        let cityState = await axios.get(getCity + req.params.coords + "&locality" + "&key=" + GOOGLE_API_KEY);
+        console.log(cityState.data);
+        res.json(cityState.data)
 
     } catch (err) {
         console.error(err);
