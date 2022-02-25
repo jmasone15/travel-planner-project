@@ -17,7 +17,7 @@ This application was designed for the everyday person. Ask yourself this questio
 ## _Usage_
 
 The application can be viewed from here:
-> https://shielded-woodland-30004.herokuapp.com/
+> https://dondetravel.herokuapp.com/
 
 You can find the application Repository here:
 > https://github.com/jmasone15/travel-planner-project
