@@ -144,13 +144,13 @@ function ItineraryPage(props) {
                         <div className="container">
                             <div className="row">
                                 {!showActs ?
-                                    <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
+                                    <div className="col shadow p-3 mb-3 mt-5 rounded" style={{ textAlign: "center", backgroundColor:"#e5e6d7" }}>
                                         <h3 className="text-center font">Choose a trip:</h3>
                                         {props.tripArray.map((trip) => (
                                             <p style={{ fontSize: "20px", cursor: "pointer" }} onClick={(e) => getSelectedTrip(e, trip._id, trip.destination)} key={trip._id}>{trip.destination}</p>
                                         ))}
                                     </div>
-                                    : <div className="col shadow p-3 mb-3 mt-5 bg-white rounded" style={{ textAlign: "center" }}>
+                                    : <div className="col shadow p-3 mb-3 mt-5 rounded" style={{ textAlign: "center", backgroundColor:"#e5e6d7" }}>
                                         <h3 className="text-center font">{currentTrip}</h3>
                                         <hr />
                                         <div>
@@ -179,7 +179,8 @@ function ItineraryPage(props) {
                     </div>
                     <div className="col-8">
                         {showActs ? <div className="">
-                            <div className="container shadow p-3 mb-3 mt-5 bg-white rounded">
+                            <div className="container shadow p-3 mb-3 mt-5 rounded"
+                            style={{backgroundColor:"#e5e6d7"}}>
                                 <div className="row">
                                     <div style={{ textAlign: "center", paddingBottom: "20px" }}>
                                         {currentAct === "attractions" ? <button className="btn btn-success" name="attractions" style={{ margin: "10px" }} onClick={(e) => handleFormSubmit(e)}>Attractions</button>
